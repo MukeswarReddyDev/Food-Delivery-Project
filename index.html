@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FoodieHub - Discover the best food and restaurants in Bengaluru. Order online for super-fast delivery, discounts, and fresh meals.">
+  <title>FoodieHub | Discover the Best Food in Bengaluru</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Hidden mobile menu checkbox and controls -->
+  <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox">
+
+  <!-- Navigation Bar -->
+  <header class="navbar-wrapper">
+    <div class="container navbar">
+      <a href="index.html" class="logo">
+        Foodie<span>Hub</span><div class="logo-dot"></div>
+      </a>
+
+      <!-- Location Selector -->
+      <div class="location-selector">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+        <select aria-label="Select Bengaluru Location">
+          <option value="bengaluru">Bengaluru (All)</option>
+          <option value="koramangala" selected>Koramangala, Bengaluru</option>
+          <option value="indiranagar">Indiranagar, Bengaluru</option>
+          <option value="jayanagar">Jayanagar, Bengaluru</option>
+          <option value="basavanagudi">Basavanagudi, Bengaluru</option>
+          <option value="whitefield">Whitefield, Bengaluru</option>
+          <option value="hsr">HSR Layout, Bengaluru</option>
+        </select>
+      </div>
+
+      <!-- Nav Links -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="restaurants.html" class="nav-link">Restaurants</a>
+        <a href="index.html#offers" class="nav-link">Offers</a>
+        <a href="restaurants.html?type=dining" class="nav-link">Dining</a>
+        <a href="restaurants.html?type=nightlife" class="nav-link">Nightlife</a>
+        <a href="cart.html" class="nav-link nav-cart-btn">
+          Cart 
+          <span class="cart-badge">0</span>
+        </a>
+        <div class="nav-auth">
+          <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+          <a href="register.html" class="btn btn-primary btn-sm">Sign Up</a>
+        </div>
+      </nav>
+
+      <!-- Mobile Hamburger Toggle Button -->
+      <label for="menu-toggle" class="menu-toggle-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" height="28" viewBox="0 0 24 24" width="28" fill="#1C1C1C">
+          <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+        </svg>
+      </label>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Discover the Best Food in Bengaluru</h1>
+      <p>Super-fast delivery from your favorite local restaurants right to your doorstep</p>
+      
+      <!-- Search Form -->
+      <form action="restaurants.html" method="GET" class="search-container">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+          <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        </svg>
+        <input type="text" name="search" placeholder="Search for restaurants, cuisines or dishes..." required aria-label="Search food">
+        <button type="submit">
+          Search
+        </button>
+      </form>
+
+      <div class="hero-buttons">
+        <a href="restaurants.html" class="btn btn-primary">Order Food</a>
+        <a href="restaurants.html" class="btn btn-secondary">Explore Restaurants</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="section container">
+    <div class="section-header">
+      <h2>In the Mood for Something Special?</h2>
+      <p>Explore Bengaluru's top cuisines curated just for you</p>
+    </div>
+    
+    <div class="category-grid">
+      <a href="restaurants.html" class="category-card">
+        <div class="category-img-wrapper">
+          <img src="images/cuisine_images/all.jpg" alt="All Cuisines">
+        </div>
+        <span>All Cuisines</span>
+      </a>
+
+      <a href="restaurants.html?cuisine=biryani" class="category-card">
+        <div class="category-img-wrapper">
+          <img src="images/cuisine_images/biryani.jpg" alt="Biryani">
+        </div>
+        <span>Biryani</span>
+      </a>
+
+      <a href="restaurants.html?cuisine=north-indian" class="category-card">
+        <div class="category-img-wrapper">
+          <img src="images/cuisine_images/north-indian.jpg" alt="North Indian">
+        </div>
+        <span>North Indian</span>
+      </a>
+
+      <a href="restaurants.html?cuisine=south-indian" class="category-card">
+        <div class="category-img-wrapper">
+          <img src="images/cuisine_images/south-indian.jpg" alt="South Indian">
+        </div>
+        <span>South Indian</span>
+      </a>
+
+      <a href="restaurants.html?cuisine=burgers" class="category-card">
+        <div class="category-img-wrapper">
+          <img src="images/cuisine_images/burgers.jpg" alt="Burgers">
+        </div>
+        <span>Burgers</span>
+      </a>
+
+      <a href="restaurants.html?cuisine=pizza" class="category-card">
+        <div class="category-img-wrapper">
+          <img src="images/cuisine_images/pizza.jpg" alt="Pizza">
+        </div>
+        <span>Pizza</span>
+      </a>
+
+      <a href="restaurants.html?cuisine=chinese" class="category-card">
+        <div class="category-img-wrapper">
+          <img src="images/cuisine_images/chinese.jpg" alt="Chinese">
+        </div>
+        <span>Chinese</span>
+      </a>
+
+      <a href="restaurants.html?cuisine=desserts" class="category-card">
+        <div class="category-img-wrapper">
+          <img src="images/cuisine_images/desserts.jpg" alt="Desserts">
+        </div>
+        <span>Desserts</span>
+      </a>
+
+      <a href="restaurants.html?cuisine=mexican" class="category-card">
+        <div class="category-img-wrapper">
+          <img src="images/cuisine_images/mexican.jpg" alt="Mexican">
+        </div>
+        <span>Mexican</span>
+      </a>
+
+      <a href="restaurants.html?cuisine=healthy" class="category-card">
+        <div class="category-img-wrapper">
+          <img src="images/cuisine_images/healthy.jpg" alt="Healthy Food">
+        </div>
+        <span>Healthy Food</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Offers Section -->
+  <section class="section container" id="offers">
+    <div class="section-header">
+      <h2>Deals of the Week</h2>
+      <p>Grab these exclusive discounts and coupon codes now</p>
+    </div>
+
+    <div class="offers-grid">
+      <div class="offer-card offer-card-1">
+        <span class="offer-badge">LIMITED PERIOD</span>
+        <h3>Flat 50% OFF</h3>
+        <p>On your first 5 orders from premium restaurants. T&C apply.</p>
+        <span class="offer-code">CODE: WELCOME50</span>
+      </div>
+
+      <div class="offer-card offer-card-2">
+        <span class="offer-badge">BUY 1 GET 1</span>
+        <h3>BOGO Deals</h3>
+        <p>Double the taste, half the price. Valid on selected items.</p>
+        <span class="offer-code">CODE: BOGOFEST</span>
+      </div>
+
+      <div class="offer-card offer-card-3">
+        <span class="offer-badge">SUPER SAVER</span>
+        <h3>Free Delivery</h3>
+        <p>Free contactless home delivery on orders above ₹250.</p>
+        <span class="offer-code">CODE: FREEDEL</span>
+      </div>
+
+      <div class="offer-card offer-card-4">
+        <span class="offer-badge">WEEKEND VIBES</span>
+        <h3>Weekend Combos</h3>
+        <p>Up to ₹150 cashback on family size combos and beverages.</p>
+        <span class="offer-code">CODE: WEEKENDJOY</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Restaurants Section -->
+  <section class="section container">
+    <div class="section-header">
+      <h2>Popular Restaurants in Bengaluru</h2>
+      <p>Highly rated eateries chosen by food lovers in Bangalore</p>
+    </div>
+
+    <div class="restaurant-grid">
+      <!-- 1. Meghana Foods -->
+      <a href="restaurant-details.html#res-meghana" class="restaurant-card">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Trending</span>
+          <span class="badge-offer">40% OFF</span>
+          <img src="images/restaurant_images/res-biryani.jpg" alt="Meghana Foods">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Meghana Foods</h3>
+            <span class="rating-badge rating-high">4.5 ★</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span>
+            <span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Andhra, Biryani, Spicy</p>
+          <div class="location-tag">Koramangala, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+              32 mins
+            </span>
+            <span class="meta-price">₹350 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 2. Empire Restaurant -->
+      <a href="restaurant-details.html#res-empire" class="restaurant-card">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span>
+          <img src="images/restaurant_images/res-north-indian.jpg" alt="Empire Restaurant">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Empire Restaurant</h3>
+            <span class="rating-badge rating-high">4.3 ★</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span>
+            <span class="type-label">Halal Mughlai</span>
+          </div>
+          <p class="cuisine-tags">North Indian, Mughlai, Kebabs</p>
+          <div class="location-tag">Indiranagar, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+              28 mins
+            </span>
+            <span class="meta-price">₹300 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 3. Truffles -->
+      <a href="restaurant-details.html#res-truffles" class="restaurant-card">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Trending</span>
+          <span class="badge-offer">Buy 1 Get 1</span>
+          <img src="images/restaurant_images/res-burgers.jpg" alt="Truffles">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Truffles</h3>
+            <span class="rating-badge rating-high">4.6 ★</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span>
+            <span class="type-label">Burgers & Steaks</span>
+          </div>
+          <p class="cuisine-tags">Burgers, American, Desserts</p>
+          <div class="location-tag">Koramangala, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+              35 mins
+            </span>
+            <span class="meta-price">₹250 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 4. Vidyarthi Bhavan -->
+      <a href="restaurant-details.html#res-vidyarthi" class="restaurant-card">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Legendary</span>
+          <img src="images/restaurant_images/res-south-indian.jpg" alt="Vidyarthi Bhavan">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Vidyarthi Bhavan</h3>
+            <span class="rating-badge rating-high">4.7 ★</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-veg"><span class="indicator-dot"></span></span>
+            <span class="type-label">100% Pure Veg</span>
+          </div>
+          <p class="cuisine-tags">South Indian, Masala Dosa, Filter Coffee</p>
+          <div class="location-tag">Basavanagudi, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+              40 mins
+            </span>
+            <span class="meta-price">₹100 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 5. Nagarjuna -->
+      <a href="restaurant-details.html#res-nagarjuna" class="restaurant-card">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span>
+          <img src="images/restaurant_images/res-generic-3.jpg" alt="Nagarjuna">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Nagarjuna</h3>
+            <span class="rating-badge rating-high">4.5 ★</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span>
+            <span class="type-label">Andhra Feast</span>
+          </div>
+          <p class="cuisine-tags">Andhra, Meals, Traditional Curry</p>
+          <div class="location-tag">Residency Road, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+              25 mins
+            </span>
+            <span class="meta-price">₹300 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 6. Corner House -->
+      <a href="restaurant-details.html#res-cornerhouse" class="restaurant-card">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Trending</span>
+          <img src="images/restaurant_images/res-desserts.jpg" alt="Corner House">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Corner House</h3>
+            <span class="rating-badge rating-high">4.8 ★</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-veg"><span class="indicator-dot"></span></span>
+            <span class="type-label">100% Veg Desserts</span>
+          </div>
+          <p class="cuisine-tags">Desserts, Ice Cream, Hot Chocolate Fudge</p>
+          <div class="location-tag">Indiranagar, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+              18 mins
+            </span>
+            <span class="meta-price">₹200 for one</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div style="text-align: center; margin-top: 50px;">
+      <a href="restaurants.html" class="btn btn-secondary">Explore All 52 Restaurants</a>
+    </div>
+  </section>
+
+  <!-- Food Gallery Section -->
+  <section class="section container">
+    <div class="section-header">
+      <h2>Food Gallery</h2>
+      <p>Take a glance at some of the most popular items served in Bengaluru</p>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="images/dishes_images/dish-biryani.jpg" alt="Hyderabadi Dum Biryani">
+        <div class="gallery-overlay">
+          <h4>Hyderabadi Dum Biryani</h4>
+          <span>Meghana Foods</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/dishes_images/dish-pizza.jpg" alt="Loaded Cheese Pizza">
+        <div class="gallery-overlay">
+          <h4>Sourdough Pizza</h4>
+          <span>The Pizza Bakery</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/dishes_images/dish-burger.jpg" alt="Double Cheese Smash Burger">
+        <div class="gallery-overlay">
+          <h4>Double Cheese Burger</h4>
+          <span>Truffles</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/dishes_images/dish-dessert.jpg" alt="Death by Chocolate Ice Cream">
+        <div class="gallery-overlay">
+          <h4>Death By Chocolate</h4>
+          <span>Corner House</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Reviews Section -->
+  <section class="section container">
+    <div class="section-header">
+      <h2>Our Happy Foodies</h2>
+      <p>Real experiences shared by food enthusiasts in Bengaluru</p>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="reviewer-profile">
+          <div class="reviewer-avatar">RK</div>
+          <div class="reviewer-info">
+            <h4>Rohan Kulkarni</h4>
+            <span>Indiranagar, Bengaluru</span>
+          </div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Ordering from Meghana Foods via FoodieHub has been my weekend ritual. The Biryani arrived piping hot in just 30 mins! The delivery is amazingly quick and food stays absolutely fresh."</p>
+      </div>
+
+      <div class="review-card">
+        <div class="reviewer-profile">
+          <div class="reviewer-avatar">AS</div>
+          <div class="reviewer-info">
+            <h4>Aishwarya Sen</h4>
+            <span>Koramangala, Bengaluru</span>
+          </div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Truffles Cheese Burgers are life-saving. Love how FoodieHub lists all the menu items clearly with separate veg/non-veg indicator tags. The coupon discount worked instantly too."</p>
+      </div>
+
+      <div class="review-card">
+        <div class="reviewer-profile">
+          <div class="reviewer-avatar">NM</div>
+          <div class="reviewer-info">
+            <h4>Nikhil Murthy</h4>
+            <span>Basavanagudi, Bengaluru</span>
+          </div>
+        </div>
+        <div class="review-stars">★★★★☆</div>
+        <p class="review-text">"Vidyarthi Bhavan Masala Dosa delivered at home! I was skeptical if it would remain crisp, but the packaging and fast delivery preserved the authentic Basavanagudi taste. Superb!"</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section container">
+    <div class="section-header">
+      <h2>Frequently Asked Questions</h2>
+      <p>Have questions about delivery, payments, or locations? We've got answers.</p>
+    </div>
+
+    <div class="faq-container">
+      <div class="faq-item">
+        <details>
+          <summary>What are the operational hours of FoodieHub in Bengaluru?</summary>
+          <div class="faq-answer">
+            FoodieHub operates 24/7 in Bengaluru! However, individual restaurant opening and closing hours depend on their specific kitchen timings. You can check the "Open/Closed" status badge on each restaurant's card.
+          </div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>Is there a minimum order value for free delivery?</summary>
+          <div class="faq-answer">
+            Yes, free delivery is automatically applied to orders above ₹250. For orders below ₹250, a standard delivery fee of ₹40 is added to support our local delivery partners in Bengaluru.
+          </div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>How can I apply a discount coupon code?</summary>
+          <div class="faq-answer">
+            During checkout on the Cart page, type your promo code (e.g. WELCOME50, FREEDEL) into the Promo Code input box and click Apply. The corresponding discount will immediately show up in your bill summary.
+          </div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>Do you support contactless delivery?</summary>
+          <div class="faq-answer">
+            Absolutely. All deliveries are contactless by default. You can instruct the delivery agent via delivery notes to leave the food package at your doorstep or security gate.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="container">
+    <div class="newsletter-wrapper">
+      <div class="newsletter-content">
+        <h2>Stay Updated with FoodieHub</h2>
+        <p>Subscribe to our newsletter to receive weekly offers, new restaurant launches, and curated food guides in Bengaluru</p>
+        <form class="newsletter-form" action="#" method="POST" onsubmit="return false;">
+          <input type="email" placeholder="Enter your email address" aria-label="Email Address" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h3>FoodieHub</h3>
+          <p>FoodieHub is Bengaluru's premium online food ordering and delivery marketplace, connecting hungry foodies with the finest restaurants across Bangalore.</p>
+          <div class="social-links">
+            <a href="#" class="social-icon" aria-label="Facebook">FB</a>
+            <a href="#" class="social-icon" aria-label="Twitter">TW</a>
+            <a href="#" class="social-icon" aria-label="Instagram">IG</a>
+            <a href="#" class="social-icon" aria-label="LinkedIn">LN</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>About FoodieHub</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Our Team</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">FoodieHub Blog</a></li>
+            <li><a href="#">Security & Fraud</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal Information</h4>
+          <ul>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">Refund & Cancellation</a></li>
+            <li><a href="#">Merchant Terms</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact & Locations</h4>
+          <address>
+            <strong>FoodieHub Corporate Office</strong><br>
+            4th Floor, 80 Feet Road,<br>
+            Koramangala 4th Block,<br>
+            Bengaluru, KA 560034<br><br>
+            Email: support@foodiehub.in<br>
+            Phone: +91 80 4930 2000
+          </address>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 FoodieHub Delivery Private Limited. All rights reserved.</p>
+        <p>Designed with ❤️ for food lovers in Bengaluru</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>

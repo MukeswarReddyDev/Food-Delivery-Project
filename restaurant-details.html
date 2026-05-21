@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View detailed menu, prices, and ratings for restaurants in Bengaluru. Add items to cart and check out.">
+  <title>FoodieHub | Restaurant Details & Menu</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Mobile nav drawer checkbox -->
+  <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox">
+
+  <!-- Navigation Bar -->
+  <header class="navbar-wrapper">
+    <div class="container navbar">
+      <a href="index.html" class="logo">
+        Foodie<span>Hub</span><div class="logo-dot"></div>
+      </a>
+
+      <!-- Location Selector -->
+      <div class="location-selector">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+        <select aria-label="Select Bengaluru Location">
+          <option value="bengaluru">Bengaluru (All)</option>
+          <option value="koramangala" selected>Koramangala, Bengaluru</option>
+          <option value="indiranagar">Indiranagar, Bengaluru</option>
+          <option value="jayanagar">Jayanagar, Bengaluru</option>
+          <option value="basavanagudi">Basavanagudi, Bengaluru</option>
+          <option value="whitefield">Whitefield, Bengaluru</option>
+          <option value="hsr">HSR Layout, Bengaluru</option>
+        </select>
+      </div>
+
+      <!-- Nav Links -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="restaurants.html" class="nav-link">Restaurants</a>
+        <a href="index.html#offers" class="nav-link">Offers</a>
+        <a href="restaurants.html?type=dining" class="nav-link">Dining</a>
+        <a href="restaurants.html?type=nightlife" class="nav-link">Nightlife</a>
+        <a href="cart.html" class="nav-link nav-cart-btn">
+          Cart 
+          <span class="cart-badge">0</span>
+        </a>
+        <div class="nav-auth">
+          <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+          <a href="register.html" class="btn btn-primary btn-sm">Sign Up</a>
+        </div>
+      </nav>
+
+      <!-- Mobile Hamburger Toggle Button -->
+      <label for="menu-toggle" class="menu-toggle-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" height="28" viewBox="0 0 24 24" width="28" fill="#1C1C1C">
+          <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+        </svg>
+      </label>
+    </div>
+  </header>
+
+  <main class="restaurant-details-wrapper">
+    <!-- Dynamically loaded by js/details.js -->
+  </main>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h3>FoodieHub</h3>
+          <p>FoodieHub is Bengaluru's premium online food ordering and delivery marketplace, connecting hungry foodies with the finest restaurants across Bangalore.</p>
+          <div class="social-links">
+            <a href="#" class="social-icon">FB</a>
+            <a href="#" class="social-icon">TW</a>
+            <a href="#" class="social-icon">IG</a>
+            <a href="#" class="social-icon">LN</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>About FoodieHub</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Our Team</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">FoodieHub Blog</a></li>
+            <li><a href="#">Security & Fraud</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal Information</h4>
+          <ul>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">Refund & Cancellation</a></li>
+            <li><a href="#">Merchant Terms</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact & Locations</h4>
+          <address>
+            <strong>FoodieHub Corporate Office</strong><br>
+            4th Floor, 80 Feet Road,<br>
+            Koramangala 4th Block,<br>
+            Bengaluru, KA 560034<br><br>
+            Email: support@foodiehub.in<br>
+            Phone: +91 80 4930 2000
+          </address>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 FoodieHub Delivery Private Limited. All rights reserved.</p>
+        <p>Designed with ❤️ for food lovers in Bengaluru</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/details.js"></script>
+</body>
+</html>
