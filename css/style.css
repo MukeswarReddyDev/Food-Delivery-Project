@@ -7,32 +7,32 @@
 
 /* --- CSS custom properties (Design System) --- */
 :root {
-  --primary-color: #E23744;
-  --primary-hover: #C92C37;
-  --primary-light: #FCEBEB;
-  --primary-gradient: linear-gradient(135deg, #FF5C67 0%, #E23744 100%);
-  --secondary-color: #1C1C1C;
-  --accent-gold: #FFB800;
-  --veg-green: #0F8A5F;
-  --nonveg-red: #E23744;
+  --primary-color: #EF4F5F;
+  --primary-hover: #E23744;
+  --primary-light: #FFF0F1;
+  --primary-gradient: linear-gradient(135deg, #FF6A77 0%, #EF4F5F 100%);
+  --secondary-color: #282C3F;
+  --accent-gold: #FFB81C;
+  --veg-green: #24963F;
+  --nonveg-red: #EF4F5F;
   --text-dark: #1C1C1C;
-  --text-medium: #4F4F4F;
-  --text-muted: #828282;
-  --bg-light: #F8F9FA;
+  --text-medium: #363636;
+  --text-muted: #696969;
+  --bg-light: #F8F8F8;
   --bg-white: #FFFFFF;
   --bg-dark: #121212;
   --border-color: #EFEFEF;
-  --border-color-dark: #D3D3D3;
-  --shadow-sm: 0 2px 8px rgba(28, 28, 28, 0.08);
-  --shadow-md: 0 8px 20px rgba(28, 28, 28, 0.06);
-  --shadow-lg: 0 16px 36px rgba(28, 28, 28, 0.12);
+  --border-color-dark: #CFDBE1;
+  --shadow-sm: 0 2px 8px rgba(28, 44, 63, 0.05);
+  --shadow-md: 0 4px 20px rgba(28, 44, 63, 0.08);
+  --shadow-lg: 0 12px 30px rgba(28, 44, 63, 0.12);
   --font-main: 'Poppins', sans-serif;
   --font-headings: 'Montserrat', sans-serif;
   --border-radius: 12px;
-  --border-radius-lg: 20px;
-  --border-radius-sm: 6px;
-  --transition-fast: all 0.2s ease-in-out;
-  --transition-normal: all 0.3s ease-in-out;
+  --border-radius-lg: 16px;
+  --border-radius-sm: 8px;
+  --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --max-width: 1200px;
 }
 
@@ -2370,4 +2370,1065 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
   justify-content: center;
   gap: 16px;
 }
+
+/* ==========================================================================
+   FoodieHub Premium Redesign Overrides & Elements (Zomato-Style)
+   ========================================================================== */
+
+/* --- Toast Notification Styles --- */
+.foodiehub-toast {
+  position: fixed;
+  bottom: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--secondary-color);
+  color: var(--bg-white);
+  padding: 14px 28px;
+  border-radius: 30px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.foodiehub-toast.show {
+  bottom: 40px;
+  opacity: 1;
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* --- Keyframe Animations --- */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes heartSpring {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.35); }
+  70% { transform: scale(0.85); }
+  100% { transform: scale(1); }
+}
+
+/* --- Sticky Scroll Responsive Navbar (Overriding Default Navbar) --- */
+.navbar-wrapper {
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+}
+
+/* Homepage Transparent Over Hero Navbar Mode */
+.navbar-wrapper.navbar-transparent {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+}
+
+.navbar-wrapper.navbar-transparent .logo {
+  color: var(--bg-white);
+}
+
+.navbar-wrapper.navbar-transparent .logo span {
+  color: var(--bg-white);
+}
+
+.navbar-wrapper.navbar-transparent .logo-dot {
+  background-color: var(--bg-white);
+}
+
+.navbar-wrapper.navbar-transparent .nav-link {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.navbar-wrapper.navbar-transparent .nav-link:hover {
+  color: var(--bg-white);
+}
+
+.navbar-wrapper.navbar-transparent .nav-link::after {
+  background-color: var(--bg-white);
+}
+
+.navbar-wrapper.navbar-transparent .location-selector {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--bg-white);
+}
+
+.navbar-wrapper.navbar-transparent .location-selector svg {
+  fill: var(--bg-white);
+}
+
+.navbar-wrapper.navbar-transparent .location-selector select {
+  color: var(--bg-white);
+}
+
+.navbar-wrapper.navbar-transparent .location-selector select option {
+  background-color: var(--secondary-color);
+  color: var(--bg-white);
+}
+
+.navbar-wrapper.navbar-transparent .btn-outline {
+  color: var(--bg-white);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.navbar-wrapper.navbar-transparent .btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.navbar-wrapper.navbar-transparent .menu-toggle-btn svg {
+  fill: var(--bg-white);
+}
+
+/* Scrolled Active Sticky Mode (Homepage Header scrolled down) */
+.navbar-wrapper.navbar-transparent.scrolled {
+  background-color: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.navbar-wrapper.navbar-transparent.scrolled .logo {
+  color: var(--primary-color);
+}
+
+.navbar-wrapper.navbar-transparent.scrolled .logo span {
+  color: var(--secondary-color);
+}
+
+.navbar-wrapper.navbar-transparent.scrolled .logo-dot {
+  background-color: var(--primary-color);
+}
+
+.navbar-wrapper.navbar-transparent.scrolled .nav-link {
+  color: var(--text-medium);
+}
+
+.navbar-wrapper.navbar-transparent.scrolled .nav-link:hover,
+.navbar-wrapper.navbar-transparent.scrolled .nav-link.active {
+  color: var(--primary-color);
+}
+
+.navbar-wrapper.navbar-transparent.scrolled .nav-link::after {
+  background-color: var(--primary-color);
+}
+
+.navbar-wrapper.navbar-transparent.scrolled .location-selector {
+  background-color: var(--bg-light);
+  border-color: var(--border-color);
+  color: var(--text-dark);
+}
+
+.navbar-wrapper.navbar-transparent.scrolled .location-selector svg {
+  fill: var(--primary-color);
+}
+
+.navbar-wrapper.navbar-transparent.scrolled .location-selector select {
+  color: var(--text-dark);
+}
+
+.navbar-wrapper.navbar-transparent.scrolled .location-selector select option {
+  background-color: var(--bg-white);
+  color: var(--text-dark);
+}
+
+.navbar-wrapper.navbar-transparent.scrolled .btn-outline {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.navbar-wrapper.navbar-transparent.scrolled .btn-outline:hover {
+  background-color: var(--primary-light);
+}
+
+.navbar-wrapper.navbar-transparent.scrolled .menu-toggle-btn svg {
+  fill: var(--text-dark);
+}
+
+/* --- Premium Zomato-Style Hero Search Container --- */
+.hero {
+  padding: 160px 24px 100px 24px; /* Space for transparent navbar */
+  min-height: 560px;
+}
+
+.search-main-container {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-white);
+  border-radius: 30px;
+  padding: 4px 6px;
+  box-shadow: var(--shadow-lg);
+  max-width: 780px;
+  width: 100%;
+  margin: 0 auto 40px auto;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Left Location search box */
+.location-search-box {
+  display: flex;
+  align-items: center;
+  width: 38%;
+  position: relative;
+  padding: 10px 12px 10px 18px;
+}
+
+.location-search-box input {
+  width: 100%;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  font-weight: 500;
+  border: none;
+  background: transparent;
+  padding-right: 8px;
+}
+
+.location-search-box input::placeholder {
+  color: var(--text-muted);
+}
+
+.location-icon {
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.location-arrow {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* Search Separator line */
+.search-separator {
+  height: 24px;
+  width: 1px;
+  background-color: var(--border-color-dark);
+  margin: 0 10px;
+}
+
+/* Right restaurant search box */
+.dish-search-box {
+  display: flex;
+  align-items: center;
+  width: 62%;
+  position: relative;
+  padding: 10px 12px;
+}
+
+.dish-search-box input {
+  width: 100%;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  font-weight: 400;
+  border: none;
+  background: transparent;
+  padding-left: 8px;
+}
+
+.dish-search-box input::placeholder {
+  color: var(--text-muted);
+}
+
+.search-icon {
+  display: flex;
+  align-items: center;
+  margin-left: 4px;
+}
+
+/* Autocomplete Suggestion Dropdowns (Zomato-Style) */
+.suggestions-dropdown {
+  position: absolute;
+  top: 105%;
+  left: 0;
+  width: 100%;
+  background-color: var(--bg-white);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(28, 44, 63, 0.15);
+  border: 1px solid var(--border-color);
+  z-index: 100;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  max-height: 380px;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.suggestions-dropdown.active {
+  display: flex;
+}
+
+/* Scrollbar styles for suggestions list */
+.suggestions-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.suggestions-dropdown::-webkit-scrollbar-thumb {
+  background-color: var(--border-color-dark);
+  border-radius: 10px;
+}
+
+.suggestion-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 14px 20px 8px 20px;
+  background-color: var(--bg-light);
+}
+
+.suggestion-divider {
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 4px 0;
+}
+
+.suggestion-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 0.92rem;
+  color: var(--text-medium);
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.suggestion-item:hover {
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+}
+
+.suggestion-item.detect-location {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.suggestion-item img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--border-color);
+}
+
+.suggestion-item span {
+  flex-grow: 1;
+}
+
+/* --- Premium Collections Section --- */
+.collections-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.collection-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 320px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: var(--bg-white);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.collection-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.1) 60%);
+  z-index: 1;
+}
+
+.collection-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.collection-info {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+}
+
+.collection-info h3 {
+  color: var(--bg-white);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.collection-info span {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.collection-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.collection-card:hover .collection-img {
+  transform: scale(1.08);
+}
+
+/* --- Premium Restaurant Cards Redesign --- */
+.restaurant-card {
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 4px 18px rgba(28, 44, 63, 0.04);
+  border: 1px solid var(--border-color);
+  padding: 10px;
+  background-color: var(--bg-white);
+  height: 100%;
+}
+
+.restaurant-img-wrapper {
+  height: 200px;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+/* Redesigned Floating Badges */
+.badge-offer {
+  background-color: #2563EB;
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.badge-trending {
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+/* Favorite Floating Heart Icon */
+.btn-favorite {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-favorite svg {
+  fill: rgba(0, 0, 0, 0.4);
+  stroke: #ffffff;
+  stroke-width: 2.2;
+  transition: fill 0.2s ease, stroke 0.2s ease;
+}
+
+.btn-favorite:hover {
+  transform: scale(1.1);
+  background-color: #ffffff;
+}
+
+.btn-favorite.active {
+  animation: heartSpring 0.45s ease-in-out;
+  background-color: #ffffff;
+}
+
+.btn-favorite.active svg {
+  fill: #EF4F5F;
+  stroke: #EF4F5F;
+}
+
+/* Premium info updates */
+.restaurant-info {
+  padding: 12px 6px 6px 6px;
+}
+
+.restaurant-info-top h3 {
+  font-size: 1.18rem;
+  color: var(--secondary-color);
+  font-family: var(--font-headings);
+}
+
+.rating-badge {
+  font-size: 0.8rem;
+  padding: 3px 8px;
+}
+
+.cuisine-tags {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* --- Premium App Download Section --- */
+.app-download-section {
+  background: radial-gradient(circle at 10% 10%, #FFF5F5 0%, #FFFDFD 100%);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 80px 0;
+}
+
+.app-download-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.app-download-details {
+  flex: 1;
+  max-width: 550px;
+}
+
+.app-download-details h2 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--secondary-color);
+  margin-bottom: 16px;
+}
+
+.app-download-details p {
+  color: var(--text-medium);
+  font-size: 1.05rem;
+  margin-bottom: 30px;
+  line-height: 1.7;
+}
+
+/* Radio button toggles */
+.download-toggles {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.download-radio-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--text-medium);
+}
+
+.download-radio-label input {
+  margin-right: 8px;
+  accent-color: var(--primary-color);
+  width: 18px;
+  height: 18px;
+}
+
+/* Email or Phone Share Form */
+.app-download-form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 35px;
+  max-width: 500px;
+}
+
+.app-download-form input {
+  flex-grow: 1;
+  border: 1px solid var(--border-color-dark);
+  padding: 14px 20px;
+  border-radius: var(--border-radius);
+  font-size: 0.95rem;
+  background-color: var(--bg-white);
+  transition: border-color 0.2s ease;
+}
+
+.app-download-form input:focus {
+  border-color: var(--primary-color);
+}
+
+.app-download-form button {
+  background-color: var(--primary-color);
+  color: var(--bg-white);
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  padding: 14px 24px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.app-download-form button:hover {
+  background-color: var(--primary-hover);
+}
+
+/* App badge links */
+.store-badges {
+  display: flex;
+  gap: 16px;
+}
+
+.store-btn img {
+  height: 42px;
+  transition: transform 0.2s ease;
+}
+
+.store-btn:hover img {
+  transform: translateY(-2px);
+}
+
+/* Premium Mobile Frame Mockup in Pure CSS */
+.app-preview-visual {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.app-device-frame {
+  width: 280px;
+  height: 560px;
+  background-color: #000;
+  border: 12px solid #282C3F;
+  border-radius: 40px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Speaker notch */
+.app-device-frame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 24px;
+  background-color: #282C3F;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  z-index: 10;
+}
+
+/* Home Indicator bar */
+.app-device-frame::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background-color: #E2E8F0;
+  border-radius: 2px;
+  z-index: 10;
+}
+
+/* Simulated App Screen */
+.simulated-screen {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-light);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  font-family: var(--font-main);
+}
+
+/* Simulated App Content */
+.sim-app-header {
+  background-color: var(--bg-white);
+  padding: 30px 14px 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1.5px solid var(--border-color);
+}
+
+.sim-app-logo {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--primary-color);
+}
+
+.sim-app-logo span {
+  color: var(--secondary-color);
+}
+
+.sim-app-loc {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.sim-app-hero {
+  padding: 16px 14px;
+  background-color: var(--secondary-color);
+  color: var(--bg-white);
+  text-align: center;
+}
+
+.sim-app-hero h4 {
+  color: var(--bg-white);
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+}
+
+.sim-app-search {
+  background-color: var(--bg-white);
+  border-radius: 20px;
+  padding: 5px 10px;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sim-app-body {
+  padding: 14px;
+  flex-grow: 1;
+  overflow-y: hidden;
+}
+
+.sim-section-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--secondary-color);
+}
+
+.sim-cuisines {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.sim-cuisine-circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.55rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.sim-circle {
+  width: 40px;
+  height: 40px;
+  background-color: var(--bg-white);
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.sim-card {
+  background-color: var(--bg-white);
+  border-radius: 10px;
+  padding: 6px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.sim-card img {
+  width: 45px;
+  height: 45px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.sim-card-info {
+  flex-grow: 1;
+}
+
+.sim-card-title {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.sim-card-cuisine {
+  font-size: 0.55rem;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+.sim-card-rating {
+  background-color: var(--veg-green);
+  color: var(--bg-white);
+  font-size: 0.55rem;
+  font-weight: 700;
+  padding: 1px 4px;
+  border-radius: 3px;
+  align-self: flex-start;
+}
+
+/* Background floating abstract blobs for modern look */
+.app-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(50px);
+  z-index: -1;
+  opacity: 0.35;
+}
+
+.app-blob-1 {
+  width: 250px;
+  height: 250px;
+  background-color: #FF8A95;
+  top: -20px;
+  right: -50px;
+}
+
+.app-blob-2 {
+  width: 300px;
+  height: 300px;
+  background-color: #FFE3E5;
+  bottom: -40px;
+  left: -80px;
+}
+
+
+/* --- Modern Footer Redesign --- */
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.8fr repeat(3, 1fr);
+  gap: 40px;
+}
+
+.social-links {
+  margin-top: 16px;
+}
+
+.social-icon {
+  width: 36px;
+  height: 36px;
+  background-color: rgba(255, 255, 255, 0.08);
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: 50%;
+}
+
+.footer-col h4 {
+  font-size: 0.95rem;
+  letter-spacing: 0.8px;
+  color: #fff;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 8px;
+}
+
+.footer-col a {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  transition: var(--transition-fast);
+}
+
+.footer-col a:hover {
+  color: var(--primary-color);
+  padding-left: 6px;
+}
+
+.footer-bottom {
+  border-color: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.85rem;
+}
+
+
+/* ==========================================================================
+   Responsive Overrides & Media Queries
+   ========================================================================== */
+@media (max-width: 992px) {
+  .search-main-container {
+    max-width: 600px;
+  }
+  .location-search-box {
+    width: 45%;
+  }
+  .dish-search-box {
+    width: 55%;
+  }
+  .collections-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .app-download-container {
+    flex-direction: column;
+    gap: 50px;
+    text-align: center;
+  }
+  .app-download-details {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .download-toggles {
+    justify-content: center;
+  }
+  .app-download-form {
+    width: 100%;
+  }
+  .store-badges {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-wrapper.navbar-transparent {
+    position: sticky;
+    background-color: var(--bg-white);
+    border-bottom: 1px solid var(--border-color);
+  }
+  .navbar-wrapper.navbar-transparent .logo {
+    color: var(--primary-color);
+  }
+  .navbar-wrapper.navbar-transparent .logo span {
+    color: var(--secondary-color);
+  }
+  .navbar-wrapper.navbar-transparent .logo-dot {
+    background-color: var(--primary-color);
+  }
+  .navbar-wrapper.navbar-transparent .nav-link {
+    color: var(--text-medium);
+  }
+  .navbar-wrapper.navbar-transparent .location-selector {
+    background-color: var(--bg-light);
+    border-color: var(--border-color);
+    color: var(--text-dark);
+  }
+  .navbar-wrapper.navbar-transparent .location-selector select {
+    color: var(--text-dark);
+  }
+  .navbar-wrapper.navbar-transparent .menu-toggle-btn svg {
+    fill: var(--text-dark);
+  }
+  .navbar-wrapper.navbar-transparent .btn-outline {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+  
+  .hero {
+    padding: 80px 24px 80px 24px;
+    min-height: auto;
+  }
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  .hero-content p {
+    font-size: 1.1rem;
+    margin-bottom: 24px;
+  }
+  
+  .search-main-container {
+    flex-direction: column;
+    border-radius: 16px;
+    padding: 8px;
+    box-shadow: var(--shadow-md);
+  }
+  .location-search-box {
+    width: 100%;
+    border-bottom: 1px solid var(--border-color);
+    padding: 8px 12px;
+  }
+  .search-separator {
+    display: none;
+  }
+  .dish-search-box {
+    width: 100%;
+    padding: 8px 12px;
+  }
+  .suggestions-dropdown {
+    width: 100%;
+    max-height: 250px;
+  }
+  
+  .collections-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .collection-card {
+    height: 240px;
+  }
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  .collections-grid {
+    grid-template-columns: 1fr;
+  }
+  .app-download-form {
+    flex-direction: column;
+    border-radius: 12px;
+    border: none;
+    background: transparent;
+    padding: 0;
+  }
+  .app-download-form input {
+    width: 100%;
+  }
+  .app-download-form button {
+    width: 100%;
+  }
+  .download-toggles {
+    flex-direction: row;
+    gap: 16px;
+  }
+}
+
 

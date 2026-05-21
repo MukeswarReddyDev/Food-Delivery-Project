@@ -13,7 +13,7 @@
   <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox">
 
   <!-- Navigation Bar -->
-  <header class="navbar-wrapper">
+  <header class="navbar-wrapper navbar-transparent">
     <div class="container navbar">
       <a href="index.html" class="logo">
         Foodie<span>Hub</span><div class="logo-dot"></div>
@@ -64,23 +64,82 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
-      <h1>Discover the Best Food in Bengaluru</h1>
-      <p>Super-fast delivery from your favorite local restaurants right to your doorstep</p>
+      <h1>Foodie<span>Hub</span></h1>
+      <p>Discover the best food &amp; drinks in Bengaluru</p>
       
-      <!-- Search Form -->
-      <form action="restaurants.html" method="GET" class="search-container">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-          <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-        </svg>
-        <input type="text" name="search" placeholder="Search for restaurants, cuisines or dishes..." required aria-label="Search food">
-        <button type="submit">
-          Search
-        </button>
-      </form>
-
-      <div class="hero-buttons">
-        <a href="restaurants.html" class="btn btn-primary">Order Food</a>
-        <a href="restaurants.html" class="btn btn-secondary">Explore Restaurants</a>
+      <!-- Combined Search Container (Zomato Style) -->
+      <div class="search-main-container">
+        <!-- Location search box -->
+        <div class="location-search-box">
+          <div class="location-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" fill="#EF4F5F">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+          </div>
+          <input type="text" id="location-input" placeholder="Koramangala, Bengaluru" value="Koramangala, Bengaluru" autocomplete="off" aria-label="Location Input">
+          <div class="location-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" fill="#696969">
+              <path d="M7 10l5 5 5-5H7z"/>
+            </svg>
+          </div>
+          <!-- Location Suggestions Dropdown -->
+          <div class="suggestions-dropdown" id="location-suggestions">
+            <div class="suggestion-item detect-location" id="detect-gps">
+              <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 24 24" width="18" fill="#EF4F5F">
+                <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3c-.46-4.17-3.77-7.48-7.94-7.94V1c0-.55-.45-1-1-1s-1 .45-1 1v2.06C6.83 3.52 3.52 6.83 3.06 11H1c-.55 0-1 .45-1 1s.45 1 1 1h2.06c.46 4.17 3.77 7.48 7.94 7.94V23c0 .55.45 1 1 1s1-.45 1-1v-2.06c4.17-.46 7.48-3.77 7.94-7.94H23c.55 0 1-.45 1-1s-.45-1-1-1h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/>
+              </svg>
+              <span>Use Current Location (GPS)</span>
+            </div>
+            <div class="suggestion-divider"></div>
+            <div class="suggestion-item" data-value="Koramangala, Bengaluru">Koramangala, Bengaluru</div>
+            <div class="suggestion-item" data-value="Indiranagar, Bengaluru">Indiranagar, Bengaluru</div>
+            <div class="suggestion-item" data-value="Jayanagar, Bengaluru">Jayanagar, Bengaluru</div>
+            <div class="suggestion-item" data-value="HSR Layout, Bengaluru">HSR Layout, Bengaluru</div>
+            <div class="suggestion-item" data-value="Whitefield, Bengaluru">Whitefield, Bengaluru</div>
+            <div class="suggestion-item" data-value="Basavanagudi, Bengaluru">Basavanagudi, Bengaluru</div>
+          </div>
+        </div>
+        
+        <div class="search-separator"></div>
+        
+        <!-- Dish search box -->
+        <form action="restaurants.html" method="GET" class="dish-search-box" onsubmit="return true;">
+          <div class="search-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" fill="#696969">
+              <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+            </svg>
+          </div>
+          <input type="text" name="search" id="restaurant-input" placeholder="Search for restaurant, cuisine or a dish" autocomplete="off" required aria-label="Search Restaurants">
+          <!-- Restaurant Suggestions Dropdown -->
+          <div class="suggestions-dropdown" id="restaurant-suggestions">
+            <div class="suggestion-title">Popular Cuisines</div>
+            <div class="suggestion-item item-cuisine" data-filter="biryani">
+              <img src="images/cuisine_images/biryani.jpg" alt="Biryani">
+              <span>Biryani</span>
+            </div>
+            <div class="suggestion-item item-cuisine" data-filter="burgers">
+              <img src="images/cuisine_images/burgers.jpg" alt="Burgers">
+              <span>Burgers (Truffles)</span>
+            </div>
+            <div class="suggestion-item item-cuisine" data-filter="pizza">
+              <img src="images/cuisine_images/pizza.jpg" alt="Pizza">
+              <span>Pizza</span>
+            </div>
+            <div class="suggestion-title">Popular Restaurants</div>
+            <div class="suggestion-item item-restaurant" data-url="restaurant-details.html#res-meghana">
+              <img src="images/restaurant_images/res-biryani.jpg" alt="Meghana Foods">
+              <span>Meghana Foods (4.5★)</span>
+            </div>
+            <div class="suggestion-item item-restaurant" data-url="restaurant-details.html#res-truffles">
+              <img src="images/restaurant_images/res-burgers.jpg" alt="Truffles">
+              <span>Truffles (4.6★)</span>
+            </div>
+            <div class="suggestion-item item-restaurant" data-url="restaurant-details.html#res-vidyarthi">
+              <img src="images/restaurant_images/res-south-indian.jpg" alt="Vidyarthi Bhavan">
+              <span>Vidyarthi Bhavan (4.7★)</span>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </section>
@@ -165,6 +224,52 @@
     </div>
   </section>
 
+  <!-- Collections Section -->
+  <section class="section container">
+    <div class="section-header">
+      <h2>Collections</h2>
+      <p>Explore curated lists of top-rated restaurants, cafes, and bars in Bengaluru, based on trends</p>
+    </div>
+    
+    <div class="collections-grid">
+      <!-- Collection 1: Trending -->
+      <a href="restaurants.html" class="collection-card">
+        <img class="collection-img" src="images/restaurant_images/res-generic-1.jpg" alt="Trending this week">
+        <div class="collection-info">
+          <h3>Trending This Week</h3>
+          <span>12 Places <svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></span>
+        </div>
+      </a>
+      
+      <!-- Collection 2: Legendary -->
+      <a href="restaurants.html?type=dining" class="collection-card">
+        <img class="collection-img" src="images/restaurant_images/res-south-indian.jpg" alt="Legendary Outlets">
+        <div class="collection-info">
+          <h3>Legendary Outlets</h3>
+          <span>8 Places <svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></span>
+        </div>
+      </a>
+
+      <!-- Collection 3: Super Saver -->
+      <a href="index.html#offers" class="collection-card">
+        <img class="collection-img" src="images/restaurant_images/res-pizza.jpg" alt="Super Saver Offers">
+        <div class="collection-info">
+          <h3>Super Saver Offers</h3>
+          <span>10 Places <svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></span>
+        </div>
+      </a>
+
+      <!-- Collection 4: Sweet Tooth -->
+      <a href="restaurants.html#desserts" class="collection-card">
+        <img class="collection-img" src="images/restaurant_images/res-desserts.jpg" alt="Sweet Tooth Cravings">
+        <div class="collection-info">
+          <h3>Sweet Tooth Cravings</h3>
+          <span>15 Places <svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </section>
+
   <!-- Offers Section -->
   <section class="section container" id="offers">
     <div class="section-header">
@@ -216,12 +321,17 @@
         <div class="restaurant-img-wrapper">
           <span class="badge-trending">Trending</span>
           <span class="badge-offer">40% OFF</span>
+          <button class="btn-favorite" aria-label="Add to Favorites" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+          </button>
           <img src="images/restaurant_images/res-biryani.jpg" alt="Meghana Foods">
         </div>
         <div class="restaurant-info">
           <div class="restaurant-info-top">
             <h3>Meghana Foods</h3>
-            <span class="rating-badge rating-high">4.5 â˜…</span>
+            <span class="rating-badge rating-high">4.5 ★</span>
           </div>
           <div class="tag-veg-nonveg">
             <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span>
@@ -234,7 +344,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
               32 mins
             </span>
-            <span class="meta-price">â‚¹350 for one</span>
+            <span class="meta-price">₹350 for one</span>
           </div>
         </div>
       </a>
@@ -243,12 +353,17 @@
       <a href="restaurant-details.html#res-empire" class="restaurant-card">
         <div class="restaurant-img-wrapper">
           <span class="badge-status">Open</span>
+          <button class="btn-favorite" aria-label="Add to Favorites" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+          </button>
           <img src="images/restaurant_images/res-north-indian.jpg" alt="Empire Restaurant">
         </div>
         <div class="restaurant-info">
           <div class="restaurant-info-top">
             <h3>Empire Restaurant</h3>
-            <span class="rating-badge rating-high">4.3 â˜…</span>
+            <span class="rating-badge rating-high">4.3 ★</span>
           </div>
           <div class="tag-veg-nonveg">
             <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span>
@@ -261,7 +376,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
               28 mins
             </span>
-            <span class="meta-price">â‚¹300 for one</span>
+            <span class="meta-price">₹300 for one</span>
           </div>
         </div>
       </a>
@@ -271,12 +386,17 @@
         <div class="restaurant-img-wrapper">
           <span class="badge-trending">Trending</span>
           <span class="badge-offer">Buy 1 Get 1</span>
+          <button class="btn-favorite" aria-label="Add to Favorites" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+          </button>
           <img src="images/restaurant_images/res-burgers.jpg" alt="Truffles">
         </div>
         <div class="restaurant-info">
           <div class="restaurant-info-top">
             <h3>Truffles</h3>
-            <span class="rating-badge rating-high">4.6 â˜…</span>
+            <span class="rating-badge rating-high">4.6 ★</span>
           </div>
           <div class="tag-veg-nonveg">
             <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span>
@@ -289,7 +409,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
               35 mins
             </span>
-            <span class="meta-price">â‚¹250 for one</span>
+            <span class="meta-price">₹250 for one</span>
           </div>
         </div>
       </a>
@@ -298,12 +418,17 @@
       <a href="restaurant-details.html#res-vidyarthi" class="restaurant-card">
         <div class="restaurant-img-wrapper">
           <span class="badge-trending">Legendary</span>
+          <button class="btn-favorite" aria-label="Add to Favorites" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+          </button>
           <img src="images/restaurant_images/res-south-indian.jpg" alt="Vidyarthi Bhavan">
         </div>
         <div class="restaurant-info">
           <div class="restaurant-info-top">
             <h3>Vidyarthi Bhavan</h3>
-            <span class="rating-badge rating-high">4.7 â˜…</span>
+            <span class="rating-badge rating-high">4.7 ★</span>
           </div>
           <div class="tag-veg-nonveg">
             <span class="indicator indicator-veg"><span class="indicator-dot"></span></span>
@@ -316,7 +441,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
               40 mins
             </span>
-            <span class="meta-price">â‚¹100 for one</span>
+            <span class="meta-price">₹100 for one</span>
           </div>
         </div>
       </a>
@@ -325,12 +450,17 @@
       <a href="restaurant-details.html#res-nagarjuna" class="restaurant-card">
         <div class="restaurant-img-wrapper">
           <span class="badge-status">Open</span>
+          <button class="btn-favorite" aria-label="Add to Favorites" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+          </button>
           <img src="images/restaurant_images/res-generic-3.jpg" alt="Nagarjuna">
         </div>
         <div class="restaurant-info">
           <div class="restaurant-info-top">
             <h3>Nagarjuna</h3>
-            <span class="rating-badge rating-high">4.5 â˜…</span>
+            <span class="rating-badge rating-high">4.5 ★</span>
           </div>
           <div class="tag-veg-nonveg">
             <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span>
@@ -343,7 +473,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
               25 mins
             </span>
-            <span class="meta-price">â‚¹300 for one</span>
+            <span class="meta-price">₹300 for one</span>
           </div>
         </div>
       </a>
@@ -352,12 +482,17 @@
       <a href="restaurant-details.html#res-cornerhouse" class="restaurant-card">
         <div class="restaurant-img-wrapper">
           <span class="badge-trending">Trending</span>
+          <button class="btn-favorite" aria-label="Add to Favorites" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+          </button>
           <img src="images/restaurant_images/res-desserts.jpg" alt="Corner House">
         </div>
         <div class="restaurant-info">
           <div class="restaurant-info-top">
             <h3>Corner House</h3>
-            <span class="rating-badge rating-high">4.8 â˜…</span>
+            <span class="rating-badge rating-high">4.8 ★</span>
           </div>
           <div class="tag-veg-nonveg">
             <span class="indicator indicator-veg"><span class="indicator-dot"></span></span>
@@ -370,7 +505,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
               18 mins
             </span>
-            <span class="meta-price">â‚¹200 for one</span>
+            <span class="meta-price">₹200 for one</span>
           </div>
         </div>
       </a>
@@ -512,6 +647,95 @@
     </div>
   </section>
 
+  <!-- App Download Section -->
+  <section class="app-download-section">
+    <div class="container app-download-container">
+      <div class="app-download-details">
+        <h2>Get the FoodieHub App</h2>
+        <p>We will send you a link, open it on your phone to download the app. Share your email or phone number to receive the download link.</p>
+        
+        <div class="download-toggles">
+          <label class="download-radio-label">
+            <input type="radio" name="download-method" value="email" checked>
+            <span>Email</span>
+          </label>
+          <label class="download-radio-label">
+            <input type="radio" name="download-method" value="phone">
+            <span>Phone</span>
+          </label>
+        </div>
+
+        <form class="app-download-form" id="share-app-form">
+          <input type="text" placeholder="Email Address" aria-label="Contact Detail" required>
+          <button type="submit">Share App Link</button>
+        </form>
+
+        <p class="download-text-small" style="color: var(--text-muted); font-size: 0.85rem; margin-top: -15px; margin-bottom: 20px;">Download app from</p>
+        <div class="store-badges">
+          <a href="#" class="store-btn">
+            <img src="images/store_images/play-store.svg" alt="Get it on Google Play">
+          </a>
+          <a href="#" class="store-btn">
+            <img src="images/store_images/app-store.svg" alt="Download on the App Store">
+          </a>
+        </div>
+      </div>
+
+      <div class="app-preview-visual">
+        <div class="app-blob app-blob-1"></div>
+        <div class="app-blob app-blob-2"></div>
+        <div class="app-device-frame">
+          <div class="simulated-screen">
+            <div class="sim-app-header">
+              <div class="sim-app-logo">Foodie<span>Hub</span></div>
+              <div class="sim-app-loc">
+                <svg xmlns="http://www.w3.org/2000/svg" height="12" viewBox="0 0 24 24" width="12" fill="#EF4F5F"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>Bengaluru</span>
+              </div>
+            </div>
+            <div class="sim-app-hero">
+              <h4>Order Delicious Food!</h4>
+              <div class="sim-app-search">
+                <svg xmlns="http://www.w3.org/2000/svg" height="10" viewBox="0 0 24 24" width="10" fill="#696969"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                <span>Search restaurants, dishes...</span>
+              </div>
+            </div>
+            <div class="sim-app-body">
+              <div class="sim-section-title">Popular Categories</div>
+              <div class="sim-cuisines">
+                <div class="sim-cuisine-circle">
+                  <div class="sim-circle">🍗</div>
+                  <span>Biryani</span>
+                </div>
+                <div class="sim-cuisine-circle">
+                  <div class="sim-circle">🍔</div>
+                  <span>Burger</span>
+                </div>
+                <div class="sim-cuisine-circle">
+                  <div class="sim-circle">🍕</div>
+                  <span>Pizza</span>
+                </div>
+                <div class="sim-cuisine-circle">
+                  <div class="sim-circle">🎂</div>
+                  <span>Cake</span>
+                </div>
+              </div>
+              <div class="sim-section-title">Trending Near You</div>
+              <div class="sim-card">
+                <img src="images/restaurant_images/res-biryani.jpg" alt="Meghana Foods">
+                <div class="sim-card-info">
+                  <div class="sim-card-title">Meghana Foods</div>
+                  <div class="sim-card-cuisine">Andhra, Biryani</div>
+                </div>
+                <div class="sim-card-rating">4.5★</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Newsletter Section -->
   <section class="container">
     <div class="newsletter-wrapper">
@@ -583,5 +807,6 @@
     </div>
   </footer>
   <script src="js/cart.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
