@@ -8,6 +8,18 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <!-- Target Anchors for Cuisine Filter -->
+  <div id="all" style="display:none;"></div>
+  <div id="biryani" style="display:none;"></div>
+  <div id="north-indian" style="display:none;"></div>
+  <div id="south-indian" style="display:none;"></div>
+  <div id="burgers" style="display:none;"></div>
+  <div id="pizza" style="display:none;"></div>
+  <div id="chinese" style="display:none;"></div>
+  <div id="desserts" style="display:none;"></div>
+  <div id="mexican" style="display:none;"></div>
+  <div id="healthy" style="display:none;"></div>
+
 
   <!-- Pure CSS Filtering Control Inputs (Hidden) -->
   <div class="filter-inputs-holder">
@@ -74,7 +86,7 @@
         <a href="restaurants.html?type=nightlife" class="nav-link">Nightlife</a>
         <a href="cart.html" class="nav-link nav-cart-btn">
           Cart 
-          <span class="cart-badge">0</span>
+          <span class="cart-badge">2</span>
         </a>
         <div class="nav-auth">
           <a href="login.html" class="btn btn-outline btn-sm">Login</a>
@@ -99,39 +111,38 @@
       <div class="filter-group">
         <h4>Filter by Cuisine</h4>
         <div class="filter-options">
-          <label for="filter-cuisine-all" class="filter-label">
+          <a href="#all" class="filter-label">
             All Cuisines
           </label>
-          <label for="filter-cuisine-biryani" class="filter-label">
+          <a href="#biryani" class="filter-label">
             Biryani
           </label>
-          <label for="filter-cuisine-north-indian" class="filter-label">
+          <a href="#north-indian" class="filter-label">
             North Indian
           </label>
-          <label for="filter-cuisine-south-indian" class="filter-label">
+          <a href="#south-indian" class="filter-label">
             South Indian
           </label>
-          <label for="filter-cuisine-burgers" class="filter-label">
+          <a href="#burgers" class="filter-label">
             Burgers
           </label>
-          <label for="filter-cuisine-pizza" class="filter-label">
+          <a href="#pizza" class="filter-label">
             Pizza
           </label>
-          <label for="filter-cuisine-chinese" class="filter-label">
+          <a href="#chinese" class="filter-label">
             Chinese
           </label>
-          <label for="filter-cuisine-desserts" class="filter-label">
+          <a href="#desserts" class="filter-label">
             Desserts
           </label>
-          <label for="filter-cuisine-mexican" class="filter-label">
+          <a href="#mexican" class="filter-label">
             Mexican
           </label>
-          <label for="filter-cuisine-healthy" class="filter-label">
+          <a href="#healthy" class="filter-label">
             Healthy Food
-          </label>
+          </a>
         </div>
       </div>
-
       <div class="filter-group">
         <h4>Dietary Preference</h4>
         <div class="filter-options">
@@ -147,7 +158,7 @@
         <div class="filter-options">
           <label for="filter-rating-45" class="filter-label">
             <input type="checkbox" id="rating-check-display" onclick="document.getElementById('filter-rating-45').click();">
-            Top Rated (4.5 ★ +)
+            Top Rated (4.5 â˜… +)
           </label>
         </div>
       </div>
@@ -188,7 +199,1411 @@
       </div>
 
       <div class="restaurant-grid">
-        <!-- Dynamically loaded by js/restaurants.js -->
+      <a href="restaurant-details.html#res-meghana" class="restaurant-card cuisine-biryani rating-high loc-koramangala ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Trending</span><span class="badge-offer">40% OFF</span>
+          <img src="images/restaurant_images/res-biryani.jpg" alt="Meghana Foods" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Meghana Foods</h3>
+            <span class="rating-badge rating-high">4.5 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Andhra, Biryani, Spicy</p>
+          <div class="location-tag">Koramangala, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              32 mins
+            </span>
+            <span class="meta-price">â‚¹350 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-manis" class="restaurant-card cuisine-biryani rating-med loc-hsr ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">20% OFF</span>
+          <img src="images/restaurant_images/res-generic-1.jpg" alt="Mani's Dum Biryani" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Mani's Dum Biryani</h3>
+            <span class="rating-badge rating-med">4.4 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Ambur Biryani, South Indian</p>
+          <div class="location-tag">HSR Layout, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              25 mins
+            </span>
+            <span class="meta-price">â‚¹300 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-paradise" class="restaurant-card cuisine-biryani rating-med loc-indiranagar ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span>
+          <img src="images/restaurant_images/res-generic-2.jpg" alt="Paradise Biryani" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Paradise Biryani</h3>
+            <span class="rating-badge rating-med">4.2 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Hyderabadi Biryani, Kebabs</p>
+          <div class="location-tag">Indiranagar, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              30 mins
+            </span>
+            <span class="meta-price">â‚¹280 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-biryanizone" class="restaurant-card cuisine-biryani rating-med loc-whitefield ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">30% OFF</span>
+          <img src="images/restaurant_images/res-generic-3.jpg" alt="Biryani Zone" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Biryani Zone</h3>
+            <span class="rating-badge rating-med">4.3 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Mughlai, Biryani, Tandoori</p>
+          <div class="location-tag">Whitefield, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              28 mins
+            </span>
+            <span class="meta-price">â‚¹320 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-ammis" class="restaurant-card cuisine-biryani rating-med loc-koramangala ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">Flat 50% OFF</span>
+          <img src="images/restaurant_images/res-biryani.jpg" alt="Ammi's Biryani" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Ammi's Biryani</h3>
+            <span class="rating-badge rating-med">4.1 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Kolkata Biryani, Rolls</p>
+          <div class="location-tag">Koramangala, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              20 mins
+            </span>
+            <span class="meta-price">â‚¹250 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-behrouz" class="restaurant-card cuisine-biryani rating-high loc-jayanagar ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Trending</span><span class="badge-offer">10% OFF</span>
+          <img src="images/restaurant_images/res-generic-1.jpg" alt="Behrouz Biryani" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Behrouz Biryani</h3>
+            <span class="rating-badge rating-high">4.6 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Royal Persian Biryani, Kebabs</p>
+          <div class="location-tag">Jayanagar, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              35 mins
+            </span>
+            <span class="meta-price">â‚¹400 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-empire" class="restaurant-card cuisine-north-indian rating-med loc-indiranagar ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">10% OFF</span>
+          <img src="images/restaurant_images/res-north-indian.jpg" alt="Empire Restaurant" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Empire Restaurant</h3>
+            <span class="rating-badge rating-med">4.3 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">North Indian, Mughlai, Kebabs</p>
+          <div class="location-tag">Indiranagar, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              28 mins
+            </span>
+            <span class="meta-price">â‚¹300 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-northexpress" class="restaurant-card cuisine-north-indian rating-med loc-hsr veg-pure">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">20% OFF</span>
+          <img src="images/restaurant_images/res-generic-2.jpg" alt="North Indian Express" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>North Indian Express</h3>
+            <span class="rating-badge rating-med">4.2 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-veg"><span class="indicator-dot"></span></span><span class="type-label">100% Pure Veg</span>
+          </div>
+          <p class="cuisine-tags">Tandoori, Thalis, Punjabi</p>
+          <div class="location-tag">HSR Layout, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              22 mins
+            </span>
+            <span class="meta-price">â‚¹220 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-tandoorbox" class="restaurant-card cuisine-north-indian rating-med loc-koramangala ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span>
+          <img src="images/restaurant_images/res-generic-3.jpg" alt="Tandoor Box" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Tandoor Box</h3>
+            <span class="rating-badge rating-med">4.4 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Mughlai, North Indian Curry</p>
+          <div class="location-tag">Koramangala, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              26 mins
+            </span>
+            <span class="meta-price">â‚¹260 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-pindballuchi" class="restaurant-card cuisine-north-indian rating-high loc-whitefield ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Trending</span><span class="badge-offer">30% OFF</span>
+          <img src="images/restaurant_images/res-north-indian.jpg" alt="Pind Balluchi" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Pind Balluchi</h3>
+            <span class="rating-badge rating-high">4.5 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Traditional Punjabi Feast</p>
+          <div class="location-tag">Whitefield, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              30 mins
+            </span>
+            <span class="meta-price">â‚¹350 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-punjabgrill" class="restaurant-card cuisine-north-indian rating-high loc-jayanagar ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Trending</span>
+          <img src="images/restaurant_images/res-generic-1.jpg" alt="Punjab Grill" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Punjab Grill</h3>
+            <span class="rating-badge rating-high">4.7 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Gourmet North Indian, Kebabs</p>
+          <div class="location-tag">Jayanagar, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              35 mins
+            </span>
+            <span class="meta-price">â‚¹500 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-dhababhai" class="restaurant-card cuisine-north-indian rating-med loc-basavanagudi veg-pure">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">15% OFF</span>
+          <img src="images/restaurant_images/res-generic-2.jpg" alt="Dhaba Bhai" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Dhaba Bhai</h3>
+            <span class="rating-badge rating-med">4.0 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-veg"><span class="indicator-dot"></span></span><span class="type-label">100% Pure Veg</span>
+          </div>
+          <p class="cuisine-tags">Dhaba Style Curries, Roti</p>
+          <div class="location-tag">Basavanagudi, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              18 mins
+            </span>
+            <span class="meta-price">â‚¹180 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-vidyarthi" class="restaurant-card cuisine-south-indian rating-high loc-basavanagudi veg-pure">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Trending</span>
+          <img src="images/restaurant_images/res-south-indian.jpg" alt="Vidyarthi Bhavan" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Vidyarthi Bhavan</h3>
+            <span class="rating-badge rating-high">4.7 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-veg"><span class="indicator-dot"></span></span><span class="type-label">100% Pure Veg</span>
+          </div>
+          <p class="cuisine-tags">South Indian, Masala Dosa, Filter Coffee</p>
+          <div class="location-tag">Basavanagudi, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              40 mins
+            </span>
+            <span class="meta-price">â‚¹100 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-nagarjuna" class="restaurant-card cuisine-south-indian rating-high loc-koramangala ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span>
+          <img src="images/restaurant_images/res-generic-3.jpg" alt="Nagarjuna Restaurant" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Nagarjuna Restaurant</h3>
+            <span class="rating-badge rating-high">4.5 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Andhra Feasts, Traditional Curries</p>
+          <div class="location-tag">Koramangala, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              25 mins
+            </span>
+            <span class="meta-price">â‚¹300 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-a2b" class="restaurant-card cuisine-south-indian rating-med loc-jayanagar veg-pure">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">15% OFF</span>
+          <img src="images/restaurant_images/res-south-indian.jpg" alt="A2B Adyar Ananda Bhavan" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>A2B Adyar Ananda Bhavan</h3>
+            <span class="rating-badge rating-med">4.2 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-veg"><span class="indicator-dot"></span></span><span class="type-label">100% Pure Veg</span>
+          </div>
+          <p class="cuisine-tags">South Indian, Sweets, Snacks</p>
+          <div class="location-tag">Jayanagar, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              22 mins
+            </span>
+            <span class="meta-price">â‚¹150 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-shivaji" class="restaurant-card cuisine-south-indian rating-high loc-jayanagar ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Trending</span>
+          <img src="images/restaurant_images/res-generic-1.jpg" alt="Shivaji Military Hotel" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Shivaji Military Hotel</h3>
+            <span class="rating-badge rating-high">4.6 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Military Style Meals, Biryani</p>
+          <div class="location-tag">Jayanagar, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              38 mins
+            </span>
+            <span class="meta-price">â‚¹250 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-mtr" class="restaurant-card cuisine-south-indian rating-high loc-basavanagudi veg-pure">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Trending</span>
+          <img src="images/restaurant_images/res-south-indian.jpg" alt="Mavalli Tiffin Room (MTR)" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Mavalli Tiffin Room (MTR)</h3>
+            <span class="rating-badge rating-high">4.8 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-veg"><span class="indicator-dot"></span></span><span class="type-label">100% Pure Veg</span>
+          </div>
+          <p class="cuisine-tags">Heritage South Indian, Rava Dosa</p>
+          <div class="location-tag">Basavanagudi, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              30 mins
+            </span>
+            <span class="meta-price">â‚¹120 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-rameshwaram" class="restaurant-card cuisine-south-indian rating-high loc-indiranagar veg-pure">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Trending</span><span class="badge-offer">10% OFF</span>
+          <img src="images/restaurant_images/res-generic-2.jpg" alt="The Rameshwaram Cafe" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>The Rameshwaram Cafe</h3>
+            <span class="rating-badge rating-high">4.7 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-veg"><span class="indicator-dot"></span></span><span class="type-label">100% Pure Veg</span>
+          </div>
+          <p class="cuisine-tags">Ghee Dosa, Idli, Podi Masala</p>
+          <div class="location-tag">Indiranagar, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              20 mins
+            </span>
+            <span class="meta-price">â‚¹110 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-truffles" class="restaurant-card cuisine-burgers rating-high loc-koramangala ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Trending</span><span class="badge-offer">Buy 1 Get 1</span>
+          <img src="images/restaurant_images/res-burgers.jpg" alt="Truffles" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Truffles</h3>
+            <span class="rating-badge rating-high">4.6 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Burgers, American, Desserts</p>
+          <div class="location-tag">Koramangala, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              35 mins
+            </span>
+            <span class="meta-price">â‚¹250 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-leon" class="restaurant-card cuisine-burgers rating-med loc-hsr ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">Flat 50% OFF</span>
+          <img src="images/restaurant_images/res-generic-3.jpg" alt="Leon's - Burgers & Salad" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Leon's - Burgers & Salad</h3>
+            <span class="rating-badge rating-med">4.4 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Burgers, Healthy, Salads</p>
+          <div class="location-tag">HSR Layout, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              26 mins
+            </span>
+            <span class="meta-price">â‚¹200 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-kfc" class="restaurant-card cuisine-burgers rating-med loc-koramangala ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">20% OFF</span>
+          <img src="images/restaurant_images/res-burgers.jpg" alt="KFC" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>KFC</h3>
+            <span class="rating-badge rating-med">4.2 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Burgers, Fast Food, Fried Chicken</p>
+          <div class="location-tag">Koramangala, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              22 mins
+            </span>
+            <span class="meta-price">â‚¹250 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-mcd" class="restaurant-card cuisine-burgers rating-med loc-indiranagar ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">15% OFF</span>
+          <img src="images/restaurant_images/res-generic-1.jpg" alt="McDonaldâ€™s" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>McDonaldâ€™s</h3>
+            <span class="rating-badge rating-med">4.4 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Burgers, Fast Food, Fries</p>
+          <div class="location-tag">Indiranagar, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              19 mins
+            </span>
+            <span class="meta-price">â‚¹150 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-burgerseigneur" class="restaurant-card cuisine-burgers rating-high loc-indiranagar ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Trending</span>
+          <img src="images/restaurant_images/res-burgers.jpg" alt="Burger Seigneur" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Burger Seigneur</h3>
+            <span class="rating-badge rating-high">4.6 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Gourmet Burgers, American Sides</p>
+          <div class="location-tag">Indiranagar, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              30 mins
+            </span>
+            <span class="meta-price">â‚¹400 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-peppervilla" class="restaurant-card cuisine-burgers rating-med loc-basavanagudi veg-pure">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">30% OFF</span>
+          <img src="images/restaurant_images/res-generic-2.jpg" alt="Burger Villa" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Burger Villa</h3>
+            <span class="rating-badge rating-med">4.1 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-veg"><span class="indicator-dot"></span></span><span class="type-label">100% Pure Veg</span>
+          </div>
+          <p class="cuisine-tags">Veggie Burgers & Shakes</p>
+          <div class="location-tag">Basavanagudi, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              24 mins
+            </span>
+            <span class="meta-price">â‚¹160 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-pizzabakery" class="restaurant-card cuisine-pizza rating-med loc-indiranagar ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">20% OFF</span>
+          <img src="images/restaurant_images/res-pizza.jpg" alt="The Pizza Bakery" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>The Pizza Bakery</h3>
+            <span class="rating-badge rating-med">4.4 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Woodfired Italian, Pizzas</p>
+          <div class="location-tag">Indiranagar, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              30 mins
+            </span>
+            <span class="meta-price">â‚¹350 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-dominos" class="restaurant-card cuisine-pizza rating-med loc-whitefield ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">Free Delivery</span>
+          <img src="images/restaurant_images/res-generic-3.jpg" alt="Dominoâ€™s Pizza" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Dominoâ€™s Pizza</h3>
+            <span class="rating-badge rating-med">4.3 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Pizza, Garlic Bread, Italian</p>
+          <div class="location-tag">Whitefield, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              30 mins
+            </span>
+            <span class="meta-price">â‚¹300 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-pizzahut" class="restaurant-card cuisine-pizza rating-med loc-koramangala ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">Buy 1 Get 1</span>
+          <img src="images/restaurant_images/res-pizza.jpg" alt="Pizza Hut" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Pizza Hut</h3>
+            <span class="rating-badge rating-med">4.1 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Pan Pizzas, Garlic Bread</p>
+          <div class="location-tag">Koramangala, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              28 mins
+            </span>
+            <span class="meta-price">â‚¹250 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-ovenstory" class="restaurant-card cuisine-pizza rating-med loc-hsr ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">Flat 50% OFF</span>
+          <img src="images/restaurant_images/res-generic-1.jpg" alt="Ovenstory Pizza" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Ovenstory Pizza</h3>
+            <span class="rating-badge rating-med">4.2 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Cheese Base Pizzas</p>
+          <div class="location-tag">HSR Layout, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              25 mins
+            </span>
+            <span class="meta-price">â‚¹280 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-mojopizza" class="restaurant-card cuisine-pizza rating-high loc-jayanagar ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Trending</span><span class="badge-offer">30% OFF</span>
+          <img src="images/restaurant_images/res-generic-2.jpg" alt="Mojo Pizza - 2X Toppings" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Mojo Pizza - 2X Toppings</h3>
+            <span class="rating-badge rating-high">4.5 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Deep Dish Loaded Pizzas</p>
+          <div class="location-tag">Jayanagar, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              24 mins
+            </span>
+            <span class="meta-price">â‚¹320 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-toscano" class="restaurant-card cuisine-pizza rating-high loc-whitefield ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Trending</span>
+          <img src="images/restaurant_images/res-pizza.jpg" alt="Toscano" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Toscano</h3>
+            <span class="rating-badge rating-high">4.7 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Gourmet Italian Thin Crust</p>
+          <div class="location-tag">Whitefield, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              35 mins
+            </span>
+            <span class="meta-price">â‚¹600 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-beijing" class="restaurant-card cuisine-chinese rating-med loc-whitefield ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">30% OFF</span>
+          <img src="images/restaurant_images/res-chinese.jpg" alt="Beijing Bites" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Beijing Bites</h3>
+            <span class="rating-badge rating-med">4.1 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Indo-Chinese, Noodles, Rice</p>
+          <div class="location-tag">Whitefield, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              35 mins
+            </span>
+            <span class="meta-price">â‚¹220 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-chungwah" class="restaurant-card cuisine-chinese rating-med loc-koramangala ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">15% OFF</span>
+          <img src="images/restaurant_images/res-generic-3.jpg" alt="Chung Wah" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Chung Wah</h3>
+            <span class="rating-badge rating-med">4.3 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Classic Indo-Chinese Specialties</p>
+          <div class="location-tag">Koramangala, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              20 mins
+            </span>
+            <span class="meta-price">â‚¹240 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-mainland" class="restaurant-card cuisine-chinese rating-high loc-jayanagar ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Trending</span>
+          <img src="images/restaurant_images/res-chinese.jpg" alt="Mainland China" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Mainland China</h3>
+            <span class="rating-badge rating-high">4.6 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Gourmet Chinese, Dimsums</p>
+          <div class="location-tag">Jayanagar, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              35 mins
+            </span>
+            <span class="meta-price">â‚¹500 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-wowmomo" class="restaurant-card cuisine-chinese rating-med loc-whitefield veg-pure">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">Flat 50% OFF</span>
+          <img src="images/restaurant_images/res-generic-1.jpg" alt="Wow! Momo" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Wow! Momo</h3>
+            <span class="rating-badge rating-med">4.0 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-veg"><span class="indicator-dot"></span></span><span class="type-label">100% Pure Veg</span>
+          </div>
+          <p class="cuisine-tags">Steam & Fried Momos, Noodles</p>
+          <div class="location-tag">Whitefield, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              18 mins
+            </span>
+            <span class="meta-price">â‚¹150 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-noodlebar" class="restaurant-card cuisine-chinese rating-med loc-hsr ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">20% OFF</span>
+          <img src="images/restaurant_images/res-generic-2.jpg" alt="Noodle Bar" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Noodle Bar</h3>
+            <span class="rating-badge rating-med">4.2 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Wok Bowls, Soups, Hakka</p>
+          <div class="location-tag">HSR Layout, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              24 mins
+            </span>
+            <span class="meta-price">â‚¹200 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-shanghai" class="restaurant-card cuisine-chinese rating-med loc-indiranagar ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">10% OFF</span>
+          <img src="images/restaurant_images/res-chinese.jpg" alt="Shanghai Co." loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Shanghai Co.</h3>
+            <span class="rating-badge rating-med">4.4 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Cantonese & Sichuan Food</p>
+          <div class="location-tag">Indiranagar, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              28 mins
+            </span>
+            <span class="meta-price">â‚¹300 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-cornerhouse" class="restaurant-card cuisine-desserts rating-high loc-indiranagar veg-pure">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Trending</span>
+          <img src="images/restaurant_images/res-desserts.jpg" alt="Corner House Ice Creams" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Corner House Ice Creams</h3>
+            <span class="rating-badge rating-high">4.8 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-veg"><span class="indicator-dot"></span></span><span class="type-label">100% Pure Veg</span>
+          </div>
+          <p class="cuisine-tags">Desserts, Ice Cream, Hot Fudges</p>
+          <div class="location-tag">Indiranagar, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              18 mins
+            </span>
+            <span class="meta-price">â‚¹200 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-anand" class="restaurant-card cuisine-desserts rating-high loc-jayanagar veg-pure">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">10% OFF</span>
+          <img src="images/restaurant_images/res-generic-3.jpg" alt="Anand Sweets & Savouries" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Anand Sweets & Savouries</h3>
+            <span class="rating-badge rating-high">4.5 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-veg"><span class="indicator-dot"></span></span><span class="type-label">100% Pure Veg</span>
+          </div>
+          <p class="cuisine-tags">Mithai, Halwa, Indian Desserts</p>
+          <div class="location-tag">Jayanagar, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              20 mins
+            </span>
+            <span class="meta-price">â‚¹180 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-glens" class="restaurant-card cuisine-desserts rating-high loc-indiranagar veg-pure">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Trending</span><span class="badge-offer">Buy 1 Get 1</span>
+          <img src="images/restaurant_images/res-desserts.jpg" alt="Glen's Bakehouse" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Glen's Bakehouse</h3>
+            <span class="rating-badge rating-high">4.6 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-veg"><span class="indicator-dot"></span></span><span class="type-label">100% Pure Veg</span>
+          </div>
+          <p class="cuisine-tags">Cakes, Pastries, Red Velvet</p>
+          <div class="location-tag">Indiranagar, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              22 mins
+            </span>
+            <span class="meta-price">â‚¹250 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-smoor" class="restaurant-card cuisine-desserts rating-high loc-koramangala veg-pure">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Trending</span>
+          <img src="images/restaurant_images/res-generic-1.jpg" alt="Smoor - Chocolates & Cakes" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Smoor - Chocolates & Cakes</h3>
+            <span class="rating-badge rating-high">4.7 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-veg"><span class="indicator-dot"></span></span><span class="type-label">100% Pure Veg</span>
+          </div>
+          <p class="cuisine-tags">Premium Couverture Chocolates, Macron</p>
+          <div class="location-tag">Koramangala, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              28 mins
+            </span>
+            <span class="meta-price">â‚¹350 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-magnolia" class="restaurant-card cuisine-desserts rating-high loc-indiranagar veg-pure">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Trending</span>
+          <img src="images/restaurant_images/res-desserts.jpg" alt="Magnolia Bakery" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Magnolia Bakery</h3>
+            <span class="rating-badge rating-high">4.8 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-veg"><span class="indicator-dot"></span></span><span class="type-label">100% Pure Veg</span>
+          </div>
+          <p class="cuisine-tags">Banana Pudding, NYC Cupcakes</p>
+          <div class="location-tag">Indiranagar, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              25 mins
+            </span>
+            <span class="meta-price">â‚¹400 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-polarbear" class="restaurant-card cuisine-desserts rating-med loc-hsr veg-pure">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">20% OFF</span>
+          <img src="images/restaurant_images/res-generic-2.jpg" alt="Polar Bear Ice Creams" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Polar Bear Ice Creams</h3>
+            <span class="rating-badge rating-med">4.3 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-veg"><span class="indicator-dot"></span></span><span class="type-label">100% Pure Veg</span>
+          </div>
+          <p class="cuisine-tags">Sundaes, Milkshakes, Ice Cream</p>
+          <div class="location-tag">HSR Layout, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              15 mins
+            </span>
+            <span class="meta-price">â‚¹160 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-california" class="restaurant-card cuisine-mexican rating-high loc-hsr ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Trending</span><span class="badge-offer">Buy 1 Get 1</span>
+          <img src="images/restaurant_images/res-mexican.jpg" alt="California Burrito" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>California Burrito</h3>
+            <span class="rating-badge rating-high">4.5 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Mexican Bowls, Burritos, Salads</p>
+          <div class="location-tag">HSR Layout, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              24 mins
+            </span>
+            <span class="meta-price">â‚¹220 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-tacobell" class="restaurant-card cuisine-mexican rating-med loc-indiranagar ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">40% OFF</span>
+          <img src="images/restaurant_images/res-generic-3.jpg" alt="Taco Bell" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Taco Bell</h3>
+            <span class="rating-badge rating-med">4.2 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Tacos, Quesadillas, Burritos</p>
+          <div class="location-tag">Indiranagar, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              25 mins
+            </span>
+            <span class="meta-price">â‚¹180 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-habanero" class="restaurant-card cuisine-mexican rating-med loc-whitefield ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">15% OFF</span>
+          <img src="images/restaurant_images/res-mexican.jpg" alt="Habanero" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Habanero</h3>
+            <span class="rating-badge rating-med">4.3 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Tex-Mex, Enchiladas, Margaritas</p>
+          <div class="location-tag">Whitefield, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              35 mins
+            </span>
+            <span class="meta-price">â‚¹450 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-chinita" class="restaurant-card cuisine-mexican rating-high loc-indiranagar ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Trending</span>
+          <img src="images/restaurant_images/res-generic-1.jpg" alt="Chinita Real Mexican Food" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Chinita Real Mexican Food</h3>
+            <span class="rating-badge rating-high">4.6 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Authentic Mexican Tacos & Salsa</p>
+          <div class="location-tag">Indiranagar, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              30 mins
+            </span>
+            <span class="meta-price">â‚¹300 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-tacoalfresco" class="restaurant-card cuisine-mexican rating-med loc-koramangala veg-pure">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">30% OFF</span>
+          <img src="images/restaurant_images/res-generic-2.jpg" alt="Taco Alfresco" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Taco Alfresco</h3>
+            <span class="rating-badge rating-med">4.0 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-veg"><span class="indicator-dot"></span></span><span class="type-label">100% Pure Veg</span>
+          </div>
+          <p class="cuisine-tags">Quesadillas, Tex-Mex Fast Food</p>
+          <div class="location-tag">Koramangala, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              20 mins
+            </span>
+            <span class="meta-price">â‚¹160 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-subway" class="restaurant-card cuisine-healthy rating-med loc-hsr ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">Buy 1 Get 1</span>
+          <img src="images/restaurant_images/res-healthy.jpg" alt="Subway" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Subway</h3>
+            <span class="rating-badge rating-med">4.3 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Healthy Custom Subs, Salads</p>
+          <div class="location-tag">HSR Layout, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              20 mins
+            </span>
+            <span class="meta-price">â‚¹180 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-freshmenu" class="restaurant-card cuisine-healthy rating-med loc-hsr ">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">30% OFF</span>
+          <img src="images/restaurant_images/res-generic-3.jpg" alt="FreshMenu" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>FreshMenu</h3>
+            <span class="rating-badge rating-med">4.1 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+          </div>
+          <p class="cuisine-tags">Salad Bowls, Healthy Meals</p>
+          <div class="location-tag">HSR Layout, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              28 mins
+            </span>
+            <span class="meta-price">â‚¹220 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-eatfit" class="restaurant-card cuisine-healthy rating-med loc-koramangala veg-pure">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Trending</span><span class="badge-offer">Flat 50% OFF</span>
+          <img src="images/restaurant_images/res-healthy.jpg" alt="EatFit" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>EatFit</h3>
+            <span class="rating-badge rating-med">4.4 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-veg"><span class="indicator-dot"></span></span><span class="type-label">100% Pure Veg</span>
+          </div>
+          <p class="cuisine-tags">Healthy Curries, Brown Rice, Juices</p>
+          <div class="location-tag">Koramangala, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              22 mins
+            </span>
+            <span class="meta-price">â‚¹200 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-saladify" class="restaurant-card cuisine-healthy rating-med loc-indiranagar veg-pure">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-status">Open</span><span class="badge-offer">20% OFF</span>
+          <img src="images/restaurant_images/res-generic-1.jpg" alt="Saladify" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>Saladify</h3>
+            <span class="rating-badge rating-med">4.2 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-veg"><span class="indicator-dot"></span></span><span class="type-label">100% Pure Veg</span>
+          </div>
+          <p class="cuisine-tags">Gourmet Salad Bowls, Smoothies</p>
+          <div class="location-tag">Indiranagar, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              18 mins
+            </span>
+            <span class="meta-price">â‚¹240 for one</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="restaurant-details.html#res-greentheory" class="restaurant-card cuisine-healthy rating-high loc-jayanagar veg-pure">
+        <div class="restaurant-img-wrapper">
+          <span class="badge-trending">Trending</span>
+          <img src="images/restaurant_images/res-generic-2.jpg" alt="The Green Theory" loading="lazy">
+        </div>
+        <div class="restaurant-info">
+          <div class="restaurant-info-top">
+            <h3>The Green Theory</h3>
+            <span class="rating-badge rating-high">4.5 â˜…</span>
+          </div>
+          <div class="tag-veg-nonveg">
+            <span class="indicator indicator-veg"><span class="indicator-dot"></span></span><span class="type-label">100% Pure Veg</span>
+          </div>
+          <p class="cuisine-tags">Organic Veg Bowls, Vegan Options</p>
+          <div class="location-tag">Jayanagar, Bengaluru</div>
+          <div class="restaurant-meta">
+            <span class="meta-delivery">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px; opacity: 0.7;">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 10V7h-2v6h5v-2h-3z"/>
+              </svg>
+              32 mins
+            </span>
+            <span class="meta-price">â‚¹350 for one</span>
+          </div>
+        </div>
+      </a>
+
+
       </div>
     </section>
   </main>
@@ -245,13 +1660,10 @@
 
       <div class="footer-bottom">
         <p>&copy; 2026 FoodieHub Delivery Private Limited. All rights reserved.</p>
-        <p>Designed with ❤️ for food lovers in Bengaluru</p>
+        <p>Designed with â�¤ï¸� for food lovers in Bengaluru</p>
       </div>
     </div>
   </footer>
 
-  <script src="js/data.js"></script>
-  <script src="js/cart.js"></script>
-  <script src="js/restaurants.js"></script>
-</body>
+  </body>
 </html>

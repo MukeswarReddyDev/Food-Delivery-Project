@@ -2085,3 +2085,217 @@ ul {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* ==========================================================================
+   PURE CSS RESTAURANT FILTERING AND ROUTING (TARGET & HAS SELECTORS)
+   ========================================================================== */
+
+/* 1. Detail Page Section Toggling */
+.restaurant-detail-section {
+  display: none !important;
+}
+.restaurant-detail-section:target {
+  display: block !important;
+}
+body:has(.restaurant-detail-section:target) .no-restaurant-selected {
+  display: none !important;
+}
+
+/* 2. Restaurant Cuisine Filters (Target Hash) */
+body:has(#all:target) .restaurant-card {
+  display: block !important;
+}
+body:has(#biryani:target) .restaurant-card:not(.cuisine-biryani),
+body:has(#north-indian:target) .restaurant-card:not(.cuisine-north-indian),
+body:has(#south-indian:target) .restaurant-card:not(.cuisine-south-indian),
+body:has(#burgers:target) .restaurant-card:not(.cuisine-burgers),
+body:has(#pizza:target) .restaurant-card:not(.cuisine-pizza),
+body:has(#chinese:target) .restaurant-card:not(.cuisine-chinese),
+body:has(#desserts:target) .restaurant-card:not(.cuisine-desserts),
+body:has(#mexican:target) .restaurant-card:not(.cuisine-mexican),
+body:has(#healthy:target) .restaurant-card:not(.cuisine-healthy) {
+  display: none !important;
+}
+
+/* Active Sidebar Cuisine Style */
+.filter-sidebar a.filter-label {
+  text-decoration: none;
+  display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: var(--text-dark);
+  transition: all 0.2s;
+}
+.filter-sidebar a.filter-label:hover {
+  background: #F5F5F5;
+  color: var(--primary-color);
+}
+/* Default active all category when no other is targeted */
+.filter-sidebar a[href="#all"] {
+  color: var(--primary-color) !important;
+  font-weight: 700 !important;
+}
+body:has(#biryani:target) .filter-sidebar a[href="#all"],
+body:has(#north-indian:target) .filter-sidebar a[href="#all"],
+body:has(#south-indian:target) .filter-sidebar a[href="#all"],
+body:has(#burgers:target) .filter-sidebar a[href="#all"],
+body:has(#pizza:target) .filter-sidebar a[href="#all"],
+body:has(#chinese:target) .filter-sidebar a[href="#all"],
+body:has(#desserts:target) .filter-sidebar a[href="#all"],
+body:has(#mexican:target) .filter-sidebar a[href="#all"],
+body:has(#healthy:target) .filter-sidebar a[href="#all"] {
+  color: var(--text-dark) !important;
+  font-weight: 500 !important;
+}
+
+body:has(#biryani:target) .filter-sidebar a[href="#biryani"],
+body:has(#north-indian:target) .filter-sidebar a[href="#north-indian"],
+body:has(#south-indian:target) .filter-sidebar a[href="#south-indian"],
+body:has(#burgers:target) .filter-sidebar a[href="#burgers"],
+body:has(#pizza:target) .filter-sidebar a[href="#pizza"],
+body:has(#chinese:target) .filter-sidebar a[href="#chinese"],
+body:has(#desserts:target) .filter-sidebar a[href="#desserts"],
+body:has(#mexican:target) .filter-sidebar a[href="#mexican"],
+body:has(#healthy:target) .filter-sidebar a[href="#healthy"] {
+  color: var(--primary-color) !important;
+  font-weight: 700 !important;
+  background: rgba(226, 55, 68, 0.05);
+}
+
+/* 3. Pure CSS Ratings Filter */
+body:has(#filter-rating-45:checked) .restaurant-grid .restaurant-card:not(.rating-high) {
+  display: none !important;
+}
+body:has(#filter-rating-45:checked) .filter-sidebar label[for="filter-rating-45"] {
+  color: var(--primary-color) !important;
+  font-weight: 700 !important;
+}
+
+/* 4. Pure CSS Veg Filter */
+body:has(#filter-veg-only:checked) .restaurant-grid .restaurant-card:not(.veg-pure) {
+  display: none !important;
+}
+body:has(#filter-veg-only:checked) .filter-sidebar label[for="filter-veg-only"] {
+  color: var(--primary-color) !important;
+  font-weight: 700 !important;
+}
+
+/* 5. Pure CSS Location Filters */
+body:has(#filter-loc-koramangala:checked) .restaurant-grid .restaurant-card:not(.loc-koramangala),
+body:has(#filter-loc-indiranagar:checked) .restaurant-grid .restaurant-card:not(.loc-indiranagar),
+body:has(#filter-loc-jayanagar:checked) .restaurant-grid .restaurant-card:not(.loc-jayanagar),
+body:has(#filter-loc-basavanagudi:checked) .restaurant-grid .restaurant-card:not(.loc-basavanagudi),
+body:has(#filter-loc-whitefield:checked) .restaurant-grid .restaurant-card:not(.loc-whitefield),
+body:has(#filter-loc-hsr:checked) .restaurant-grid .restaurant-card:not(.loc-hsr) {
+  display: none !important;
+}
+body:has(#filter-loc-koramangala:checked) .filter-sidebar label[for="filter-loc-koramangala"],
+body:has(#filter-loc-indiranagar:checked) .filter-sidebar label[for="filter-loc-indiranagar"],
+body:has(#filter-loc-jayanagar:checked) .filter-sidebar label[for="filter-loc-jayanagar"],
+body:has(#filter-loc-basavanagudi:checked) .filter-sidebar label[for="filter-loc-basavanagudi"],
+body:has(#filter-loc-whitefield:checked) .filter-sidebar label[for="filter-loc-whitefield"],
+body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
+  color: var(--primary-color) !important;
+  font-weight: 700 !important;
+}
+
+/* Mock Add button style for details page */
+.btn-add-item-mock:hover {
+  background: var(--primary-color) !important;
+  color: #FFF !important;
+}
+
+/* 6. Pure CSS Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay:target {
+  display: flex !important;
+  opacity: 1;
+}
+
+.modal-card {
+  background-color: var(--bg-white);
+  border-radius: var(--border-radius-lg);
+  padding: 40px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay:target .modal-card {
+  transform: scale(1);
+}
+
+.success-icon-wrapper {
+  margin-bottom: 20px;
+  animation: scaleUp 0.5s ease-out;
+}
+
+@keyframes scaleUp {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.modal-card h2 {
+  font-size: 1.8rem;
+  color: var(--secondary-color);
+  margin-bottom: 12px;
+}
+
+.modal-card p {
+  color: var(--text-medium);
+  margin-bottom: 24px;
+}
+
+.order-summary-box {
+  background-color: var(--bg-light);
+  border-radius: var(--border-radius);
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 24px;
+}
+
+.order-summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.order-summary-row:last-child {
+  margin-bottom: 0;
+}
+
+.order-summary-row span {
+  color: var(--text-muted);
+}
+
+.order-summary-row strong {
+  color: var(--text-dark);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+

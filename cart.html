@@ -42,7 +42,7 @@
         <a href="index.html#offers" class="nav-link">Offers</a>
         <a href="cart.html" class="nav-link nav-cart-btn active">
           Cart 
-          <span class="cart-badge">0</span>
+          <span class="cart-badge">2</span>
         </a>
         <div class="nav-auth">
           <a href="login.html" class="btn btn-outline btn-sm">Login</a>
@@ -62,17 +62,158 @@
   <!-- Cart Page Layout -->
   <main class="container cart-layout">
     
-    <!-- Left Column: Cart Items & Live Tracking -->
+    <!-- Left Column: Cart Items & Delivery Address -->
     <div class="cart-left-section">
-      <!-- Dynamically loaded by js/cart.js -->
+      <!-- Cart Items Box -->
+      <div class="cart-box">
+        <h3>Items in Your Cart</h3>
+        
+        <!-- Item 1: Chicken Dum Biryani -->
+        <div class="cart-item">
+          <div class="cart-item-info">
+            <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span>
+            <div>
+              <div class="cart-item-title">Chicken Dum Biryani</div>
+              <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 2px;">Meghana Foods</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center;">
+            <div class="qty-control">
+              <button class="qty-btn" type="button" aria-label="Decrease quantity" disabled style="opacity: 0.5; cursor: not-allowed;">-</button>
+              <span class="qty-val">1</span>
+              <button class="qty-btn" type="button" aria-label="Increase quantity" disabled style="opacity: 0.5; cursor: not-allowed;">+</button>
+            </div>
+            <div class="cart-item-price" style="margin-left: 24px; min-width: 60px; text-align: right;">₹320</div>
+          </div>
+        </div>
+
+        <!-- Item 2: Garlic Naan -->
+        <div class="cart-item">
+          <div class="cart-item-info">
+            <span class="indicator indicator-veg"><span class="indicator-dot"></span></span>
+            <div>
+              <div class="cart-item-title">Garlic Naan</div>
+              <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 2px;">Empire Restaurant</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center;">
+            <div class="qty-control">
+              <button class="qty-btn" type="button" aria-label="Decrease quantity" disabled style="opacity: 0.5; cursor: not-allowed;">-</button>
+              <span class="qty-val">2</span>
+              <button class="qty-btn" type="button" aria-label="Increase quantity" disabled style="opacity: 0.5; cursor: not-allowed;">+</button>
+            </div>
+            <div class="cart-item-price" style="margin-left: 24px; min-width: 60px; text-align: right;">₹120</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Delivery Address Box -->
+      <div class="cart-box">
+        <h3 style="display: flex; align-items: center; justify-content: space-between;">
+          Delivery Address
+          <span style="font-size: 0.8rem; color: var(--primary-color); font-weight: 600; cursor: pointer;">Change</span>
+        </h3>
+        <div style="display: flex; gap: 16px; align-items: flex-start;">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="var(--primary-color)" style="flex-shrink: 0; margin-top: 2px;">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+          <div>
+            <div style="font-weight: 600; color: var(--text-dark); font-size: 1.05rem; margin-bottom: 4px;">Home</div>
+            <p style="color: var(--text-medium); font-size: 0.9rem; line-height: 1.5;">
+              Mukesh S, Flat 302, 3rd Floor, Lavender Apartments,<br>
+              Green Glen Layout, Bellandur, Bengaluru, Karnataka - 560103
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Right Column: Bill Details & Coupons -->
     <div>
-      <!-- Dynamically loaded by js/cart.js -->
+      <!-- Promo Code Box -->
+      <div class="cart-box" style="margin-bottom: 24px;">
+        <h3>Apply Coupon</h3>
+        <div class="promo-container">
+          <input type="text" value="WELCOME50" readonly style="background-color: var(--bg-light); border-color: var(--veg-green); font-weight: 600; color: var(--veg-green);">
+          <button class="btn btn-outline btn-sm" style="border-color: var(--veg-green); color: var(--veg-green); font-weight: 600; pointer-events: none;">Applied ✓</button>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--veg-green); margin-top: 8px; font-weight: 500;">
+          WELCOME50 applied! Flat ₹100 discount saved on this order.
+        </p>
+      </div>
+
+      <!-- Bill Details Box -->
+      <div class="cart-box">
+        <h3>Bill Details</h3>
+        <div class="bill-row">
+          <span>Item Total</span>
+          <span>₹440</span>
+        </div>
+        <div class="bill-row">
+          <span>Delivery Partner Fee</span>
+          <span>₹30</span>
+        </div>
+        <div class="bill-row">
+          <span>Taxes &amp; Restaurant Charges</span>
+          <span>₹25</span>
+        </div>
+        <div class="bill-row" style="color: var(--veg-green); font-weight: 500;">
+          <span>Coupon Discount (WELCOME50)</span>
+          <span>-₹100</span>
+        </div>
+        
+        <div class="bill-total-row">
+          <span>To Pay</span>
+          <span>₹395</span>
+        </div>
+
+        <div style="margin-top: 24px;">
+          <a href="#order-success-modal" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; padding: 14px 28px;">Place Order (₹395)</a>
+        </div>
+      </div>
     </div>
 
   </main>
+
+  <!-- CSS-only Success Modal -->
+  <div id="order-success-modal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="success-icon-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" height="80" viewBox="0 0 24 24" width="80" fill="var(--veg-green)">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+      </div>
+      <h2>Order Placed Successfully!</h2>
+      <p>Your delicious food is being prepared. Order ID: <strong>#FH-893021</strong></p>
+      
+      <div class="order-summary-box">
+        <div class="order-summary-row"><span>Items:</span><strong>Chicken Dum Biryani, Garlic Naan x2</strong></div>
+        <div class="order-summary-row"><span>Delivery Address:</span><strong>Flat 302, Green Glen Layout, Bengaluru</strong></div>
+        <div class="order-summary-row"><span>Estimated Time:</span><strong>32 Mins</strong></div>
+      </div>
+
+      <!-- Tracking Timeline in Modal -->
+      <div class="timeline" style="margin-top: 24px; text-align: left;">
+        <div class="timeline-step completed">
+          <div class="timeline-title">Order Confirmed</div>
+          <div class="timeline-desc">Your order has been received by Meghana Foods</div>
+        </div>
+        <div class="timeline-step active">
+          <div class="timeline-title">Preparing Food</div>
+          <div class="timeline-desc">Chef is preparing your fresh meal</div>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-title">Out for Delivery</div>
+          <div class="timeline-desc">Delivery partner will pick up shortly</div>
+        </div>
+      </div>
+
+      <div class="modal-actions" style="margin-top: 30px;">
+        <a href="restaurants.html" class="btn btn-outline" style="padding: 10px 24px;">Browse More</a>
+        <a href="#" class="btn btn-primary" style="padding: 10px 24px; background: var(--veg-green); box-shadow: 0 4px 15px rgba(15,138,95,0.3);">Track Order</a>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer Section -->
   <footer class="footer">
@@ -130,8 +271,5 @@
       </div>
     </div>
   </footer>
-
-  <script src="js/data.js"></script>
-  <script src="js/cart.js"></script>
 </body>
 </html>
