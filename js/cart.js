@@ -1,28 +1,38 @@
 // FoodieHub Shopping Cart Javascript Logic
 
+// Helper to get active user specific storage key
+function getCartKey() {
+  const currentUser = localStorage.getItem('foodiehub_logged_in_user') || 'guest';
+  return 'foodiehub_cart_' + currentUser;
+}
+
 // Helper to get cart from localStorage
 function getCart() {
-  let cart = localStorage.getItem('foodiehub_cart');
-  let initialized = localStorage.getItem('foodiehub_initialized');
+  const key = getCartKey();
+  let cart = localStorage.getItem(key);
+  let initialized = localStorage.getItem(key + '_initialized');
   if (!initialized && cart === null) {
-    const defaultCart = [
-      {
-        name: "Chicken Dum Biryani",
-        price: 320,
-        quantity: 1,
-        restaurant: "Meghana Foods",
-        veg: false
-      },
-      {
-        name: "Garlic Naan",
-        price: 60,
-        quantity: 2,
-        restaurant: "Empire Restaurant",
-        veg: true
-      }
-    ];
-    localStorage.setItem('foodiehub_cart', JSON.stringify(defaultCart));
-    localStorage.setItem('foodiehub_initialized', 'true');
+    let defaultCart = [];
+    if (key === 'foodiehub_cart_guest') {
+      defaultCart = [
+        {
+          name: "Chicken Dum Biryani",
+          price: 320,
+          quantity: 1,
+          restaurant: "Meghana Foods",
+          veg: false
+        },
+        {
+          name: "Garlic Naan",
+          price: 60,
+          quantity: 2,
+          restaurant: "Empire Restaurant",
+          veg: true
+        }
+      ];
+    }
+    localStorage.setItem(key, JSON.stringify(defaultCart));
+    localStorage.setItem(key + '_initialized', 'true');
     return defaultCart;
   }
   return cart ? JSON.parse(cart) : [];
@@ -30,11 +40,16 @@ function getCart() {
 
 // Helper to save cart to localStorage
 function saveCart(cart) {
-  localStorage.setItem('foodiehub_cart', JSON.stringify(cart));
+  const key = getCartKey();
+  localStorage.setItem(key, JSON.stringify(cart));
   updateCartBadge();
+  // Sync the menu quantity selectors if we are on the details page
+  if (typeof initMenuAddButtons === 'function') {
+    initMenuAddButtons();
+  }
 }
 
-// Function to update the cart badge count in navigation
+// Function to update the cart badge count in navigation and floating cart widget
 function updateCartBadge() {
   let cart = getCart();
   let totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -42,40 +57,97 @@ function updateCartBadge() {
   badges.forEach(badge => {
     badge.innerText = totalQty;
   });
+
+  // Update floating cart widget
+  const widget = document.getElementById('floating-cart-widget');
+  const widgetText = document.getElementById('floating-cart-text');
+  if (widget) {
+    if (totalQty > 0) {
+      let totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      if (widgetText) {
+        widgetText.innerText = `${totalQty} Item${totalQty > 1 ? 's' : ''} | ₹${totalPrice}`;
+      }
+      widget.style.display = 'flex';
+      
+      // Bounce pulse effect
+      widget.classList.add('pulse');
+      setTimeout(() => {
+        widget.classList.remove('pulse');
+      }, 400);
+    } else {
+      widget.style.display = 'none';
+    }
+  }
 }
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
   updateCartBadge();
 
-  // 1. Details page handler (Intercept Add + clicks)
-  if (document.querySelector('.btn-add-item-mock')) {
-    document.querySelectorAll('.btn-add-item-mock').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        // Find item details in the same row
-        let row = btn.closest('.menu-item-row');
-        if (!row) return;
-        
-        let name = row.querySelector('.menu-item-details h4').innerText.trim();
-        let priceText = row.querySelector('.menu-item-price').innerText.trim();
-        let price = parseInt(priceText.replace(/[^0-9]/g, ''));
-        let isVeg = row.querySelector('.indicator-veg') !== null;
-        
-        // Find restaurant name from the banner inside the section
-        let section = btn.closest('.restaurant-detail-section');
-        let restaurantName = "FoodieHub Restaurant";
-        if (section) {
-          let h1 = section.querySelector('h1');
-          if (h1) restaurantName = h1.innerText.trim();
-        }
+  // Initialize interactive menu buttons on details page
+  initMenuAddButtons();
 
-        // Add item to cart
-        let cart = getCart();
-        let existingItem = cart.find(item => item.name === name && item.restaurant === restaurantName);
-        if (existingItem) {
-          existingItem.quantity += 1;
+  // Cart page handler (Render dynamic cart)
+  if (document.querySelector('.cart-layout')) {
+    renderCart();
+  }
+});
+
+// Function to initialize menu Add buttons on details page
+function initMenuAddButtons() {
+  const addButtons = document.querySelectorAll('.btn-add-item-mock');
+  if (addButtons.length === 0) return;
+
+  const cart = getCart();
+
+  addButtons.forEach(btn => {
+    // Find item details
+    const row = btn.closest('.menu-item-row');
+    if (!row) return;
+
+    const name = row.querySelector('.menu-item-details h4').innerText.trim();
+    
+    // Find restaurant name from the banner inside the section
+    const section = btn.closest('.restaurant-detail-section');
+    let restaurantName = "FoodieHub Restaurant";
+    if (section) {
+      const h1 = section.querySelector('h1');
+      if (h1) restaurantName = h1.innerText.trim();
+    }
+
+    // Check if it's already in the cart
+    const existingItem = cart.find(item => item.name === name && item.restaurant === restaurantName);
+
+    // Get parent element (menu-item-image-box)
+    let parent = btn.parentElement;
+    
+    // If it exists in the cart, hide the btn and show qty selector
+    if (existingItem && existingItem.quantity > 0) {
+      btn.style.display = 'none';
+      createQtySelector(parent, name, restaurantName, existingItem.quantity, btn);
+    } else {
+      btn.style.display = 'block';
+      let oldSelector = parent.querySelector('.qty-selector-container');
+      if (oldSelector) oldSelector.remove();
+    }
+
+    // Single click interceptor setup (remove previous to avoid duplicate listeners)
+    if (!btn.dataset.listenerAdded) {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const priceText = row.querySelector('.menu-item-price').innerText.trim();
+        const price = parseInt(priceText.replace(/[^0-9]/g, ''));
+        const isVeg = row.querySelector('.indicator-veg') !== null;
+
+        // Add to cart
+        let currentCart = getCart();
+        let cartItem = currentCart.find(item => item.name === name && item.restaurant === restaurantName);
+        if (cartItem) {
+          cartItem.quantity = 1;
         } else {
-          cart.push({
+          currentCart.push({
             name: name,
             price: price,
             quantity: 1,
@@ -83,18 +155,72 @@ document.addEventListener('DOMContentLoaded', () => {
             veg: isVeg
           });
         }
-        
-        saveCart(cart);
-        // Note: The default behavior will redirect to cart.html because href="cart.html" is set.
-      });
-    });
-  }
+        saveCart(currentCart);
 
-  // 2. Cart page handler (Render dynamic cart)
-  if (document.querySelector('.cart-layout')) {
-    renderCart();
-  }
-});
+        btn.style.display = 'none';
+        createQtySelector(parent, name, restaurantName, 1, btn);
+        
+        if (typeof showToast === 'function') {
+          showToast(`✓ Added ${name} to your cart!`);
+        }
+      });
+      btn.dataset.listenerAdded = 'true';
+    }
+  });
+}
+
+function createQtySelector(parent, name, restaurantName, initialQty, btnRef) {
+  // Remove existing selector if any
+  let existing = parent.querySelector('.qty-selector-container');
+  if (existing) existing.remove();
+
+  const container = document.createElement('div');
+  container.className = 'qty-selector-container';
+  container.innerHTML = `
+    <button class="qty-selector-btn qty-minus" type="button" aria-label="Decrease quantity">-</button>
+    <span class="qty-selector-value">${initialQty}</span>
+    <button class="qty-selector-btn qty-plus" type="button" aria-label="Increase quantity">+</button>
+  `;
+
+  parent.appendChild(container);
+
+  const minusBtn = container.querySelector('.qty-minus');
+  const plusBtn = container.querySelector('.qty-plus');
+  const qtyVal = container.querySelector('.qty-selector-value');
+
+  minusBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    let currentCart = getCart();
+    let index = currentCart.findIndex(item => item.name === name && item.restaurant === restaurantName);
+    if (index !== -1) {
+      currentCart[index].quantity -= 1;
+      if (currentCart[index].quantity <= 0) {
+        currentCart.splice(index, 1);
+        saveCart(currentCart);
+        container.remove();
+        btnRef.style.display = 'block';
+      } else {
+        qtyVal.innerText = currentCart[index].quantity;
+        saveCart(currentCart);
+      }
+    }
+  });
+
+  plusBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    let currentCart = getCart();
+    let index = currentCart.findIndex(item => item.name === name && item.restaurant === restaurantName);
+    if (index !== -1) {
+      currentCart[index].quantity += 1;
+      qtyVal.innerText = currentCart[index].quantity;
+      saveCart(currentCart);
+    }
+  });
+}
 
 // Render the cart elements dynamically
 function renderCart() {
@@ -107,14 +233,28 @@ function renderCart() {
   if (cart.length === 0) {
     // Show empty cart view
     leftCol.innerHTML = `
-      <div class="cart-box" style="text-align: center; padding: 60px 20px;">
-        <svg xmlns="http://www.w3.org/2000/svg" height="80" viewBox="0 0 24 24" width="80" fill="var(--text-muted)" style="opacity: 0.5; margin-bottom: 20px;">
-          <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
-        </svg>
-        <h3 style="border-bottom:none; margin-bottom: 10px; font-size: 1.5rem;">Your Cart is Empty</h3>
-        <p style="color: var(--text-muted); margin-bottom: 24px;">Add items from your favorite restaurants to place an order.</p>
-        <a href="restaurants.html" class="btn btn-primary">Explore Restaurants</a>
+      <div class="cart-box" style="text-align: center; padding: 80px 20px; border-radius: var(--border-radius-lg); box-shadow: var(--shadow-sm); border: 1px dashed var(--border-color-dark); background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);">
+        <div style="position: relative; display: inline-block; margin-bottom: 30px;">
+          <div style="position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; border-radius: 50%; background: rgba(239, 79, 95, 0.05); animation: pulseEmpty 2s infinite ease-in-out;"></div>
+          <div style="background: rgba(239, 79, 95, 0.1); width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative;">
+            <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 0 24 24" width="48" fill="var(--primary-color)">
+              <path d="M17.21 9l-4.38-6.56c-.19-.28-.51-.42-.83-.42-.32 0-.64.14-.83.43L6.79 9H2c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.88 1.46h13.08c.88 0 1.65-.62 1.88-1.46l2.54-9.27.04-.15c0-.55-.45-1-1-1h-4.79zM9 9l3-4.5L15 9H9zm3 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+            </svg>
+          </div>
+        </div>
+        <h3 style="border-bottom:none; margin-bottom: 12px; font-size: 1.65rem; font-weight: 700; color: var(--text-dark);">Your Cart is Empty</h3>
+        <p style="color: var(--text-muted); max-width: 360px; margin: 0 auto 32px; font-size: 0.95rem; line-height: 1.6;">
+          Good food is always cooking! Add tasty items from our handpicked premium restaurants in Bengaluru.
+        </p>
+        <a href="restaurants.html" class="btn btn-primary" style="padding: 12px 36px; border-radius: 30px; font-weight: 600; box-shadow: 0 8px 20px rgba(239, 79, 95, 0.25);">Explore Restaurants</a>
       </div>
+      <style>
+        @keyframes pulseEmpty {
+          0% { transform: scale(0.9); opacity: 1; }
+          50% { transform: scale(1.1); opacity: 0.4; }
+          100% { transform: scale(0.9); opacity: 1; }
+        }
+      </style>
     `;
     rightCol.style.display = 'none';
     return;
@@ -156,10 +296,14 @@ function renderCart() {
     `;
   });
 
+  // Dynamic user data injection
+  let userName = localStorage.getItem('foodiehub_logged_in_user_name') || 'Guest User';
+  let userAddress = localStorage.getItem('foodiehub_logged_in_user_address') || 'Mukesh S, Flat 302, 3rd Floor, Lavender Apartments, Green Glen Layout, Bellandur, Bengaluru, Karnataka - 560103';
+
   itemsHtml += `
     </div>
 
-    <!-- Static Delivery Address Card -->
+    <!-- Dynamic Delivery Address Card -->
     <div class="cart-box">
       <h3 style="display: flex; align-items: center; justify-content: space-between;">
         Delivery Address
@@ -170,10 +314,9 @@ function renderCart() {
           <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
         </svg>
         <div>
-          <div style="font-weight: 600; color: var(--text-dark); font-size: 1.05rem; margin-bottom: 4px;">Home</div>
+          <div style="font-weight: 600; color: var(--text-dark); font-size: 1.05rem; margin-bottom: 4px;">${userName}</div>
           <p style="color: var(--text-medium); font-size: 0.9rem; line-height: 1.5;">
-            Mukesh S, Flat 302, 3rd Floor, Lavender Apartments,<br>
-            Green Glen Layout, Bellandur, Bengaluru, Karnataka - 560103
+            ${userAddress}
           </p>
         </div>
       </div>
@@ -248,18 +391,31 @@ window.updateQty = function(index, delta) {
   let cart = getCart();
   if (index < 0 || index >= cart.length) return;
   
-  cart[index].quantity += delta;
-  if (cart[index].quantity <= 0) {
-    cart.splice(index, 1);
+  let newQty = cart[index].quantity + delta;
+  if (newQty <= 0) {
+    let cartItems = document.querySelectorAll('.cart-item');
+    if (cartItems[index]) {
+      cartItems[index].classList.add('cart-item-removed');
+      setTimeout(() => {
+        let currentCart = getCart();
+        currentCart.splice(index, 1);
+        saveCart(currentCart);
+        renderCart();
+      }, 400);
+    } else {
+      cart.splice(index, 1);
+      saveCart(cart);
+      renderCart();
+    }
+  } else {
+    cart[index].quantity = newQty;
+    saveCart(cart);
+    renderCart();
   }
-  
-  saveCart(cart);
-  renderCart();
 };
 
 // Function to handle checkout placement and clear cart
 window.clearCartOnCheckout = function(itemsText, grandTotal) {
-  // Update order success modal content with real items from cart
   let modalSummary = document.querySelector('#order-success-modal .order-summary-box');
   if (modalSummary) {
     modalSummary.innerHTML = `
@@ -270,7 +426,7 @@ window.clearCartOnCheckout = function(itemsText, grandTotal) {
     `;
   }
   
-  // Clear the cart database since order is placed
-  localStorage.removeItem('foodiehub_cart');
+  const key = getCartKey();
+  localStorage.removeItem(key);
   updateCartBadge();
 };
