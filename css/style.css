@@ -1165,6 +1165,23 @@ ul {
   padding: 40px 0;
 }
 
+.mobile-filter-bar {
+  display: none;
+}
+
+.filter-overlay-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  cursor: pointer;
+}
+
 /* Sidebar Filters (Pure CSS) */
 .filter-sidebar {
   background-color: var(--bg-white);
@@ -1913,8 +1930,8 @@ ul {
   }
 }
 
-/* Mobile Viewports (Max 768px) */
-@media (max-width: 768px) {
+/* Mobile & Tablet Combined Viewports (Max 992px) */
+@media (max-width: 992px) {
   html {
     font-size: 14px;
   }
@@ -1964,8 +1981,8 @@ ul {
     width: 100%;
   }
   
-  /* Menu sliding in when checkbox toggled */
-  .menu-toggle-checkbox:checked ~ .nav-menu {
+  /* Menu sliding in when checkbox toggled (corrected selector) */
+  .menu-toggle-checkbox:checked ~ .navbar-wrapper .nav-menu {
     right: 0;
   }
   
@@ -2007,31 +2024,69 @@ ul {
   /* Layout shifts */
   .restaurants-layout {
     grid-template-columns: 1fr;
+    gap: 0;
   }
   
-  /* Collapse Filters in mobile and show on demand or simple list style */
-  .filter-sidebar {
-    position: relative;
-    padding: 20px;
-  }
-  
-  .menu-layout {
-    grid-template-columns: 1fr;
-  }
-  
-  .menu-categories-list {
-    position: static;
-    display: flex;
-    overflow-x: auto;
-    gap: 10px;
-    padding: 12px;
-    white-space: nowrap;
+  /* Mobile filters bar toggle button */
+  .mobile-filter-bar {
+    display: block;
     margin-bottom: 20px;
   }
   
+  /* Collapse Filters in mobile and show as a premium drawer slide-out */
+  .filter-sidebar {
+    position: fixed;
+    top: 0;
+    left: -320px;
+    width: 280px;
+    height: 100vh;
+    background-color: var(--bg-white);
+    z-index: 2001;
+    overflow-y: auto;
+    transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 30px 24px;
+    box-shadow: 10px 0 20px rgba(0,0,0,0.15);
+    border: none;
+    align-self: stretch;
+  }
+  
+  body:has(#filter-toggle:checked) .filter-sidebar {
+    left: 0 !important;
+  }
+  
+  /* Details Menu Layout Overrides (using !important to override inline styling) */
+  .menu-layout {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    margin-top: 24px !important;
+  }
+  
+  .menu-categories-list {
+    position: static !important;
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    gap: 10px !important;
+    padding: 12px !important;
+    white-space: nowrap !important;
+    margin-bottom: 20px !important;
+    background-color: var(--bg-white);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    width: 100% !important;
+    box-sizing: border-box !important;
+    height: auto !important;
+  }
+  
   .menu-categories-list a {
-    margin-bottom: 0;
-    display: inline-block;
+    margin-bottom: 0 !important;
+    display: inline-block !important;
+    padding: 8px 16px !important;
+    white-space: nowrap !important;
+  }
+  
+  .menu-list-section {
+    padding: 20px !important;
   }
   
   .footer-top {
@@ -2066,23 +2121,40 @@ ul {
     grid-template-columns: 1fr;
   }
   
+  /* Details Menu Item Stacking & Styling Overrides */
   .menu-item-row {
-    flex-direction: column-reverse;
-    gap: 16px;
+    flex-direction: column-reverse !important;
+    gap: 16px !important;
   }
   
   .menu-item-image-box {
-    align-self: center;
-    width: 100%;
-    height: 160px;
+    align-self: center !important;
+    width: 100% !important;
+    height: 160px !important;
   }
   
   .menu-item-details {
-    padding-right: 0;
+    padding-right: 0 !important;
   }
   
   .gallery-grid {
     grid-template-columns: 1fr;
+  }
+  
+  /* Cart Page - Stack cart items vertically to prevent text/controls clipping */
+  .cart-item {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+  
+  .cart-item-info {
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
+  
+  .qty-control {
+    margin-left: 0 !important;
   }
 }
 

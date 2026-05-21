@@ -49,6 +49,10 @@
 
     <!-- Veg Only Filter -->
     <input type="checkbox" id="filter-veg-only" name="veg-filter">
+
+    <!-- Mobile Filter Sidebar Toggle (Hidden) -->
+    <input type="checkbox" id="filter-toggle" class="filter-toggle-checkbox" style="display: none;">
+    <label for="filter-toggle" class="filter-overlay-backdrop"></label>
   </div>
 
   <!-- Mobile nav drawer checkbox -->
@@ -105,6 +109,16 @@
 
   <!-- Filter & Listing Layout -->
   <main class="container restaurants-layout">
+
+    <!-- Mobile Filters Bar -->
+    <div class="mobile-filter-bar">
+      <label for="filter-toggle" class="filter-toggle-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" fill="currentColor">
+          <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
+        </svg>
+        Filters &amp; Sort
+      </label>
+    </div>
     
     <!-- Sidebar Filters -->
     <aside class="filter-sidebar">
@@ -113,31 +127,31 @@
         <div class="filter-options">
           <a href="#all" class="filter-label">
             All Cuisines
-          </label>
+          </a>
           <a href="#biryani" class="filter-label">
             Biryani
-          </label>
+          </a>
           <a href="#north-indian" class="filter-label">
             North Indian
-          </label>
+          </a>
           <a href="#south-indian" class="filter-label">
             South Indian
-          </label>
+          </a>
           <a href="#burgers" class="filter-label">
             Burgers
-          </label>
+          </a>
           <a href="#pizza" class="filter-label">
             Pizza
-          </label>
+          </a>
           <a href="#chinese" class="filter-label">
             Chinese
-          </label>
+          </a>
           <a href="#desserts" class="filter-label">
             Desserts
-          </label>
+          </a>
           <a href="#mexican" class="filter-label">
             Mexican
-          </label>
+          </a>
           <a href="#healthy" class="filter-label">
             Healthy Food
           </a>
