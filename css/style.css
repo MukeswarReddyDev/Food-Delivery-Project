@@ -5085,6 +5085,260 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
     border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
     color: rgba(255, 255, 255, 0.4) !important;
   }
+
+  /* --- 5. Deals of the Week Override --- */
+  #offers .section-header h2 {
+    color: #ffffff !important;
+  }
+  #offers .section-header p {
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+  .offer-card {
+    background: rgba(30, 30, 30, 0.5) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+    color: #cccccc !important;
+  }
+  .offer-card h3 {
+    color: #ffffff !important;
+  }
+  .offer-card p {
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+  .offer-code {
+    background-color: rgba(255, 122, 0, 0.1) !important;
+    border: 1.5px dashed rgba(255, 122, 0, 0.4) !important;
+    color: #ff7a00 !important;
+  }
+  
+  /* Accent borders and badges based on Orange-Red Glow theme colors */
+  .offer-card-1 {
+    background: linear-gradient(135deg, rgba(255, 61, 61, 0.08) 0%, rgba(30, 30, 30, 0.5) 100%) !important;
+    border-left: 6px solid #ff3d3d !important;
+    box-shadow: 0 5px 15px rgba(255, 61, 61, 0.1) !important;
+  }
+  .offer-card-1 .offer-badge {
+    background-color: #ff3d3d !important;
+    color: #ffffff !important;
+  }
+  
+  .offer-card-2 {
+    background: linear-gradient(135deg, rgba(255, 122, 0, 0.08) 0%, rgba(30, 30, 30, 0.5) 100%) !important;
+    border-left: 6px solid #ff7a00 !important;
+    box-shadow: 0 5px 15px rgba(255, 122, 0, 0.1) !important;
+  }
+  .offer-card-2 .offer-badge {
+    background-color: #ff7a00 !important;
+    color: #ffffff !important;
+  }
+  
+  .offer-card-3 {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.06) 0%, rgba(30, 30, 30, 0.5) 100%) !important;
+    border-left: 6px solid #ffd700 !important;
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.1) !important;
+  }
+  .offer-card-3 .offer-badge {
+    background-color: #ffd700 !important;
+    color: #000000 !important;
+  }
+  
+  .offer-card-4 {
+    background: linear-gradient(135deg, rgba(255, 61, 61, 0.08) 0%, rgba(30, 30, 30, 0.5) 100%) !important;
+    border-left: 6px solid #ff3d3d !important;
+    box-shadow: 0 5px 15px rgba(255, 61, 61, 0.1) !important;
+  }
+  .offer-card-4 .offer-badge {
+    background-color: #ff3d3d !important;
+    color: #ffffff !important;
+  }
+  
+  /* Hover effects */
+  .offer-card:hover {
+    transform: translateY(-8px) !important;
+  }
+  .offer-card-1:hover {
+    box-shadow: 0 10px 30px rgba(255, 61, 61, 0.25) !important;
+    border-color: rgba(255, 61, 61, 0.4) !important;
+    border-left-width: 6px !important;
+  }
+  .offer-card-2:hover {
+    box-shadow: 0 10px 30px rgba(255, 122, 0, 0.25) !important;
+    border-color: rgba(255, 122, 0, 0.4) !important;
+    border-left-width: 6px !important;
+  }
+  .offer-card-3:hover {
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.25) !important;
+    border-color: rgba(255, 215, 0, 0.4) !important;
+    border-left-width: 6px !important;
+  }
+  .offer-card-4:hover {
+    box-shadow: 0 10px 30px rgba(255, 61, 61, 0.25) !important;
+    border-color: rgba(255, 61, 61, 0.4) !important;
+    border-left-width: 6px !important;
+  }
+
+  /* --- 6. Explore All Button Override --- */
+  .btn-secondary {
+    background: rgba(30, 30, 30, 0.5) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border: 2px solid rgba(255, 122, 0, 0.4) !important;
+    color: #ffffff !important;
+  }
+  
+  .btn-secondary:hover {
+    background: linear-gradient(135deg, #ff7a00 0%, #ff3d3d 100%) !important;
+    border-color: transparent !important;
+    color: #ffffff !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 15px rgba(255, 61, 61, 0.4) !important;
+  }
+
+  /* --- 7. Cart Page & Components Override --- */
+  .cart-box {
+    background: rgba(30, 30, 30, 0.5) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+    color: #cccccc !important;
+  }
+  .cart-left-section > div.cart-box[style*="linear-gradient"] {
+    background: rgba(30, 30, 30, 0.5) !important;
+    border: 1px dashed rgba(255, 255, 255, 0.15) !important;
+  }
+  .cart-box h3 {
+    color: #ffffff !important;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.08) !important;
+  }
+  .cart-box h3 span[onclick], .cart-box span[onclick] {
+    color: #ff7a00 !important;
+  }
+  .cart-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+  .cart-item-title {
+    color: #ffffff !important;
+  }
+  .cart-item-price {
+    color: #ffffff !important;
+  }
+  
+  /* Quantity Controller in Cart */
+  .qty-control {
+    border: 1.5px solid rgba(255, 255, 255, 0.12) !important;
+  }
+  .qty-val {
+    border-left: 1.5px solid rgba(255, 255, 255, 0.12) !important;
+    border-right: 1.5px solid rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+  }
+  .qty-btn {
+    color: #ffffff !important;
+  }
+  .qty-btn:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+  }
+  
+  /* Text and Address inside Cart Cards */
+  .cart-box div[style*="color: var(--text-dark)"],
+  .cart-box strong[style*="color: var(--text-dark)"] {
+    color: #ffffff !important;
+  }
+  .cart-box p[style*="color: var(--text-medium)"] {
+    color: #cccccc !important;
+  }
+  .cart-box span[style*="color: var(--text-muted)"] {
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+  .cart-box strong {
+    color: #ffffff !important;
+  }
+
+  /* Coupon Code input and applied texts */
+  .promo-container input {
+    background: rgba(15, 15, 15, 0.6) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+  }
+  .promo-container input[style*="var(--veg-green)"] {
+    border-color: #ff7a00 !important;
+    color: #ff7a00 !important;
+  }
+  .promo-container button[style*="var(--veg-green)"] {
+    border-color: #ff7a00 !important;
+    color: #ff7a00 !important;
+  }
+  .cart-box p[style*="color: var(--veg-green)"],
+  .bill-row[style*="color: var(--veg-green)"] {
+    color: #ff7a00 !important;
+  }
+  
+  /* Bill rows & totals */
+  .bill-row {
+    color: #cccccc !important;
+  }
+  .bill-total-row {
+    border-top: 1.5px solid rgba(255, 255, 255, 0.08) !important;
+    color: #ffffff !important;
+  }
+  .bill-total-row span {
+    color: #ffffff !important;
+  }
+  .cart-box div[style*="border-top: 1px dashed var(--border-color-dark)"] {
+    border-top: 1px dashed rgba(255, 255, 255, 0.12) !important;
+  }
+
+  /* Success Modal Overrides */
+  .modal-overlay {
+    background-color: rgba(15, 15, 15, 0.8) !important;
+  }
+  .modal-card {
+    background: rgba(30, 30, 30, 0.9) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6) !important;
+    color: #cccccc !important;
+  }
+  .modal-card h2 {
+    color: #ffffff !important;
+  }
+  .modal-card p {
+    color: rgba(255, 255, 255, 0.65) !important;
+  }
+  .order-summary-box {
+    background: rgba(15, 15, 15, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+  .order-summary-row span {
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+  .order-summary-row strong {
+    color: #ffffff !important;
+  }
+  
+  /* Timeline inside modal */
+  .timeline-step::before {
+    border-color: #1e1e1e !important;
+  }
+  .timeline::after {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+  }
+  .timeline-title {
+    color: #ffffff !important;
+  }
+  .timeline-desc {
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+  .modal-actions .btn-primary[style*="var(--veg-green)"] {
+    background: linear-gradient(135deg, #ff7a00 0%, #ff3d3d 100%) !important;
+    box-shadow: 0 4px 15px rgba(255, 61, 61, 0.4) !important;
+    border-color: transparent !important;
+    color: #ffffff !important;
+  }
 }
 
 @media (max-width: 1200px) and (min-width: 1024px) {
