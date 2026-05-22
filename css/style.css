@@ -4554,9 +4554,9 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
     display: block !important;
   }
 
-  /* Theme color overrides for dark cinematic scroll experience */
+  /* Theme color overrides for dark cinematic scroll experience - MAGIC THEME */
   body {
-    background-color: #0d0e12 !important;
+    background-color: #090514 !important;
     color: #e5e5e9 !important;
   }
   
@@ -4575,10 +4575,10 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
     color: #ffffff;
-    padding: 40px;
+    padding: 40px 10%;
     overflow: hidden;
   }
 
@@ -4588,15 +4588,15 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.85) 100%),
-                linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(13, 14, 18, 1) 100%);
+    background: radial-gradient(circle at 20% 50%, rgba(192, 132, 252, 0.15) 0%, rgba(9, 5, 20, 0.4) 50%, rgba(9, 5, 20, 0.95) 100%),
+                linear-gradient(to bottom, rgba(9, 5, 20, 0.2) 0%, rgba(9, 5, 20, 1) 100%);
     z-index: 1;
   }
 
   .cinematic-header {
     position: absolute;
     top: 30px;
-    left: 50px;
+    left: 10%;
     z-index: 10;
   }
 
@@ -4610,7 +4610,7 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
   }
 
   .cinematic-logo span {
-    color: #EF4F5F;
+    color: #c084fc;
   }
 
   .cinematic-hero-content {
@@ -4620,7 +4620,7 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .cinematic-badge {
@@ -4629,21 +4629,21 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
     gap: 8px;
     padding: 8px 18px;
     border-radius: 50px;
-    background: rgba(239, 79, 95, 0.1);
-    border: 1.5px solid rgba(239, 79, 95, 0.5);
+    background: rgba(192, 132, 252, 0.1);
+    border: 1.5px solid rgba(192, 132, 252, 0.5);
     font-size: 0.85rem;
     font-weight: 600;
-    color: #EF4F5F;
+    color: #c084fc;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     margin-bottom: 24px;
-    box-shadow: 0 0 15px rgba(239, 79, 95, 0.15);
+    box-shadow: 0 0 15px rgba(192, 132, 252, 0.15);
     animation: pulseBadge 2.5s infinite alternate;
   }
 
   @keyframes pulseBadge {
-    0% { transform: scale(1); box-shadow: 0 0 15px rgba(239, 79, 95, 0.15); }
-    100% { transform: scale(1.03); box-shadow: 0 0 25px rgba(239, 79, 95, 0.35); }
+    0% { transform: scale(1); box-shadow: 0 0 15px rgba(192, 132, 252, 0.15); }
+    100% { transform: scale(1.03); box-shadow: 0 0 25px rgba(192, 132, 252, 0.35); }
   }
 
   .cinematic-greeting {
@@ -4675,8 +4675,8 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
     padding: 16px 55px;
     font-size: 1.1rem;
     border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    background: rgba(15, 15, 18, 0.65);
+    border: 1px solid rgba(192, 132, 252, 0.25);
+    background: rgba(17, 13, 41, 0.65);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     color: #ffffff;
@@ -4690,9 +4690,9 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
   }
 
   .cinematic-search-container input:focus {
-    background: rgba(10, 10, 12, 0.8);
-    border-color: #EF4F5F;
-    box-shadow: 0 0 25px rgba(239, 79, 95, 0.3), 0 10px 30px rgba(0, 0, 0, 0.6);
+    background: rgba(17, 13, 41, 0.85);
+    border-color: #c084fc;
+    box-shadow: 0 0 25px rgba(192, 132, 252, 0.3), 0 10px 30px rgba(0, 0, 0, 0.6);
   }
 
   .cinematic-search-icon {
@@ -4717,16 +4717,16 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
   }
 
   .cinematic-mic-icon:hover {
-    color: #EF4F5F;
+    color: #c084fc;
   }
 
   /* Cinematic search dropdown overrides */
   .cinematic-search-container .advanced-search-dropdown {
     width: 100%;
-    background: rgba(18, 18, 22, 0.98);
+    background: rgba(17, 13, 41, 0.98);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(192, 132, 252, 0.15);
     border-radius: 16px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
     top: calc(100% + 8px);
@@ -4736,7 +4736,7 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
 
   .cinematic-search-container .advanced-search-dropdown h4 {
     color: rgba(255, 255, 255, 0.6);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(192, 132, 252, 0.15);
   }
 
   .cinematic-search-container .trending-tag {
@@ -4746,8 +4746,8 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
   }
 
   .cinematic-search-container .trending-tag:hover {
-    background: rgba(239, 79, 95, 0.12);
-    border-color: #EF4F5F;
+    background: rgba(192, 132, 252, 0.12);
+    border-color: #c084fc;
     color: #ffffff;
   }
 
@@ -4789,7 +4789,7 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
   }
 
   .cinematic-veg-toggle-container input:checked + .veg-slider {
-    background-color: #EF4F5F;
+    background-color: #c084fc;
   }
 
   .cinematic-veg-toggle-container input:checked + .veg-slider:before {
@@ -4802,10 +4802,10 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
     bottom: 25px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(18, 19, 23, 0.72);
+    background: rgba(17, 13, 41, 0.72);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(192, 132, 252, 0.2);
     border-radius: 24px;
     padding: 10px 24px;
     align-items: center;
@@ -4816,9 +4816,9 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
   }
 
   .desktop-floating-dock:hover {
-    background: rgba(18, 19, 23, 0.85);
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
-    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(17, 13, 41, 0.85);
+    box-shadow: 0 20px 45px rgba(192, 132, 252, 0.15), 0 20px 45px rgba(0, 0, 0, 0.6);
+    border-color: rgba(192, 132, 252, 0.4);
   }
 
   .dock-nav-item {
@@ -4856,7 +4856,7 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
   }
 
   .dock-nav-item.active {
-    color: #EF4F5F;
+    color: #c084fc;
   }
 
   .dock-nav-item.active::after {
@@ -4866,9 +4866,9 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
     left: 30%;
     width: 40%;
     height: 3px;
-    background: #EF4F5F;
+    background: #c084fc;
     border-radius: 2px;
-    box-shadow: 0 0 10px rgba(239, 79, 95, 0.8);
+    box-shadow: 0 0 10px rgba(192, 132, 252, 0.8);
   }
 
   .dock-cart-wrapper {
@@ -4880,14 +4880,14 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
     position: absolute;
     top: -8px;
     right: -10px;
-    background: #EF4F5F;
+    background: #c084fc;
     color: #ffffff;
     font-size: 0.62rem;
     font-weight: 700;
     padding: 2px 6px;
     border-radius: 10px;
-    border: 1px solid #121317;
-    box-shadow: 0 0 5px rgba(239, 79, 95, 0.6);
+    border: 1px solid #110d29;
+    box-shadow: 0 0 5px rgba(192, 132, 252, 0.6);
   }
 
   /* 3. Desktop Cuisines Grid Section */
@@ -4963,8 +4963,8 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
   }
 
   .desktop-cuisine-card:hover .cuisine-circle-img {
-    border-color: #EF4F5F;
-    box-shadow: 0 10px 22px rgba(239, 79, 95, 0.3);
+    border-color: #c084fc;
+    box-shadow: 0 10px 22px rgba(192, 132, 252, 0.3);
   }
 
   .desktop-cuisine-card:hover img {
@@ -4977,9 +4977,14 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
 
   /* 4. Elegant Overrides for standard layout cards & sections */
   .restaurant-card {
-    background: #191a20 !important;
-    border: 1px solid rgba(255, 255, 255, 0.04) !important;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    background: #110d29 !important;
+    border: 1px solid rgba(192, 132, 252, 0.08) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  .restaurant-card:hover {
+    border-color: rgba(192, 132, 252, 0.3) !important;
+    box-shadow: 0 8px 30px rgba(192, 132, 252, 0.15);
   }
 
   .restaurant-info h3 {
@@ -4987,7 +4992,7 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
   }
 
   .cuisine-tags, .location-tag {
-    color: rgba(255, 255, 255, 0.5) !important;
+    color: rgba(255, 255, 255, 0.55) !important;
   }
 
   .meta-price {
@@ -4995,9 +5000,9 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
   }
 
   .review-card {
-    background: #191a20 !important;
-    border: 1px solid rgba(255, 255, 255, 0.04) !important;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    background: #110d29 !important;
+    border: 1px solid rgba(192, 132, 252, 0.08) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   }
 
   .review-text {
@@ -5009,8 +5014,8 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
   }
 
   .faq-item {
-    background: #191a20 !important;
-    border: 1px solid rgba(255, 255, 255, 0.04) !important;
+    background: #110d29 !important;
+    border: 1px solid rgba(192, 132, 252, 0.08) !important;
   }
 
   .faq-item summary {
@@ -5022,8 +5027,8 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
   }
 
   .newsletter-wrapper {
-    background: linear-gradient(135deg, #191a20 0%, #0f1013 100%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.04) !important;
+    background: linear-gradient(135deg, #110d29 0%, #090514 100%) !important;
+    border: 1px solid rgba(192, 132, 252, 0.08) !important;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   }
 
@@ -5036,8 +5041,8 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
   }
 
   .footer {
-    background-color: #08090c !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    background-color: #05030b !important;
+    border-top: 1px solid rgba(192, 132, 252, 0.08);
   }
 
   .footer-col h4 {
@@ -5049,11 +5054,11 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
   }
 
   .footer-col a:hover {
-    color: #EF4F5F !important;
+    color: #c084fc !important;
   }
 
   .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.04) !important;
+    border-top: 1px solid rgba(192, 132, 252, 0.08) !important;
     color: rgba(255, 255, 255, 0.4) !important;
   }
 }
