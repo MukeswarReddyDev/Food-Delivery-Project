@@ -65,7 +65,7 @@ function updateCartBadge() {
     if (totalQty > 0) {
       let totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
       if (widgetText) {
-        widgetText.innerText = `${totalQty} Item${totalQty > 1 ? 's' : ''} | ₹${totalPrice}`;
+        widgetText.innerText = `${totalQty} Item${totalQty > 1 ? 's' : ''} | \u20B9${totalPrice}`;
       }
       widget.style.display = 'flex';
       
@@ -290,7 +290,7 @@ function renderCart() {
             <span class="qty-val">${item.quantity}</span>
             <button class="qty-btn" type="button" aria-label="Increase quantity" onclick="updateQty(${index}, 1)">+</button>
           </div>
-          <div class="cart-item-price" style="margin-left: 24px; min-width: 60px; text-align: right;">₹${item.price * item.quantity}</div>
+          <div class="cart-item-price" style="margin-left: 24px; min-width: 60px; text-align: right;">\u20B9${item.price * item.quantity}</div>
         </div>
       </div>
     `;
@@ -307,7 +307,7 @@ function renderCart() {
     <div class="cart-box">
       <h3 style="display: flex; align-items: center; justify-content: space-between;">
         Delivery Address
-        <span style="font-size: 0.8rem; color: var(--primary-color); font-weight: 600; cursor: pointer;">Change</span>
+        <span onclick="promptChangeAddress()" style="font-size: 0.8rem; color: var(--primary-color); font-weight: 600; cursor: pointer;">Change</span>
       </h3>
       <div style="display: flex; gap: 16px; align-items: flex-start;">
         <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="var(--primary-color)" style="flex-shrink: 0; margin-top: 2px;">
@@ -343,11 +343,11 @@ function renderCart() {
       </div>
       ${discount > 0 ? `
         <p style="font-size: 0.8rem; color: var(--veg-green); margin-top: 8px; font-weight: 500;">
-          WELCOME50 applied! Flat ₹100 discount saved on this order.
+          WELCOME50 applied! Flat \u20B9100 discount saved on this order.
         </p>
       ` : `
         <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 8px; font-weight: 500;">
-          Add items worth ₹200 or more to get WELCOME50 coupon discount.
+          Add items worth \u20B9200 or more to get WELCOME50 coupon discount.
         </p>
       `}
     </div>
@@ -357,30 +357,35 @@ function renderCart() {
       <h3>Bill Details</h3>
       <div class="bill-row">
         <span>Item Total</span>
-        <span>₹${subtotal}</span>
+        <span>\u20B9${subtotal}</span>
       </div>
       <div class="bill-row">
         <span>Delivery Partner Fee</span>
-        <span>₹${deliveryFee}</span>
+        <span>\u20B9${deliveryFee}</span>
       </div>
       <div class="bill-row">
         <span>Taxes &amp; Restaurant Charges</span>
-        <span>₹${taxes}</span>
+        <span>\u20B9${taxes}</span>
       </div>
       ${discount > 0 ? `
         <div class="bill-row" style="color: var(--veg-green); font-weight: 500;">
           <span>Coupon Discount (WELCOME50)</span>
-          <span>-₹${discount}</span>
+          <span>-\u20B9${discount}</span>
         </div>
       ` : ''}
       
       <div class="bill-total-row">
         <span>To Pay</span>
-        <span>₹${total}</span>
+        <span>\u20B9${total}</span>
       </div>
 
+      <div style="font-size: 0.85rem; padding: 12px 0 0 0; border-top: 1px dashed var(--border-color-dark); margin-top: 12px; display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+        <span style="color: var(--text-muted);"><i class="fa-solid fa-location-dot" style="color: var(--primary-color); margin-right: 4px;"></i> Delivering to: <strong style="color: var(--text-dark); font-weight: 600;">${userAddress.length > 45 ? userAddress.substring(0, 42) + '...' : userAddress}</strong></span>
+        <span onclick="promptChangeAddress()" style="color: var(--primary-color); font-weight: 600; cursor: pointer; white-space: nowrap;">Change</span>
+      </div>
+ 
       <div style="margin-top: 24px;">
-        <a href="#order-success-modal" class="btn btn-primary" onclick="clearCartOnCheckout('${cart.map(i => i.name).join(', ')}', '${total}')" style="width: 100%; font-size: 1.1rem; padding: 14px 28px;">Place Order (₹${total})</a>
+        <a href="#order-success-modal" class="btn btn-primary" onclick="clearCartOnCheckout('${cart.map(i => i.name).join(', ')}', '${total}')" style="width: 100%; font-size: 1.1rem; padding: 14px 28px;">Place Order (\u20B9${total})</a>
       </div>
     </div>
   `;
@@ -418,11 +423,12 @@ window.updateQty = function(index, delta) {
 window.clearCartOnCheckout = function(itemsText, grandTotal) {
   let modalSummary = document.querySelector('#order-success-modal .order-summary-box');
   if (modalSummary) {
+    const finalAddress = localStorage.getItem('foodiehub_logged_in_user_address') || 'Flat 302, Green Glen Layout, Bengaluru';
     modalSummary.innerHTML = `
       <div class="order-summary-row"><span>Items:</span><strong>${itemsText}</strong></div>
-      <div class="order-summary-row"><span>Delivery Address:</span><strong>Flat 302, Green Glen Layout, Bengaluru</strong></div>
+      <div class="order-summary-row"><span>Delivery Address:</span><strong>${finalAddress}</strong></div>
       <div class="order-summary-row"><span>Estimated Time:</span><strong>32 Mins</strong></div>
-      <div class="order-summary-row"><span>Paid Amount:</span><strong>₹${grandTotal}</strong></div>
+      <div class="order-summary-row"><span>Paid Amount:</span><strong>\u20B9${grandTotal}</strong></div>
     `;
   }
   
@@ -430,3 +436,13 @@ window.clearCartOnCheckout = function(itemsText, grandTotal) {
   localStorage.removeItem(key);
   updateCartBadge();
 };
+
+window.promptChangeAddress = function() {
+  const currentAddress = localStorage.getItem('foodiehub_logged_in_user_address') || 'Mukesh S, Flat 302, 3rd Floor, Lavender Apartments, Green Glen Layout, Bellandur, Bengaluru, Karnataka - 560103';
+  const newAddress = prompt('Enter your delivery address:', currentAddress);
+  if (newAddress !== null && newAddress.trim() !== '') {
+    localStorage.setItem('foodiehub_logged_in_user_address', newAddress.trim());
+    renderCart();
+  }
+};
+

@@ -27,6 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initActiveTabHighlighter();
 
+  // Custom filter checking for restaurants.html
+  checkRestaurantsPageFilters();
+
   // Show pending toast messages if any
   const pendingToast = localStorage.getItem('foodiehub_toast_message');
   if (pendingToast) {
@@ -469,16 +472,23 @@ window.logoutUser = function(e) {
  * Premium Dynamic Greeting Row
  */
 function initDynamicGreeting() {
-  const greetingEl = document.getElementById('app-time-greeting');
-  if (!greetingEl) return;
-  
   const hrs = new Date().getHours();
   let greet = 'Good Evening';
-  if (hrs < 12) greet = 'Good Morning';
-  else if (hrs < 17) greet = 'Good Afternoon';
+  if (hrs >= 5 && hrs < 12) greet = 'Good Morning';
+  else if (hrs >= 12 && hrs < 17) greet = 'Good Afternoon';
   
   const name = localStorage.getItem('foodiehub_logged_in_user_name') || 'Guest';
-  greetingEl.innerText = `${greet}, ${name} 👋`;
+  
+  const greetingEl = document.getElementById('app-time-greeting');
+  if (greetingEl) {
+    greetingEl.innerText = `${greet}, ${name} 👋`;
+  }
+
+  // Update desktop cinematic time greeting (always Guest)
+  const desktopGreetingEl = document.getElementById('desktop-time-greeting');
+  if (desktopGreetingEl) {
+    desktopGreetingEl.innerText = `${greet}, Guest 👋`;
+  }
 }
 
 /**
@@ -515,43 +525,57 @@ function filterHomepageRestaurants(query) {
  */
 function initVegToggle() {
   const toggle = document.getElementById('veg-only-toggle');
+  const desktopToggle = document.getElementById('desktop-veg-toggle');
   const container = document.getElementById('restaurant-cards-container');
-  if (!toggle || !container) return;
 
-  toggle.addEventListener('change', () => {
-    const cards = container.querySelectorAll('.restaurant-card');
-    const isVegOnly = toggle.checked;
-    
-    cards.forEach(card => {
-      const searchInput = document.getElementById('restaurant-input');
-      const queryLower = searchInput ? searchInput.value.toLowerCase().trim() : '';
-      
-      const name = card.querySelector('h3').innerText.toLowerCase();
-      const cuisines = card.querySelector('.cuisine-tags').innerText.toLowerCase();
-      const location = card.querySelector('.location-tag').innerText.toLowerCase();
-      
-      const matchesSearch = queryLower === '' || name.includes(queryLower) || cuisines.includes(queryLower) || location.includes(queryLower);
-      
-      if (isVegOnly) {
-        const hasVeg = card.querySelector('.indicator-veg');
-        card.style.display = (hasVeg && matchesSearch) ? 'block' : 'none';
-      } else {
-        card.style.display = matchesSearch ? 'block' : 'none';
-      }
+  const handleToggleChange = (isChecked) => {
+    if (container) {
+      const cards = container.querySelectorAll('.restaurant-card');
+      cards.forEach(card => {
+        const searchInput = document.getElementById('restaurant-input') || document.getElementById('desktop-search-input');
+        const queryLower = searchInput ? searchInput.value.toLowerCase().trim() : '';
+        
+        const name = card.querySelector('h3').innerText.toLowerCase();
+        const cuisines = card.querySelector('.cuisine-tags').innerText.toLowerCase();
+        const location = card.querySelector('.location-tag').innerText.toLowerCase();
+        
+        const matchesSearch = queryLower === '' || name.includes(queryLower) || cuisines.includes(queryLower) || location.includes(queryLower);
+        
+        if (isChecked) {
+          const hasVeg = card.querySelector('.indicator-veg');
+          card.style.display = (hasVeg && matchesSearch) ? 'block' : 'none';
+        } else {
+          card.style.display = matchesSearch ? 'block' : 'none';
+        }
+      });
+    }
+  };
+
+  if (toggle) {
+    toggle.addEventListener('change', () => {
+      if (desktopToggle) desktopToggle.checked = toggle.checked;
+      handleToggleChange(toggle.checked);
     });
-  });
+  }
+
+  if (desktopToggle) {
+    desktopToggle.addEventListener('change', () => {
+      if (toggle) toggle.checked = desktopToggle.checked;
+      handleToggleChange(desktopToggle.checked);
+    });
+  }
 }
 
 /**
  * Advanced Search suggestions dropdown behavior
  */
-function initAdvancedSearchSuggestions() {
-  const searchInput = document.getElementById('restaurant-input');
-  const dropdown = document.getElementById('advanced-search-dropdown');
+function setupSearchBox(inputId, dropdownId, recentSectionId, recentListId, clearBtnId, isDesktop) {
+  const searchInput = document.getElementById(inputId);
+  const dropdown = document.getElementById(dropdownId);
   if (!searchInput || !dropdown) return;
 
-  const recentList = document.getElementById('recent-searches-list');
-  const clearRecentBtn = document.getElementById('clear-recent-searches');
+  const recentList = document.getElementById(recentListId);
+  const clearRecentBtn = document.getElementById(clearBtnId);
 
   const getRecentSearches = () => {
     try {
@@ -580,7 +604,7 @@ function initAdvancedSearchSuggestions() {
 
   const renderRecentSearches = () => {
     const searches = getRecentSearches();
-    const section = document.getElementById('section-recent-searches');
+    const section = document.getElementById(recentSectionId);
     if (searches.length === 0) {
       if (section) section.style.display = 'none';
       return;
@@ -604,8 +628,9 @@ function initAdvancedSearchSuggestions() {
           } else {
             const q = item.getAttribute('data-query');
             searchInput.value = q;
-            filterHomepageRestaurants(q);
+            saveRecentSearch(q);
             dropdown.classList.remove('active');
+            handleSearchSubmit(q, isDesktop);
           }
         });
       });
@@ -637,7 +662,9 @@ function initAdvancedSearchSuggestions() {
 
   searchInput.addEventListener('input', (e) => {
     const query = e.target.value;
-    filterHomepageRestaurants(query);
+    if (!isDesktop) {
+      filterHomepageRestaurants(query);
+    }
   });
 
   searchInput.addEventListener('keydown', (e) => {
@@ -645,25 +672,27 @@ function initAdvancedSearchSuggestions() {
       const query = searchInput.value.trim();
       if (query) {
         saveRecentSearch(query);
-        filterHomepageRestaurants(query);
         dropdown.classList.remove('active');
         searchInput.blur();
+        handleSearchSubmit(query, isDesktop);
       }
     }
   });
 
-  document.querySelectorAll('.trending-tag').forEach(tag => {
-    tag.addEventListener('click', () => {
+  dropdown.querySelectorAll('.trending-tag').forEach(tag => {
+    tag.addEventListener('click', (e) => {
+      e.stopPropagation();
       const query = tag.innerText.replace(/🔥\s*/, '').trim();
       searchInput.value = query;
       saveRecentSearch(query);
-      filterHomepageRestaurants(query);
       dropdown.classList.remove('active');
+      handleSearchSubmit(query, isDesktop);
     });
   });
 
-  document.querySelectorAll('.popular-cuisine-item').forEach(item => {
-    item.addEventListener('click', () => {
+  dropdown.querySelectorAll('.popular-cuisine-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.stopPropagation();
       const cuisine = item.getAttribute('data-cuisine');
       if (cuisine) {
         window.location.href = `restaurants.html#${cuisine}`;
@@ -672,6 +701,28 @@ function initAdvancedSearchSuggestions() {
   });
 
   renderRecentSearches();
+}
+
+function handleSearchSubmit(query, isDesktop) {
+  if (!isDesktop) {
+    filterHomepageRestaurants(query);
+  } else {
+    const queryLower = query.toLowerCase().trim();
+    if (queryLower === 'biryani' || queryLower === 'pizza' || queryLower === 'burgers' || queryLower === 'chinese' || queryLower === 'desserts' || queryLower === 'mexican' || queryLower === 'healthy') {
+      window.location.href = `restaurants.html#${queryLower}`;
+    } else {
+      localStorage.setItem('foodiehub_search_query', queryLower);
+      window.location.href = 'restaurants.html';
+    }
+  }
+}
+
+function initAdvancedSearchSuggestions() {
+  // Mobile search box
+  setupSearchBox('restaurant-input', 'advanced-search-dropdown', 'section-recent-searches', 'recent-searches-list', 'clear-recent-searches', false);
+  
+  // Desktop cinematic search box
+  setupSearchBox('desktop-search-input', 'desktop-search-dropdown', 'desktop-section-recent-searches', 'desktop-recent-searches-list', 'desktop-clear-recent-searches', true);
 }
 
 /**
@@ -764,25 +815,34 @@ function initScrollReveal() {
  * Mobile Bottom Nav highlight and click handlers
  */
 function initActiveTabHighlighter() {
-  const navItems = document.querySelectorAll('.mobile-bottom-nav .mobile-nav-item');
-  if (navItems.length === 0) return;
-
   const path = window.location.pathname.toLowerCase();
-  navItems.forEach(item => item.classList.remove('active'));
+  
+  const syncActiveTab = (items) => {
+    if (items.length > 0) {
+      items.forEach(item => item.classList.remove('active'));
+      if (path.includes('index.html') || path.endsWith('/') || path === '') {
+        const homeTab = Array.from(items).find(item => item.innerText.trim().toLowerCase() === 'home');
+        if (homeTab) homeTab.classList.add('active');
+      } else if (path.includes('restaurants.html') || path.includes('restaurant-details.html')) {
+        const searchTab = Array.from(items).find(item => item.innerText.trim().toLowerCase() === 'search');
+        if (searchTab) searchTab.classList.add('active');
+      } else if (path.includes('cart.html')) {
+        const cartTab = Array.from(items).find(item => item.innerText.trim().toLowerCase() === 'cart');
+        if (cartTab) cartTab.classList.add('active');
+      } else if (path.includes('login.html') || path.includes('register.html')) {
+        const profileTab = Array.from(items).find(item => item.innerText.trim().toLowerCase() === 'profile');
+        if (profileTab) profileTab.classList.add('active');
+      }
+    }
+  };
 
-  if (path.includes('index.html') || path.endsWith('/') || path === '') {
-    const homeTab = Array.from(navItems).find(item => item.innerText.trim().toLowerCase() === 'home');
-    if (homeTab) homeTab.classList.add('active');
-  } else if (path.includes('restaurants.html') || path.includes('restaurant-details.html')) {
-    const searchTab = Array.from(navItems).find(item => item.innerText.trim().toLowerCase() === 'search');
-    if (searchTab) searchTab.classList.add('active');
-  } else if (path.includes('cart.html')) {
-    const cartTab = Array.from(navItems).find(item => item.innerText.trim().toLowerCase() === 'cart');
-    if (cartTab) cartTab.classList.add('active');
-  } else if (path.includes('login.html') || path.includes('register.html')) {
-    const profileTab = Array.from(navItems).find(item => item.innerText.trim().toLowerCase() === 'profile');
-    if (profileTab) profileTab.classList.add('active');
-  }
+  // Mobile Nav Highlighter
+  const navItems = document.querySelectorAll('.mobile-bottom-nav .mobile-nav-item');
+  syncActiveTab(navItems);
+
+  // Desktop Floating Dock Highlighter
+  const dockItems = document.querySelectorAll('.desktop-floating-dock .dock-nav-item');
+  syncActiveTab(dockItems);
 }
 
 window.handleMobileNavClick = function(element, tab) {
@@ -803,3 +863,35 @@ window.handleMobileNavClick = function(element, tab) {
     }
   }
 };
+
+window.checkRestaurantsPageFilters = function() {
+  const path = window.location.pathname.toLowerCase();
+  if (path.includes('restaurants.html')) {
+    // 1. Handle URL hash cuisine filters
+    const hash = window.location.hash.substring(1).toLowerCase();
+    if (hash) {
+      const radio = document.getElementById(`filter-cuisine-${hash}`) || document.getElementById(`filter-cuisine-${hash.replace(' ', '-')}`);
+      if (radio) {
+        radio.checked = true;
+      }
+    }
+
+    // 2. Handle stored search queries
+    const searchQuery = localStorage.getItem('foodiehub_search_query');
+    if (searchQuery) {
+      localStorage.removeItem('foodiehub_search_query');
+      const cards = document.querySelectorAll('.restaurant-card');
+      cards.forEach(card => {
+        const title = card.querySelector('h3').innerText.toLowerCase();
+        const cuisines = card.querySelector('.cuisine-tags').innerText.toLowerCase();
+        const matches = title.includes(searchQuery) || cuisines.includes(searchQuery);
+        if (!matches) {
+          card.style.display = 'none';
+        } else {
+          card.style.display = '';
+        }
+      });
+    }
+  }
+};
+
