@@ -32,70 +32,73 @@
       <h1 class="cinematic-greeting" id="desktop-time-greeting">Good Evening, Guest 👋</h1>
       <p class="cinematic-subtitle">What would you like to eat today?</p>
 
-      <!-- Glassmorphic Search Bar -->
-      <div class="cinematic-search-container">
-        <i class="fa-solid fa-magnifying-glass cinematic-search-icon"></i>
-        <input type="text" id="desktop-search-input" placeholder="Search comfort food..." autocomplete="off">
-        <i class="fa-solid fa-microphone cinematic-mic-icon"></i>
+      <!-- Search & Veg Toggle Row -->
+      <div class="cinematic-search-row">
+        <!-- Glassmorphic Search Bar -->
+        <div class="cinematic-search-container">
+          <i class="fa-solid fa-magnifying-glass cinematic-search-icon"></i>
+          <input type="text" id="desktop-search-input" placeholder="Search comfort food..." autocomplete="off">
+          <i class="fa-solid fa-microphone cinematic-mic-icon"></i>
 
-        <!-- Desktop Search Suggestions Dropdown Overlay -->
-        <div class="advanced-search-dropdown" id="desktop-search-dropdown">
-          <!-- Recent Searches Section -->
-          <div class="search-suggestion-section" id="desktop-section-recent-searches">
-            <h4>Recent Searches <span class="clear-all-btn" id="desktop-clear-recent-searches" style="font-size: 0.75rem; color: var(--primary-color); cursor: pointer; text-transform: none;">Clear All</span></h4>
-            <div class="recent-searches-list" id="desktop-recent-searches-list">
-              <!-- Rendered dynamically by JS -->
+          <!-- Desktop Search Suggestions Dropdown Overlay -->
+          <div class="advanced-search-dropdown" id="desktop-search-dropdown">
+            <!-- Recent Searches Section -->
+            <div class="search-suggestion-section" id="desktop-section-recent-searches">
+              <h4>Recent Searches <span class="clear-all-btn" id="desktop-clear-recent-searches" style="font-size: 0.75rem; color: var(--primary-color); cursor: pointer; text-transform: none;">Clear All</span></h4>
+              <div class="recent-searches-list" id="desktop-recent-searches-list">
+                <!-- Rendered dynamically by JS -->
+              </div>
             </div>
-          </div>
 
-          <!-- Trending Searches Section -->
-          <div class="search-suggestion-section">
-            <h4>Trending Searches</h4>
-            <div class="trending-list">
-              <span class="trending-tag">🔥 Biryani</span>
-              <span class="trending-tag">🔥 Pizza</span>
-              <span class="trending-tag">🔥 Burger</span>
-              <span class="trending-tag">🔥 Healthy</span>
-              <span class="trending-tag">🔥 Desserts</span>
+            <!-- Trending Searches Section -->
+            <div class="search-suggestion-section">
+              <h4>Trending Searches</h4>
+              <div class="trending-list">
+                <span class="trending-tag">🔥 Biryani</span>
+                <span class="trending-tag">🔥 Pizza</span>
+                <span class="trending-tag">🔥 Burger</span>
+                <span class="trending-tag">🔥 Healthy</span>
+                <span class="trending-tag">🔥 Desserts</span>
+              </div>
             </div>
-          </div>
 
-          <!-- Popular Cuisines Section -->
-          <div class="search-suggestion-section">
-            <h4>Popular Cuisines</h4>
-            <div class="popular-cuisine-row">
-              <div class="popular-cuisine-item" data-cuisine="biryani">
-                <img src="images/cuisine_images/biryani.jpg" alt="Biryani">
-                <span>Biryani</span>
-              </div>
-              <div class="popular-cuisine-item" data-cuisine="pizza">
-                <img src="images/cuisine_images/pizza.jpg" alt="Pizza">
-                <span>Pizza</span>
-              </div>
-              <div class="popular-cuisine-item" data-cuisine="burgers">
-                <img src="images/cuisine_images/burgers.jpg" alt="Burgers">
-                <span>Burgers</span>
-              </div>
-              <div class="popular-cuisine-item" data-cuisine="chinese">
-                <img src="images/cuisine_images/chinese.jpg" alt="Chinese">
-                <span>Chinese</span>
-              </div>
-              <div class="popular-cuisine-item" data-cuisine="desserts">
-                <img src="images/cuisine_images/desserts.jpg" alt="Desserts">
-                <span>Desserts</span>
+            <!-- Popular Cuisines Section -->
+            <div class="search-suggestion-section">
+              <h4>Popular Cuisines</h4>
+              <div class="popular-cuisine-row">
+                <div class="popular-cuisine-item" data-cuisine="biryani">
+                  <img src="images/cuisine_images/biryani.jpg" alt="Biryani">
+                  <span>Biryani</span>
+                </div>
+                <div class="popular-cuisine-item" data-cuisine="pizza">
+                  <img src="images/cuisine_images/pizza.jpg" alt="Pizza">
+                  <span>Pizza</span>
+                </div>
+                <div class="popular-cuisine-item" data-cuisine="burgers">
+                  <img src="images/cuisine_images/burgers.jpg" alt="Burgers">
+                  <span>Burgers</span>
+                </div>
+                <div class="popular-cuisine-item" data-cuisine="chinese">
+                  <img src="images/cuisine_images/chinese.jpg" alt="Chinese">
+                  <span>Chinese</span>
+                </div>
+                <div class="popular-cuisine-item" data-cuisine="desserts">
+                  <img src="images/cuisine_images/desserts.jpg" alt="Desserts">
+                  <span>Desserts</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Veg Only Toggle -->
-      <div class="cinematic-veg-toggle-container">
-        <label class="veg-switch">
-          <input type="checkbox" id="desktop-veg-toggle">
-          <span class="veg-slider"></span>
-        </label>
-        <span class="veg-label-text">Veg Only</span>
+        <!-- Veg Only Toggle -->
+        <div class="cinematic-veg-toggle-container">
+          <label class="veg-switch">
+            <input type="checkbox" id="desktop-veg-toggle">
+            <span class="veg-slider"></span>
+          </label>
+          <span class="veg-label-text">Veg Only</span>
+        </div>
       </div>
     </div>
   </section>
