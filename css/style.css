@@ -4652,6 +4652,107 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
     background: linear-gradient(135deg, #ff7a00 0%, #ff3d3d 100%) !important;
     box-shadow: 0 4px 15px rgba(255, 61, 61, 0.3) !important;
   }
+
+  /* Zomato-style Full-screen Mobile Success Modal Override */
+  #order-success-modal.modal-overlay {
+    background-color: #0f0f0f !important;
+    backdrop-filter: none !important;
+  }
+
+  #order-success-modal .modal-card {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    border-radius: 0 !important;
+    background-color: #0f0f0f !important;
+    padding: 30px 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    overflow-y: auto !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  #order-success-modal .success-icon-wrapper {
+    margin-top: 20px !important;
+    margin-bottom: 16px !important;
+  }
+
+  #order-success-modal .success-icon-wrapper svg {
+    height: 70px !important;
+    width: 70px !important;
+  }
+
+  #order-success-modal .modal-card h2 {
+    font-size: 1.5rem !important;
+    font-weight: 800 !important;
+    margin-bottom: 8px !important;
+    color: #ffffff !important;
+  }
+
+  #order-success-modal .modal-card p {
+    font-size: 0.9rem !important;
+    margin-bottom: 24px !important;
+    color: #cccccc !important;
+  }
+
+  #order-success-modal .order-summary-box {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-radius: 12px !important;
+    padding: 16px !important;
+    margin-bottom: 24px !important;
+    width: 100% !important;
+    text-align: left !important;
+  }
+
+  #order-success-modal .order-summary-row {
+    font-size: 0.85rem !important;
+    margin-bottom: 10px !important;
+  }
+
+  #order-success-modal .order-summary-row:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  #order-success-modal .timeline {
+    width: 100% !important;
+    margin-top: 16px !important;
+    margin-bottom: 30px !important;
+  }
+
+  #order-success-modal .timeline-step {
+    padding-left: 28px !important;
+    padding-bottom: 20px !important;
+  }
+
+  #order-success-modal .timeline-title {
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+  }
+
+  #order-success-modal .timeline-desc {
+    font-size: 0.8rem !important;
+  }
+
+  #order-success-modal .modal-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin-top: auto !important;
+    padding-top: 20px !important;
+  }
+
+  #order-success-modal .modal-actions .btn {
+    flex: 1 !important;
+    text-align: center !important;
+    padding: 14px 16px !important;
+    font-size: 0.95rem !important;
+    border-radius: 30px !important;
+  }
 }
 
 @media (max-width: 480px) {
