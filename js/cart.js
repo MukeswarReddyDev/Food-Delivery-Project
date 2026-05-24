@@ -91,6 +91,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.querySelector('.cart-layout')) {
     renderCart();
   }
+
+  // Trigger live tracking automatically if page is loaded/refreshed with modal hash active
+  if (window.location.hash === '#order-success-modal') {
+    startLiveOrderTracking();
+  }
 });
 
 // Function to initialize menu Add buttons on details page
@@ -233,7 +238,7 @@ function renderCart() {
   if (cart.length === 0) {
     // Show empty cart view
     leftCol.innerHTML = `
-      <div class="cart-box" style="text-align: center; padding: 80px 20px; border-radius: var(--border-radius-lg); box-shadow: var(--shadow-sm); border: 1px dashed var(--border-color-dark); background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);">
+      <div class="cart-box" style="text-align: center; padding: 80px 20px; border-radius: var(--border-radius-lg); box-shadow: var(--shadow-sm); border: 1px dashed rgba(255, 255, 255, 0.15); background: rgba(30, 30, 30, 0.45); color: #cccccc;">
         <div style="position: relative; display: inline-block; margin-bottom: 30px;">
           <div style="position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; border-radius: 50%; background: rgba(239, 79, 95, 0.05); animation: pulseEmpty 2s infinite ease-in-out;"></div>
           <div style="background: rgba(239, 79, 95, 0.1); width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative;">
@@ -242,8 +247,8 @@ function renderCart() {
             </svg>
           </div>
         </div>
-        <h3 style="border-bottom:none; margin-bottom: 12px; font-size: 1.65rem; font-weight: 700; color: var(--text-dark);">Your Cart is Empty</h3>
-        <p style="color: var(--text-muted); max-width: 360px; margin: 0 auto 32px; font-size: 0.95rem; line-height: 1.6;">
+        <h3 style="border-bottom:none; margin-bottom: 12px; font-size: 1.65rem; font-weight: 700; color: #ffffff;">Your Cart is Empty</h3>
+        <p style="color: rgba(255, 255, 255, 0.6); max-width: 360px; margin: 0 auto 32px; font-size: 0.95rem; line-height: 1.6;">
           Good food is always cooking! Add tasty items from our handpicked premium restaurants in Bengaluru.
         </p>
         <a href="restaurants.html" class="btn btn-primary" style="padding: 12px 36px; border-radius: 30px; font-weight: 600; box-shadow: 0 8px 20px rgba(239, 79, 95, 0.25);">Explore Restaurants</a>
@@ -421,20 +426,129 @@ window.updateQty = function(index, delta) {
 
 // Function to handle checkout placement and clear cart
 window.clearCartOnCheckout = function(itemsText, grandTotal) {
-  let modalSummary = document.querySelector('#order-success-modal .order-summary-box');
-  if (modalSummary) {
-    const finalAddress = localStorage.getItem('foodiehub_logged_in_user_address') || 'Flat 302, Green Glen Layout, Bengaluru';
-    modalSummary.innerHTML = `
-      <div class="order-summary-row"><span>Items:</span><strong>${itemsText}</strong></div>
-      <div class="order-summary-row"><span>Delivery Address:</span><strong>${finalAddress}</strong></div>
-      <div class="order-summary-row"><span>Estimated Time:</span><strong>32 Mins</strong></div>
-      <div class="order-summary-row"><span>Paid Amount:</span><strong>\u20B9${grandTotal}</strong></div>
-    `;
-  }
-  
+  // Generate random order ID
+  const orderId = '#FH-' + Math.floor(100000 + Math.random() * 900000);
+  const orderIdEl = document.getElementById('tracking-order-id');
+  if (orderIdEl) orderIdEl.innerText = orderId;
+
+  const itemsEl = document.getElementById('tracking-items');
+  if (itemsEl) itemsEl.innerText = itemsText;
+
+  const addressEl = document.getElementById('tracking-address');
+  const finalAddress = localStorage.getItem('foodiehub_logged_in_user_address') || 'Flat 302, Green Glen Layout, Bengaluru';
+  if (addressEl) addressEl.innerText = finalAddress;
+
+  const amountEl = document.getElementById('tracking-amount');
+  if (amountEl) amountEl.innerText = '\u20B9' + grandTotal;
+
   const key = getCartKey();
   localStorage.removeItem(key);
   updateCartBadge();
+
+  // Start live order tracking timeline simulation
+  startLiveOrderTracking();
+};
+
+let liveTrackingIntervals = [];
+
+function clearLiveTracking() {
+  liveTrackingIntervals.forEach(id => clearTimeout(id));
+  liveTrackingIntervals = [];
+}
+
+window.startLiveOrderTracking = function() {
+  clearLiveTracking();
+
+  const scooter = document.getElementById('live-delivery-scooter');
+  const driverStatus = document.getElementById('live-driver-status');
+  const etaMins = document.querySelector('.eta-mins');
+  
+  // Timeline nodes
+  const stepConfirmed = document.getElementById('step-confirmed');
+  const stepPreparing = document.getElementById('step-preparing');
+  const stepOut = document.getElementById('step-out');
+  const stepDelivered = document.getElementById('step-delivered');
+
+  const stepPreparingDesc = document.getElementById('step-preparing-desc');
+  const stepOutDesc = document.getElementById('step-out-desc');
+
+  // Reset timeline classes
+  if (stepConfirmed) {
+    stepConfirmed.className = 'timeline-step completed';
+  }
+  if (stepPreparing) {
+    stepPreparing.className = 'timeline-step active';
+    if (stepPreparingDesc) stepPreparingDesc.innerText = 'Chef is preparing your fresh meal';
+  }
+  if (stepOut) {
+    stepOut.className = 'timeline-step';
+    if (stepOutDesc) stepOutDesc.innerText = 'Delivery partner will pick up shortly';
+  }
+  if (stepDelivered) {
+    stepDelivered.className = 'timeline-step';
+  }
+
+  // Reset scooter and status
+  if (scooter) {
+    scooter.style.left = '12%';
+    scooter.style.transition = 'left 0.8s ease-in-out';
+  }
+  if (driverStatus) {
+    driverStatus.innerText = 'Ramesh is waiting at the restaurant';
+  }
+  if (etaMins) {
+    etaMins.innerText = '32';
+  }
+
+  // Stage 1 (already active) - wait at restaurant
+  
+  // Stage 2 (6 seconds) - food prepared, start moving
+  const id2 = setTimeout(() => {
+    if (stepPreparing) stepPreparing.className = 'timeline-step completed';
+    if (stepOut) stepOut.className = 'timeline-step active';
+    if (scooter) scooter.style.left = '40%';
+    if (driverStatus) driverStatus.innerText = 'Ramesh has picked up your food and is starting the engine!';
+    if (etaMins) etaMins.innerText = '22';
+    if (typeof showToast === 'function') {
+      showToast('🍳 Cooking finished! Restaurant has handed over your hot meal.');
+    }
+  }, 6000);
+  liveTrackingIntervals.push(id2);
+
+  // Stage 3 (14 seconds) - driver halfway
+  const id3 = setTimeout(() => {
+    if (scooter) scooter.style.left = '60%';
+    if (driverStatus) driverStatus.innerText = 'Ramesh is traveling down 80 Feet Road at 45km/h';
+    if (etaMins) etaMins.innerText = '12';
+    if (typeof showToast === 'function') {
+      showToast('🚴 Ramesh is driving fast toward Green Glen Layout!');
+    }
+  }, 14000);
+  liveTrackingIntervals.push(id3);
+
+  // Stage 4 (22 seconds) - driver arrived at gates
+  const id4 = setTimeout(() => {
+    if (stepOut) stepOut.className = 'timeline-step completed';
+    if (stepDelivered) stepDelivered.className = 'timeline-step active';
+    if (scooter) scooter.style.left = '80%';
+    if (driverStatus) driverStatus.innerText = 'Ramesh is at the Lavender Apartments main gate!';
+    if (etaMins) etaMins.innerText = '2';
+    if (typeof showToast === 'function') {
+      showToast('🔔 Ramesh has arrived at Lavender Apartments!');
+    }
+  }, 22000);
+  liveTrackingIntervals.push(id4);
+
+  // Stage 5 (28 seconds) - delivered!
+  const id5 = setTimeout(() => {
+    if (stepDelivered) stepDelivered.className = 'timeline-step completed';
+    if (driverStatus) driverStatus.innerText = 'Order delivered. Enjoy your hot meal!';
+    if (etaMins) etaMins.innerText = '0';
+    if (typeof showToast === 'function') {
+      showToast('🎉 Order delivered successfully! Enjoy your meal!');
+    }
+  }, 28000);
+  liveTrackingIntervals.push(id5);
 };
 
 window.promptChangeAddress = function() {

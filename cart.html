@@ -181,39 +181,93 @@
   <!-- CSS-only Success Modal -->
   <div id="order-success-modal" class="modal-overlay">
     <div class="modal-card">
+      <!-- Back Arrow for App-like navigation -->
+      <a href="restaurants.html" class="modal-back-btn" aria-label="Close & Go back to Restaurants">
+        <i class="fa-solid fa-arrow-left"></i>
+      </a>
+
       <div class="success-icon-wrapper">
-        <svg xmlns="http://www.w3.org/2000/svg" height="80" viewBox="0 0 24 24" width="80" fill="var(--veg-green)">
+        <svg xmlns="http://www.w3.org/2000/svg" height="60" viewBox="0 0 24 24" width="60" fill="var(--veg-green)">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
         </svg>
       </div>
-      <h2>Order Placed Successfully!</h2>
-      <p>Your delicious food is being prepared. Order ID: <strong>#FH-893021</strong></p>
       
+      <h2>Order Confirmed!</h2>
+      <p class="order-id-subtitle">Order ID: <strong id="tracking-order-id">#FH-893021</strong></p>
+
+      <!-- ETA Display -->
+      <div class="tracking-eta-card">
+        <div class="eta-pulse-dot"></div>
+        <span>Arriving in <strong class="eta-mins">32</strong> Mins</span>
+      </div>
+
+      <!-- Live CSS Scooter Map Animation -->
+      <div class="live-map-container">
+        <div class="map-road-path"></div>
+        <div class="map-marker restaurant-marker" id="map-restaurant">
+          <i class="fa-solid fa-store"></i>
+          <span class="marker-label">Restaurant</span>
+        </div>
+        <div class="map-marker home-marker">
+          <i class="fa-solid fa-house-user"></i>
+          <span class="marker-label">Home</span>
+        </div>
+        <div class="delivery-scooter" id="live-delivery-scooter">
+          <i class="fa-solid fa-motorcycle"></i>
+          <div class="scooter-glow"></div>
+        </div>
+      </div>
+
+      <!-- Delivery Partner Card -->
+      <div class="delivery-driver-card">
+        <div class="driver-avatar">
+          <i class="fa-solid fa-user-ninja"></i>
+        </div>
+        <div class="driver-info">
+          <div class="driver-name">Ramesh Kumar</div>
+          <div class="driver-status" id="live-driver-status">Ramesh is waiting at the restaurant</div>
+          <div class="driver-rating"><i class="fa-solid fa-star"></i> 4.8 &bull; Premium Partner</div>
+        </div>
+        <div class="driver-actions">
+          <button class="btn-driver-action" onclick="showToast('📞 Calling Ramesh Kumar (+91 98765 43210)...')" aria-label="Call driver">
+            <i class="fa-solid fa-phone"></i>
+          </button>
+          <button class="btn-driver-action" onclick="showToast('💬 Opening chat with Ramesh...')" aria-label="Message driver">
+            <i class="fa-solid fa-message"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Order Summary Card -->
       <div class="order-summary-box">
-        <div class="order-summary-row"><span>Items:</span><strong>Chicken Dum Biryani, Garlic Naan x2</strong></div>
-        <div class="order-summary-row"><span>Delivery Address:</span><strong>Flat 302, Green Glen Layout, Bengaluru</strong></div>
-        <div class="order-summary-row"><span>Estimated Time:</span><strong>32 Mins</strong></div>
+        <div class="order-summary-row"><span>Items:</span><strong id="tracking-items">Chicken Dum Biryani, Garlic Naan x2</strong></div>
+        <div class="order-summary-row"><span>Address:</span><strong id="tracking-address">Flat 302, Green Glen Layout, Bengaluru</strong></div>
+        <div class="order-summary-row"><span>Paid Amount:</span><strong id="tracking-amount">&#8377;395</strong></div>
       </div>
 
-      <!-- Tracking Timeline in Modal -->
-      <div class="timeline" style="margin-top: 24px; text-align: left;">
-        <div class="timeline-step completed">
-          <div class="timeline-title">Order Confirmed</div>
-          <div class="timeline-desc">Your order has been received by Meghana Foods</div>
+      <!-- Tracking Timeline -->
+      <div class="timeline" id="tracking-timeline">
+        <div class="timeline-step completed" id="step-confirmed">
+          <div class="timeline-title">Order Received</div>
+          <div class="timeline-desc">Your order has been confirmed by the kitchen</div>
         </div>
-        <div class="timeline-step active">
+        <div class="timeline-step active" id="step-preparing">
           <div class="timeline-title">Preparing Food</div>
-          <div class="timeline-desc">Chef is preparing your fresh meal</div>
+          <div class="timeline-desc" id="step-preparing-desc">Chef is preparing your fresh meal</div>
         </div>
-        <div class="timeline-step">
+        <div class="timeline-step" id="step-out">
           <div class="timeline-title">Out for Delivery</div>
-          <div class="timeline-desc">Delivery partner will pick up shortly</div>
+          <div class="timeline-desc" id="step-out-desc">Delivery partner will pick up shortly</div>
+        </div>
+        <div class="timeline-step" id="step-delivered">
+          <div class="timeline-title">Delivered</div>
+          <div class="timeline-desc">Enjoy your delicious food!</div>
         </div>
       </div>
 
-      <div class="modal-actions" style="margin-top: 30px;">
-        <a href="restaurants.html" class="btn btn-outline" style="padding: 10px 24px;">Browse More</a>
-        <a href="#" class="btn btn-primary" style="padding: 10px 24px; background: var(--veg-green); box-shadow: 0 4px 15px rgba(15,138,95,0.3);">Track Order</a>
+      <div class="modal-actions">
+        <a href="restaurants.html" class="btn btn-outline">Order Something Else</a>
+        <a href="index.html" class="btn btn-primary" style="background: var(--veg-green); box-shadow: 0 4px 15px rgba(15,138,95,0.3);">Go to Homepage</a>
       </div>
     </div>
   </div>

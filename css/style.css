@@ -1593,11 +1593,14 @@ ul {
 }
 
 .cart-box {
-  background-color: var(--bg-white);
+  background: rgba(30, 30, 30, 0.5);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--border-radius-lg);
   padding: 30px;
   box-shadow: var(--shadow-sm);
-  border: 1px solid var(--border-color);
+  color: #cccccc;
 }
 
 .cart-box h3 {
@@ -2360,8 +2363,9 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(5px);
+  background-color: rgba(15, 15, 15, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   display: none;
   align-items: center;
   justify-content: center;
@@ -2376,19 +2380,31 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
 }
 
 .modal-card {
-  background-color: var(--bg-white);
+  position: relative;
+  background: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--border-radius-lg);
   padding: 40px;
-  max-width: 500px;
+  max-width: 600px;
   width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
   text-align: center;
   box-shadow: var(--shadow-lg);
+  color: #cccccc;
   transform: scale(0.8);
   transition: transform 0.3s ease;
 }
 
 .modal-overlay:target .modal-card {
   transform: scale(1);
+}
+
+/* Prevent page scrolling behind the active success modal */
+body:has(#order-success-modal:target) {
+  overflow: hidden !important;
 }
 
 .success-icon-wrapper {
@@ -4653,106 +4669,7 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
     box-shadow: 0 4px 15px rgba(255, 61, 61, 0.3) !important;
   }
 
-  /* Zomato-style Full-screen Mobile Success Modal Override */
-  #order-success-modal.modal-overlay {
-    background-color: #0f0f0f !important;
-    backdrop-filter: none !important;
-  }
 
-  #order-success-modal .modal-card {
-    width: 100% !important;
-    height: 100% !important;
-    max-width: 100% !important;
-    max-height: 100% !important;
-    border-radius: 0 !important;
-    background-color: #0f0f0f !important;
-    padding: 30px 20px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-start !important;
-    overflow-y: auto !important;
-    box-shadow: none !important;
-    transform: none !important;
-  }
-
-  #order-success-modal .success-icon-wrapper {
-    margin-top: 20px !important;
-    margin-bottom: 16px !important;
-  }
-
-  #order-success-modal .success-icon-wrapper svg {
-    height: 70px !important;
-    width: 70px !important;
-  }
-
-  #order-success-modal .modal-card h2 {
-    font-size: 1.5rem !important;
-    font-weight: 800 !important;
-    margin-bottom: 8px !important;
-    color: #ffffff !important;
-  }
-
-  #order-success-modal .modal-card p {
-    font-size: 0.9rem !important;
-    margin-bottom: 24px !important;
-    color: #cccccc !important;
-  }
-
-  #order-success-modal .order-summary-box {
-    background: rgba(255, 255, 255, 0.03) !important;
-    border: 1px solid rgba(255, 255, 255, 0.06) !important;
-    border-radius: 12px !important;
-    padding: 16px !important;
-    margin-bottom: 24px !important;
-    width: 100% !important;
-    text-align: left !important;
-  }
-
-  #order-success-modal .order-summary-row {
-    font-size: 0.85rem !important;
-    margin-bottom: 10px !important;
-  }
-
-  #order-success-modal .order-summary-row:last-child {
-    margin-bottom: 0 !important;
-  }
-
-  #order-success-modal .timeline {
-    width: 100% !important;
-    margin-top: 16px !important;
-    margin-bottom: 30px !important;
-  }
-
-  #order-success-modal .timeline-step {
-    padding-left: 28px !important;
-    padding-bottom: 20px !important;
-  }
-
-  #order-success-modal .timeline-title {
-    font-size: 0.95rem !important;
-    font-weight: 700 !important;
-  }
-
-  #order-success-modal .timeline-desc {
-    font-size: 0.8rem !important;
-  }
-
-  #order-success-modal .modal-actions {
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 12px !important;
-    width: 100% !important;
-    margin-top: auto !important;
-    padding-top: 20px !important;
-  }
-
-  #order-success-modal .modal-actions .btn {
-    flex: 1 !important;
-    text-align: center !important;
-    padding: 14px 16px !important;
-    font-size: 0.95rem !important;
-    border-radius: 30px !important;
-  }
 }
 
 @media (max-width: 480px) {
@@ -5782,6 +5699,261 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
     grid-template-columns: repeat(5, 1fr);
     gap: 20px;
     justify-content: center;
+  }
+}
+
+/* --- Zomato-Style Live Order Tracking & Map Animations --- */
+
+/* Back Navigation Button in Modal */
+.modal-back-btn {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  font-size: 1.2rem;
+  color: #ffffff !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+  z-index: 100;
+}
+.modal-back-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(-2px) scale(1.05);
+}
+
+.order-id-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: -6px;
+  margin-bottom: 20px;
+}
+
+/* ETA Pulse Chip */
+.tracking-eta-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 122, 0, 0.1);
+  border: 1px solid rgba(255, 122, 0, 0.25);
+  border-radius: 20px;
+  padding: 8px 20px;
+  margin-bottom: 24px;
+  font-size: 0.95rem;
+  color: #ff7a00;
+}
+.eta-pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #ff7a00;
+  border-radius: 50%;
+  animation: pulseOrange 1.5s infinite ease-in-out;
+}
+
+@keyframes pulseOrange {
+  0% {
+    transform: scale(0.85);
+    box-shadow: 0 0 0 0 rgba(255, 122, 0, 0.6);
+  }
+  70% {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 8px rgba(255, 122, 0, 0);
+  }
+  100% {
+    transform: scale(0.85);
+    box-shadow: 0 0 0 0 rgba(255, 122, 0, 0);
+  }
+}
+
+/* Animated CSS Map Container */
+.live-map-container {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  background: linear-gradient(135deg, #181818 0%, #101010 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--border-radius-lg);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.map-road-path {
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  right: 15%;
+  height: 4px;
+  border-top: 3px dotted rgba(255, 255, 255, 0.2);
+  transform: translateY(-50%);
+}
+.map-marker {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 1.2rem;
+  z-index: 5;
+}
+.restaurant-marker {
+  left: 12%;
+  color: #ff7a00;
+}
+.home-marker {
+  right: 12%;
+  color: var(--veg-green);
+}
+.marker-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+.delivery-scooter {
+  position: absolute;
+  top: 40%;
+  left: 12%;
+  font-size: 1.4rem;
+  color: #ff7a00;
+  transform: translateY(-50%);
+  z-index: 10;
+  transition: left 0.5s ease-out; /* Smooth transition when updating positions */
+}
+.scooter-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  background: radial-gradient(circle, rgba(255, 122, 0, 0.35) 0%, rgba(255, 122, 0, 0) 70%);
+  border-radius: 50%;
+  animation: pulseGlow 1.5s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.6);
+    opacity: 0.9;
+  }
+}
+
+/* Delivery Partner Card */
+.delivery-driver-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+.driver-avatar {
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 122, 0, 0.1);
+  border: 1px solid rgba(255, 122, 0, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: #ff7a00;
+  flex-shrink: 0;
+}
+.driver-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #ffffff;
+}
+.driver-status {
+  font-size: 0.8rem;
+  color: #ff7a00;
+  font-weight: 600;
+  margin-top: 2px;
+}
+.driver-rating {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+.driver-rating i {
+  color: #ffd700;
+  margin-right: 2px;
+}
+.driver-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+.btn-driver-action {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-driver-action:hover {
+  background: #ff7a00;
+  border-color: transparent;
+  transform: translateY(-2px);
+}
+
+/* Timeline Customizations */
+.timeline-step.active .timeline-title {
+  color: #ff7a00 !important;
+}
+.timeline-step.completed .timeline-title {
+  color: var(--veg-green) !important;
+}
+.timeline-desc {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Modal Actions */
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+.modal-actions .btn {
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+/* Mobile responsive success modal layout triggers (Hide site headers/footers) */
+@media (max-width: 768px) {
+  body:has(#order-success-modal:target) .navbar-wrapper,
+  body:has(#order-success-modal:target) .footer,
+  body:has(#order-success-modal:target) .mobile-bottom-nav,
+  body:has(#order-success-modal:target) .floating-cart-btn {
+    display: none !important;
   }
 }
 
