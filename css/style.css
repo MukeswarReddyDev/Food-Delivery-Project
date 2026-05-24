@@ -5339,6 +5339,156 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
     border-color: transparent !important;
     color: #ffffff !important;
   }
+
+  /* --- 8. Restaurant Details Page & Menu Overrides --- */
+  .menu-categories-list {
+    background: rgba(30, 30, 30, 0.5) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+  }
+  .menu-categories-list a {
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+  .menu-categories-list a:hover {
+    color: #ff7a00 !important;
+    background-color: rgba(255, 122, 0, 0.08) !important;
+  }
+  .menu-categories-list a.active {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #ff7a00 0%, #ff3d3d 100%) !important;
+    box-shadow: 0 4px 12px rgba(255, 61, 61, 0.25) !important;
+  }
+  
+  .menu-list-section {
+    background: rgba(30, 30, 30, 0.5) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+  }
+  .menu-list-section h3 {
+    color: #ffffff !important;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.08) !important;
+  }
+  .menu-item-row[style] {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+  .menu-item-row {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+  .menu-item-details h4 {
+    color: #ffffff !important;
+  }
+  .menu-item-price[style] {
+    color: #ff7a00 !important;
+  }
+  .menu-item-price {
+    color: #ff7a00 !important;
+  }
+  .menu-item-desc {
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+  
+  /* Details Page Add buttons & Qty selectors */
+  .btn-add-item-mock {
+    background: rgba(30, 30, 30, 0.8) !important;
+    border: 1.5px solid rgba(255, 122, 0, 0.5) !important;
+    color: #ff7a00 !important;
+    box-shadow: 0 4px 12px rgba(255, 122, 0, 0.2) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+  }
+  .btn-add-item-mock:hover {
+    background: linear-gradient(135deg, #ff7a00 0%, #ff3d3d 100%) !important;
+    border-color: transparent !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 15px rgba(255, 61, 61, 0.4) !important;
+    transform: translateX(-50%) translateY(-2px) !important;
+  }
+  .qty-selector-container {
+    background: rgba(30, 30, 30, 0.9) !important;
+    border: 1.5px solid rgba(255, 122, 0, 0.5) !important;
+    box-shadow: 0 4px 12px rgba(255, 122, 0, 0.2) !important;
+  }
+  .qty-selector-btn {
+    color: #ff7a00 !important;
+  }
+  .qty-selector-btn:hover {
+    background-color: rgba(255, 122, 0, 0.1) !important;
+  }
+  .qty-selector-value {
+    color: #ffffff !important;
+  }
+
+  /* --- 9. Sidebar Filters Override (Restaurants Page) --- */
+  .filter-sidebar {
+    background: rgba(30, 30, 30, 0.5) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+  }
+  .filter-group h4 {
+    color: #ffffff !important;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.08) !important;
+  }
+  .filter-label {
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+  .filter-sidebar a.filter-label {
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+  .filter-sidebar a.filter-label:hover {
+    background: rgba(255, 122, 0, 0.08) !important;
+    color: #ff7a00 !important;
+  }
+  
+  /* Filter active category states */
+  .filter-sidebar a[href="#all"] {
+    color: #ff7a00 !important;
+  }
+  body:has(#biryani:target) .filter-sidebar a[href="#all"],
+  body:has(#north-indian:target) .filter-sidebar a[href="#all"],
+  body:has(#south-indian:target) .filter-sidebar a[href="#all"],
+  body:has(#burgers:target) .filter-sidebar a[href="#all"],
+  body:has(#pizza:target) .filter-sidebar a[href="#all"],
+  body:has(#chinese:target) .filter-sidebar a[href="#all"],
+  body:has(#desserts:target) .filter-sidebar a[href="#all"],
+  body:has(#mexican:target) .filter-sidebar a[href="#all"],
+  body:has(#healthy:target) .filter-sidebar a[href="#all"] {
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+  
+  body:has(#biryani:target) .filter-sidebar a[href="#biryani"],
+  body:has(#north-indian:target) .filter-sidebar a[href="#north-indian"],
+  body:has(#south-indian:target) .filter-sidebar a[href="#south-indian"],
+  body:has(#burgers:target) .filter-sidebar a[href="#burgers"],
+  body:has(#pizza:target) .filter-sidebar a[href="#pizza"],
+  body:has(#chinese:target) .filter-sidebar a[href="#chinese"],
+  body:has(#desserts:target) .filter-sidebar a[href="#desserts"],
+  body:has(#mexican:target) .filter-sidebar a[href="#mexican"],
+  body:has(#healthy:target) .filter-sidebar a[href="#healthy"] {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #ff7a00 0%, #ff3d3d 100%) !important;
+    box-shadow: 0 4px 10px rgba(255, 61, 61, 0.2) !important;
+  }
+  
+  /* Pure CSS filters checks highlights */
+  body:has(#filter-rating-45:checked) .filter-sidebar label[for="filter-rating-45"],
+  body:has(#filter-veg-only:checked) .filter-sidebar label[for="filter-veg-only"],
+  body:has(#filter-loc-koramangala:checked) .filter-sidebar label[for="filter-loc-koramangala"],
+  body:has(#filter-loc-indiranagar:checked) .filter-sidebar label[for="filter-loc-indiranagar"],
+  body:has(#filter-loc-jayanagar:checked) .filter-sidebar label[for="filter-loc-jayanagar"],
+  body:has(#filter-loc-basavanagudi:checked) .filter-sidebar label[for="filter-loc-basavanagudi"],
+  body:has(#filter-loc-whitefield:checked) .filter-sidebar label[for="filter-loc-whitefield"],
+  body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
+    color: #ff7a00 !important;
+  }
+  .filter-label input {
+    accent-color: #ff7a00 !important;
+  }
 }
 
 @media (max-width: 1200px) and (min-width: 1024px) {
