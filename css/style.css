@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    FoodieHub - Main Design System & Stylesheet
    ========================================================================== */
 
@@ -1286,7 +1286,7 @@ ul {
 }
 
 /* 2. Rating Filters */
-#filter-rating-45:checked ~ .restaurants-layout .restaurant-grid .restaurant-card:not(.rating-high) {
+#filter-rating-40:checked ~ .restaurants-layout .restaurant-grid .restaurant-card:not(.rating-high):not(.rating-med) {
   display: none;
 }
 
@@ -2268,10 +2268,10 @@ body:has(#healthy:target) .filter-sidebar a[href="#healthy"] {
 }
 
 /* 3. Pure CSS Ratings Filter */
-body:has(#filter-rating-45:checked) .restaurant-grid .restaurant-card:not(.rating-high) {
+body:has(#filter-rating-40:checked) .restaurant-grid .restaurant-card:not(.rating-high):not(.rating-med) {
   display: none !important;
 }
-body:has(#filter-rating-45:checked) .filter-sidebar label[for="filter-rating-45"] {
+body:has(#filter-rating-40:checked) .filter-sidebar label[for="filter-rating-40"] {
   color: var(--primary-color) !important;
   font-weight: 700 !important;
 }
@@ -5476,7 +5476,7 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
   }
   
   /* Pure CSS filters checks highlights */
-  body:has(#filter-rating-45:checked) .filter-sidebar label[for="filter-rating-45"],
+  body:has(#filter-rating-40:checked) .filter-sidebar label[for="filter-rating-40"],
   body:has(#filter-veg-only:checked) .filter-sidebar label[for="filter-veg-only"],
   body:has(#filter-loc-koramangala:checked) .filter-sidebar label[for="filter-loc-koramangala"],
   body:has(#filter-loc-indiranagar:checked) .filter-sidebar label[for="filter-loc-indiranagar"],
