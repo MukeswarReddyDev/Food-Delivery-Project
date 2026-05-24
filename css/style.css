@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    FoodieHub - Main Design System & Stylesheet
    ========================================================================== */
 
@@ -4478,6 +4478,43 @@ body:has(#filter-loc-hsr:checked) .filter-sidebar label[for="filter-loc-hsr"] {
   }
   .skeleton-grid {
     grid-template-columns: 1fr;
+  }
+
+  /* Mobile Newsletter Overrides */
+  .newsletter-wrapper {
+    padding: 40px 20px !important;
+  }
+  .newsletter-content h2 {
+    font-size: 1.75rem !important;
+  }
+  .newsletter-content p {
+    font-size: 0.95rem !important;
+    margin-bottom: 24px !important;
+  }
+  .newsletter-form {
+    flex-direction: column !important;
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    gap: 12px !important;
+    border-radius: 0 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .newsletter-form input {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 30px !important;
+    padding: 14px 24px !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+  .newsletter-form button {
+    width: 100% !important;
+    border-radius: 30px !important;
+    padding: 14px 30px !important;
+    background: linear-gradient(135deg, #ff7a00 0%, #ff3d3d 100%) !important;
+    box-shadow: 0 4px 15px rgba(255, 61, 61, 0.3) !important;
   }
 }
 
