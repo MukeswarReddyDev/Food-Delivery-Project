@@ -2478,18 +2478,21 @@ body:has(#order-success-modal:target) {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   border-right: 1px solid rgba(255, 255, 255, 0.08);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 14px 28px;
+  padding: 14px 24px;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 122, 0, 0.15);
   z-index: 9999;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
   opacity: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   pointer-events: none;
+  width: 90%;
+  max-width: 450px;
+  box-sizing: border-box;
 }
 
 .foodiehub-toast.show {
@@ -2999,9 +3002,9 @@ body:has(#order-success-modal:target) {
 
 /* --- Premium App Download Section --- */
 .app-download-section {
-  background: radial-gradient(circle at 10% 10%, #FFF5F5 0%, #FFFDFD 100%);
-  border-top: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
+  background: radial-gradient(circle at 10% 10%, rgba(255, 122, 0, 0.05) 0%, #0f0f0f 100%), #0f0f0f;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   padding: 80px 0;
 }
 
@@ -3063,30 +3066,37 @@ body:has(#order-success-modal:target) {
 
 .app-download-form input {
   flex-grow: 1;
-  border: 1px solid var(--border-color-dark);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 14px 20px;
   border-radius: var(--border-radius);
   font-size: 0.95rem;
-  background-color: var(--bg-white);
-  transition: border-color 0.2s ease;
+  background-color: rgba(30, 30, 30, 0.6);
+  color: #ffffff;
+  transition: all 0.2s ease;
 }
 
 .app-download-form input:focus {
-  border-color: var(--primary-color);
+  border-color: #ff3d3d;
+  box-shadow: 0 0 10px rgba(255, 122, 0, 0.2);
+  outline: none;
 }
 
 .app-download-form button {
-  background-color: var(--primary-color);
-  color: var(--bg-white);
+  background: linear-gradient(135deg, #ff7a00 0%, #ff3d3d 100%);
+  color: #ffffff;
   font-weight: 600;
   border-radius: var(--border-radius);
   padding: 14px 24px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  border: none;
+  box-shadow: 0 4px 15px rgba(255, 61, 61, 0.25);
+  transition: all 0.2s ease;
 }
 
 .app-download-form button:hover {
-  background-color: var(--primary-hover);
+  background: linear-gradient(135deg, #ff8c00 0%, #ff5252 100%);
+  box-shadow: 0 6px 20px rgba(255, 61, 61, 0.35);
+  transform: translateY(-1px);
 }
 
 /* App badge links */
