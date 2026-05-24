@@ -10,16 +10,65 @@
 </head>
 <body>
 
+  <!-- Hidden mobile menu checkbox and controls -->
+  <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox">
+
+  <!-- Navigation Bar -->
+  <header class="navbar-wrapper navbar-transparent">
+    <div class="container navbar">
+      <a href="index.html" class="logo">
+        Foodie<span>Hub</span><div class="logo-dot"></div>
+      </a>
+
+      <!-- Location Selector -->
+      <div class="location-selector">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" fill="currentColor">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+        <select onchange="window.location.hash = 'res-' + this.value">
+          <option value="">Select Location</option>
+          <option value="koramangala">Koramangala, Bengaluru</option>
+          <option value="indiranagar">Indiranagar, Bengaluru</option>
+          <option value="jayanagar">Jayanagar, Bengaluru</option>
+          <option value="basavanagudi">Basavanagudi, Bengaluru</option>
+          <option value="whitefield">Whitefield, Bengaluru</option>
+          <option value="hsr">HSR Layout, Bengaluru</option>
+        </select>
+      </div>
+
+      <!-- Nav Links -->
+      <nav class="nav-menu">
+        <!-- Close Button for Mobile Drawer -->
+        <label for="menu-toggle" class="menu-close-btn">&times;</label>
+        
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="restaurants.html" class="nav-link">Restaurants</a>
+        <a href="index.html#offers" class="nav-link">Offers</a>
+        <a href="restaurants.html?type=dining" class="nav-link">Dining</a>
+        <a href="restaurants.html?type=nightlife" class="nav-link">Nightlife</a>
+        <a href="cart.html" class="nav-link nav-cart-btn">
+          Cart 
+          <span class="cart-badge">0</span>
+        </a>
+        <div class="nav-auth">
+          <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+          <a href="register.html" class="btn btn-primary btn-sm">Sign Up</a>
+        </div>
+      </nav>
+
+      <!-- Mobile Hamburger Toggle Button -->
+      <label for="menu-toggle" class="menu-toggle-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" height="28" viewBox="0 0 24 24" width="28" fill="#FFFFFF">
+          <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+        </svg>
+      </label>
+    </div>
+  </header>
+
   <!-- Premium Cinematic Desktop Hero Section (Desktop Only) -->
   <section class="desktop-cinematic-hero">
     <!-- Overlay for dark, rich atmosphere -->
     <div class="cinematic-overlay"></div>
-    
-    <div class="cinematic-header">
-      <div class="cinematic-logo" onclick="window.location.href='index.html'">
-        Foodie<span>Hub</span>
-      </div>
-    </div>
 
     <div class="cinematic-hero-content">
       <!-- Heart Badge -->
@@ -103,8 +152,7 @@
     </div>
   </section>
 
-  <!-- Hidden mobile menu checkbox and controls -->
-  <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox">
+
 
   <!-- Premium Mobile-App Style Container -->
   <section class="hero-app-container">
