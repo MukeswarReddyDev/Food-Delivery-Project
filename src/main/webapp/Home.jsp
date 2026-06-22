@@ -1,0 +1,1013 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List, com.tap.Model.Restaurant, com.tap.Model.User, com.tap.Model.Cart, com.tap.Model.CartItem" %>
+<%
+    User currentUser = (User) session.getAttribute("currentUser");
+    List<Restaurant> restaurantList = (List<Restaurant>) request.getAttribute("restaurantList");
+    if (restaurantList == null) {
+        com.tap.DAO.RestaurantDAO restaurantDAO = new com.tap.DAOimplementation.RestaurantDAOimplementation();
+        restaurantList = restaurantDAO.getAllRestaurent();
+    }
+    Cart sessionCart = (Cart) session.getAttribute("cart");
+    int totalItems = 0;
+    if (sessionCart != null) {
+        totalItems = sessionCart.getItems().values().stream().mapToInt(CartItem::getQuantity).sum();
+    }
+%>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FoodieHub - Discover the best food and restaurants in Bengaluru. Order online for super-fast delivery, discounts, and fresh meals.">
+  <title>FoodieHub | Discover the Best Food in Bengaluru</title>
+
+  <link rel="stylesheet" href="EntireCss.css?v=<%= System.currentTimeMillis() %>">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Hidden mobile menu checkbox and controls -->
+  <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox">
+
+  <!-- Navigation Bar -->
+  <header class="navbar-wrapper navbar-transparent">
+    <div class="container navbar">
+      <a href="home" class="logo">
+        Foodie<span>Hub</span><div class="logo-dot"></div>
+      </a>
+
+      <!-- Location Selector -->
+      <div class="location-selector">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" fill="currentColor">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+        <select onchange="window.location.hash = 'res-' + this.value">
+          <option value="">Select Location</option>
+          <option value="koramangala">Koramangala, Bengaluru</option>
+          <option value="indiranagar">Indiranagar, Bengaluru</option>
+          <option value="jayanagar">Jayanagar, Bengaluru</option>
+          <option value="basavanagudi">Basavanagudi, Bengaluru</option>
+          <option value="whitefield">Whitefield, Bengaluru</option>
+          <option value="hsr">HSR Layout, Bengaluru</option>
+        </select>
+      </div>
+
+      <!-- Nav Links -->
+      <nav class="nav-menu">
+        <!-- Close Button for Mobile Drawer -->
+        <label for="menu-toggle" class="menu-close-btn">&times;</label>
+        
+        <a href="home" class="nav-link active">Home</a>
+        <a href="restaurants.jsp" class="nav-link">Restaurants</a>
+        <a href="home#offers" class="nav-link">Offers</a>
+        <% if (currentUser != null) { %>
+          <a href="orders" class="nav-link">Orders</a>
+        <% } %>
+        <a href="restaurants.jsp?type=dining" class="nav-link">Dining</a>
+        <a href="restaurants.jsp?type=nightlife" class="nav-link">Nightlife</a>
+        <a href="cart" class="nav-link nav-cart-btn">
+          Cart 
+          <span class="cart-badge"><%= totalItems %></span>
+        </a>
+        <div class="nav-auth">
+          <% if (currentUser != null) { %>
+            <span class="user-greeting" style="font-weight: 600; margin-right: 16px; color: var(--text-dark); font-size: 0.95rem;">Hi, <%= currentUser.getUserName() %></span>
+            <a href="login?action=logout" class="btn btn-outline btn-sm">Logout</a>
+          <% } else { %>
+            <a href="login" class="btn btn-outline btn-sm">Login</a>
+            <a href="register" class="btn btn-primary btn-sm">Sign Up</a>
+          <% } %>
+        </div>
+      </nav>
+
+      <!-- Mobile Hamburger Toggle Button -->
+      <label for="menu-toggle" class="menu-toggle-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" height="28" viewBox="0 0 24 24" width="28" fill="#FFFFFF">
+          <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+        </svg>
+      </label>
+    </div>
+  </header>
+
+  <!-- Premium Cinematic Desktop Hero Section (Desktop Only) -->
+  <section class="desktop-cinematic-hero">
+    <!-- Overlay for dark, rich atmosphere -->
+    <div class="cinematic-overlay"></div>
+
+    <div class="cinematic-hero-content">
+      <!-- Heart Badge -->
+      <div class="cinematic-badge">
+        <span class="badge-heart-icon">❤️</span>
+        <span>Delicious food, on your way</span>
+      </div>
+
+      <!-- Time Greeting -->
+      <h1 class="cinematic-greeting" id="desktop-time-greeting" data-username="<%= currentUser != null ? currentUser.getUserName() : "Guest" %>">Good Evening, <%= currentUser != null ? currentUser.getUserName() : "Guest" %> 👋</h1>
+      <p class="cinematic-subtitle">What would you like to eat today?</p>
+
+      <!-- Search & Veg Toggle Row -->
+      <div class="cinematic-search-row">
+        <!-- Glassmorphic Search Bar -->
+        <div class="cinematic-search-container">
+          <i class="fa-solid fa-magnifying-glass cinematic-search-icon"></i>
+          <input type="text" id="desktop-search-input" placeholder="Search comfort food..." autocomplete="off">
+          <i class="fa-solid fa-microphone cinematic-mic-icon"></i>
+
+          <!-- Desktop Search Suggestions Dropdown Overlay -->
+          <div class="advanced-search-dropdown" id="desktop-search-dropdown">
+            <!-- Recent Searches Section -->
+            <div class="search-suggestion-section" id="desktop-section-recent-searches">
+              <h4>Recent Searches <span class="clear-all-btn" id="desktop-clear-recent-searches" style="font-size: 0.75rem; color: var(--primary-color); cursor: pointer; text-transform: none;">Clear All</span></h4>
+              <div class="recent-searches-list" id="desktop-recent-searches-list">
+                <!-- Rendered dynamically by JS -->
+              </div>
+            </div>
+
+            <!-- Trending Searches Section -->
+            <div class="search-suggestion-section">
+              <h4>Trending Searches</h4>
+              <div class="trending-list">
+                <span class="trending-tag">🔥 Biryani</span>
+                <span class="trending-tag">🔥 Pizza</span>
+                <span class="trending-tag">🔥 Burger</span>
+                <span class="trending-tag">🔥 Healthy</span>
+                <span class="trending-tag">🔥 Desserts</span>
+              </div>
+            </div>
+
+            <!-- Popular Cuisines Section -->
+            <div class="search-suggestion-section">
+              <h4>Popular Cuisines</h4>
+              <div class="popular-cuisine-row">
+                <div class="popular-cuisine-item" data-cuisine="biryani">
+                  <img src="images/cuisine_images/biryani.jpg" alt="Biryani">
+                  <span>Biryani</span>
+                </div>
+                <div class="popular-cuisine-item" data-cuisine="pizza">
+                  <img src="images/cuisine_images/pizza.jpg" alt="Pizza">
+                  <span>Pizza</span>
+                </div>
+                <div class="popular-cuisine-item" data-cuisine="burgers">
+                  <img src="images/cuisine_images/burgers.jpg" alt="Burgers">
+                  <span>Burgers</span>
+                </div>
+                <div class="popular-cuisine-item" data-cuisine="chinese">
+                  <img src="images/cuisine_images/chinese.jpg" alt="Chinese">
+                  <span>Chinese</span>
+                </div>
+                <div class="popular-cuisine-item" data-cuisine="desserts">
+                  <img src="images/cuisine_images/desserts.jpg" alt="Desserts">
+                  <span>Desserts</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Veg Only Toggle -->
+        <div class="cinematic-veg-toggle-container">
+          <label class="veg-switch">
+            <input type="checkbox" id="desktop-veg-toggle">
+            <span class="veg-slider"></span>
+          </label>
+          <span class="veg-label-text">Veg Only</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Premium Mobile-App Style Container -->
+  <section class="hero-app-container">
+    <!-- Ambient Backdrop Effects -->
+    <div class="bg-light-rays"></div>
+    <div class="bg-floating-shape bg-shape-orange"></div>
+    <div class="bg-floating-shape bg-shape-red"></div>
+
+    <div class="container hero-app-content">
+      <!-- Greeting Row -->
+      <div class="app-greeting-row">
+        <div class="app-greeting-container">
+          <span class="app-time-greeting" id="app-time-greeting" data-username="<%= currentUser != null ? currentUser.getUserName() : "Guest" %>">Good Evening, <%= currentUser != null ? currentUser.getUserName() : "Guest" %> 👋</span>
+          <span class="app-greeting-sub">What would you like to eat today?</span>
+        </div>
+        <div class="app-quick-actions">
+          <div class="btn-pill-action purple">
+            <span class="action-icon">📍</span>
+            <span>District</span>
+          </div>
+          <div class="btn-pill-action blue">
+            <span class="action-icon">💳</span>
+            <span>Wallet: &#8377;500</span>
+          </div>
+          <div class="btn-avatar-circle" id="user-avatar-initials" data-username="<%= currentUser != null ? currentUser.getUserName() : "Guest" %>"><%= currentUser != null ? currentUser.getUserName().substring(0, Math.min(currentUser.getUserName().length(), 2)).toUpperCase() : "G" %></div>
+        </div>
+      </div>
+
+      <!-- Top Location Indicator -->
+      <div style="position: relative; align-self: flex-start; z-index: 20;">
+        <div class="app-location-indicator" id="top-location-picker">
+          <svg xmlns="http://www.w3.org/2000/svg" height="22" viewBox="0 0 24 24" width="22" fill="#EF4F5F">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+          <div class="app-location-texts">
+            <div class="app-location-title-row">
+              <span id="app-location-title-text">Home</span>
+              <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 24 24" width="18" fill="#ffffff" style="margin-left: 2px;">
+                <path d="M7 10l5 5 5-5H7z"/>
+              </svg>
+            </div>
+            <span class="app-location-addr" id="top-location-address">Flat 302, Lavender Apartments, Bellandur, Bengaluru</span>
+          </div>
+        </div>
+        <!-- Location Suggestions Dropdown -->
+        <div class="suggestions-dropdown" id="location-suggestions" style="top: 100%; left: 0; min-width: 280px; margin-top: 8px;">
+          <div class="suggestion-item detect-location" id="detect-gps">
+            <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 24 24" width="18" fill="#EF4F5F">
+              <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3c-.46-4.17-3.77-7.48-7.94-7.94V1c0-.55-.45-1-1-1s-1 .45-1 1v2.06C6.83 3.52 3.52 6.83 3.06 11H1c-.55 0-1 .45-1 1s.45 1 1 1h2.06c.46 4.17 3.77 7.48 7.94 7.94V23c0 .55.45 1 1 1s1-.45 1-1v-2.06c4.17-.46 7.48-3.77 7.94-7.94H23c.55 0 1-.45 1-1s-.45-1-1-1h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/>
+            </svg>
+            <span>Use Current Location (GPS)</span>
+          </div>
+          <div class="suggestion-divider"></div>
+          <div class="suggestion-item" data-value="Koramangala, Bengaluru">Koramangala, Bengaluru</div>
+          <div class="suggestion-item" data-value="Indiranagar, Bengaluru">Indiranagar, Bengaluru</div>
+          <div class="suggestion-item" data-value="Jayanagar, Bengaluru">Jayanagar, Bengaluru</div>
+          <div class="suggestion-item" data-value="HSR Layout, Bengaluru">HSR Layout, Bengaluru</div>
+          <div class="suggestion-item" data-value="Whitefield, Bengaluru">Whitefield, Bengaluru</div>
+          <div class="suggestion-item" data-value="Basavanagudi, Bengaluru">Basavanagudi, Bengaluru</div>
+        </div>
+      </div>
+
+      <!-- Search Row & Veg Toggle -->
+      <div class="app-search-row">
+        <div class="black-search-container">
+          <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" fill="#8E8E93">
+            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+          <input type="text" id="restaurant-input" placeholder="Search comfort food..." autocomplete="off" aria-label="Search for restaurants, cuisines or dishes">
+          <svg class="search-mic-icon" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" fill="currentColor">
+            <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/>
+          </svg>
+        </div>
+
+        <!-- Advanced Search Suggestions Dropdown Overlay -->
+        <div class="advanced-search-dropdown" id="advanced-search-dropdown">
+          <!-- Recent Searches Section -->
+          <div class="search-suggestion-section" id="section-recent-searches">
+            <h4>Recent Searches <span class="clear-all-btn" id="clear-recent-searches" style="font-size: 0.75rem; color: var(--primary-color); cursor: pointer; text-transform: none;">Clear All</span></h4>
+            <div class="recent-searches-list" id="recent-searches-list">
+              <!-- Rendered dynamically by JS -->
+            </div>
+          </div>
+
+          <!-- Trending Searches Section -->
+          <div class="search-suggestion-section">
+            <h4>Trending Searches</h4>
+            <div class="trending-list">
+              <span class="trending-tag">🔥 Biryani</span>
+              <span class="trending-tag">🔥 Pizza</span>
+              <span class="trending-tag">🔥 Burger</span>
+              <span class="trending-tag">🔥 Healthy</span>
+              <span class="trending-tag">🔥 Desserts</span>
+            </div>
+          </div>
+
+          <!-- Popular Cuisines Section -->
+          <div class="search-suggestion-section">
+            <h4>Popular Cuisines</h4>
+            <div class="popular-cuisine-row">
+              <div class="popular-cuisine-item" data-cuisine="biryani">
+                <img src="images/cuisine_images/biryani.jpg" alt="Biryani">
+                <span>Biryani</span>
+              </div>
+              <div class="popular-cuisine-item" data-cuisine="pizza">
+                <img src="images/cuisine_images/pizza.jpg" alt="Pizza">
+                <span>Pizza</span>
+              </div>
+              <div class="popular-cuisine-item" data-cuisine="burgers">
+                <img src="images/cuisine_images/burgers.jpg" alt="Burgers">
+                <span>Burgers</span>
+              </div>
+              <div class="popular-cuisine-item" data-cuisine="chinese">
+                <img src="images/cuisine_images/chinese.jpg" alt="Chinese">
+                <span>Chinese</span>
+              </div>
+              <div class="popular-cuisine-item" data-cuisine="desserts">
+                <img src="images/cuisine_images/desserts.jpg" alt="Desserts">
+                <span>Desserts</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="veg-toggle-container">
+          <label class="veg-switch">
+            <input type="checkbox" id="veg-only-toggle">
+            <span class="veg-slider"></span>
+          </label>
+          <span>Veg Only</span>
+        </div>
+      </div>
+
+     
+            <!-- Slide 2: Weekend coupon -->
+            <div class="carousel-slide slide-coupon">
+              <div class="carousel-slide-content">
+                <span class="carousel-slide-badge">Super Saver Deal</span>
+                <h3 class="carousel-slide-title">Flat &#8377;100 OFF</h3>
+                <p class="carousel-slide-desc">Order comfort food worth &#8377;200 or more and get flat discount instantly.</p>
+                <div class="slide-coupon-code">CODE: WELCOME50</div>
+              </div>
+            </div>
+            <!-- Slide 3: Free delivery -->
+            <div class="carousel-slide slide-delivery">
+              <div class="carousel-slide-content">
+                <span class="carousel-slide-badge">Free Delivery</span>
+                <h3 class="carousel-slide-title">Free Home Delivery</h3>
+                <p class="carousel-slide-desc">No delivery charges on orders above &#8377;250. Order from top rated eateries near you!</p>
+              </div>
+            </div>
+          </div>
+          <!-- Slider dots -->
+          <div class="carousel-dots" id="carousel-dots">
+            <span class="carousel-dot active" data-slide="0"></span>
+            <span class="carousel-dot" data-slide="1"></span>
+            <span class="carousel-dot" data-slide="2"></span>
+          </div>
+       
+  </section>
+
+  <!-- Floating Category Section -->
+  <section class="floating-category-section reveal-on-scroll">
+    <div class="app-categories-grid">
+      <div class="floating-category-card" onclick="window.location.href='restaurants.jsp#burgers'">
+        <div class="category-circle-img">
+          <img src="images/cuisine_images/burgers.jpg" alt="Burgers">
+        </div>
+        <span>Burgers</span>
+      </div>
+      <div class="floating-category-card" onclick="window.location.href='restaurants.jsp#pizza'">
+        <div class="category-circle-img">
+          <img src="images/cuisine_images/pizza.jpg" alt="Pizza">
+        </div>
+        <span>Pizza</span>
+      </div>
+      <div class="floating-category-card" onclick="window.location.href='restaurants.jsp#biryani'">
+        <div class="category-circle-img">
+          <img src="images/cuisine_images/biryani.jpg" alt="Biryani">
+        </div>
+        <span>Biryani</span>
+      </div>
+      <div class="floating-category-card" onclick="window.location.href='restaurants.jsp#healthy'">
+        <div class="category-circle-img">
+          <img src="images/cuisine_images/healthy.jpg" alt="Drinks">
+        </div>
+        <span>Drinks</span>
+      </div>
+      <div class="floating-category-card" onclick="window.location.href='restaurants.jsp#desserts'">
+        <div class="category-circle-img">
+          <img src="images/cuisine_images/desserts.jpg" alt="Desserts">
+        </div>
+        <span>Desserts</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Desktop Cuisines Section (Desktop Only) -->
+  <section class="desktop-cuisines-section section container reveal-on-scroll">
+    <div class="section-header">
+      <h2>In the Mood for Something Special?</h2>
+      <p>Explore Bengaluru's top cuisines curated just for you</p>
+    </div>
+    
+    <div class="desktop-cuisines-grid">
+      <div class="desktop-cuisine-card" onclick="window.location.href='restaurants.jsp#all'">
+        <div class="cuisine-circle-img">
+          <img src="images/cuisine_images/all.jpg" alt="All Cuisines">
+        </div>
+        <span>All Cuisines</span>
+      </div>
+      <div class="desktop-cuisine-card" onclick="window.location.href='restaurants.jsp#biryani'">
+        <div class="cuisine-circle-img">
+          <img src="images/cuisine_images/biryani.jpg" alt="Biryani">
+        </div>
+        <span>Biryani</span>
+      </div>
+      <div class="desktop-cuisine-card" onclick="window.location.href='restaurants.jsp#north-indian'">
+        <div class="cuisine-circle-img">
+          <img src="images/cuisine_images/north-indian.jpg" alt="North Indian">
+        </div>
+        <span>North Indian</span>
+      </div>
+      <div class="desktop-cuisine-card" onclick="window.location.href='restaurants.jsp#south-indian'">
+        <div class="cuisine-circle-img">
+          <img src="images/cuisine_images/south-indian.jpg" alt="South Indian">
+        </div>
+        <span>South Indian</span>
+      </div>
+      <div class="desktop-cuisine-card" onclick="window.location.href='restaurants.jsp#burgers'">
+        <div class="cuisine-circle-img">
+          <img src="images/cuisine_images/burgers.jpg" alt="Burgers">
+        </div>
+        <span>Burgers</span>
+      </div>
+      <div class="desktop-cuisine-card" onclick="window.location.href='restaurants.jsp#pizza'">
+        <div class="cuisine-circle-img">
+          <img src="images/cuisine_images/pizza.jpg" alt="Pizza">
+        </div>
+        <span>Pizza</span>
+      </div>
+      <div class="desktop-cuisine-card" onclick="window.location.href='restaurants.jsp#chinese'">
+        <div class="cuisine-circle-img">
+          <img src="images/cuisine_images/chinese.jpg" alt="Chinese">
+        </div>
+        <span>Chinese</span>
+      </div>
+      <div class="desktop-cuisine-card" onclick="window.location.href='restaurants.jsp#desserts'">
+        <div class="cuisine-circle-img">
+          <img src="images/cuisine_images/desserts.jpg" alt="Desserts">
+        </div>
+        <span>Desserts</span>
+      </div>
+      <div class="desktop-cuisine-card" onclick="window.location.href='restaurants.jsp#mexican'">
+        <div class="cuisine-circle-img">
+          <img src="images/cuisine_images/mexican.jpg" alt="Mexican">
+        </div>
+        <span>Mexican</span>
+      </div>
+      <div class="desktop-cuisine-card" onclick="window.location.href='restaurants.jsp#healthy'">
+        <div class="cuisine-circle-img">
+          <img src="images/cuisine_images/healthy.jpg" alt="Healthy Food">
+        </div>
+        <span>Healthy Food</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Collections Section -->
+  <section class="section container reveal-on-scroll collections-section">
+    <div class="section-header">
+      <h2>Collections</h2>
+      <p>Explore curated lists of top-rated restaurants, cafes, and bars in Bengaluru, based on trends</p>
+    </div>
+    
+    <div class="collections-grid">
+      <!-- Collection 1: Trending -->
+      <a href="restaurants.jsp" class="collection-card">
+        <img class="collection-img" src="images/restaurant_images/res-generic-1.jpg" alt="Trending this week">
+        <div class="collection-info">
+          <h3>Trending This Week</h3>
+          <span>12 Places <svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></span>
+        </div>
+      </a>
+      
+      <!-- Collection 2: Legendary -->
+      <a href="restaurants.jsp?type=dining" class="collection-card">
+        <img class="collection-img" src="images/restaurant_images/res-south-indian.jpg" alt="Legendary Outlets">
+        <div class="collection-info">
+          <h3>Legendary Outlets</h3>
+          <span>8 Places <svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></span>
+        </div>
+      </a>
+
+      <!-- Collection 3: Super Saver -->
+      <a href="home#offers" class="collection-card">
+        <img class="collection-img" src="images/restaurant_images/res-pizza.jpg" alt="Super Saver Offers">
+        <div class="collection-info">
+          <h3>Super Saver Offers</h3>
+          <span>10 Places <svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></span>
+        </div>
+      </a>
+
+      <!-- Collection 4: Sweet Tooth -->
+      <a href="restaurants.jsp#desserts" class="collection-card">
+        <img class="collection-img" src="images/restaurant_images/res-desserts.jpg" alt="Sweet Tooth Cravings">
+        <div class="collection-info">
+          <h3>Sweet Tooth Cravings</h3>
+          <span>15 Places <svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 24 24" width="14" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Offers Section -->
+  <section class="section container reveal-on-scroll" id="offers">
+    <div class="section-header">
+      <h2>Deals of the Week</h2>
+      <p>Grab these exclusive discounts and coupon codes now</p>
+    </div>
+
+    <div class="offers-grid">
+      <div class="offer-card offer-card-1">
+        <span class="offer-badge">LIMITED PERIOD</span>
+        <h3>Flat 50% OFF</h3>
+        <p>On your first 5 orders from premium restaurants. T&C apply.</p>
+        <span class="offer-code">CODE: WELCOME50</span>
+      </div>
+
+      <div class="offer-card offer-card-2">
+        <span class="offer-badge">BUY 1 GET 1</span>
+        <h3>BOGO Deals</h3>
+        <p>Double the taste, half the price. Valid on selected items.</p>
+        <span class="offer-code">CODE: BOGOFEST</span>
+      </div>
+
+      <div class="offer-card offer-card-3">
+        <span class="offer-badge">SUPER SAVER</span>
+        <h3>Free Delivery</h3>
+        <p>Free contactless home delivery on orders above &#8377;250.</p>
+        <span class="offer-code">CODE: FREEDEL</span>
+      </div>
+
+      <div class="offer-card offer-card-4">
+        <span class="offer-badge">WEEKEND VIBES</span>
+        <h3>Weekend Combos</h3>
+        <p>Up to &#8377;150 cashback on family size combos and beverages.</p>
+        <span class="offer-code">CODE: WEEKENDJOY</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Restaurants Section -->
+  <section class="section container reveal-on-scroll">
+    <div class="section-header">
+      <h2>Popular Restaurants in Bengaluru</h2>
+      <p>Highly rated eateries chosen by food lovers in Bangalore</p>
+    </div>
+
+    <!-- Skeleton Loader Grid -->
+    <div class="skeleton-grid" id="restaurant-skeleton-grid">
+      <div class="skeleton-card">
+        <div class="skeleton-image shimmer-effect"></div>
+        <div class="skeleton-text title shimmer-effect"></div>
+        <div class="skeleton-text subtitle shimmer-effect"></div>
+        <div class="skeleton-text meta shimmer-effect"></div>
+      </div>
+      <div class="skeleton-card">
+        <div class="skeleton-image shimmer-effect"></div>
+        <div class="skeleton-text title shimmer-effect"></div>
+        <div class="skeleton-text subtitle shimmer-effect"></div>
+        <div class="skeleton-text meta shimmer-effect"></div>
+      </div>
+      <div class="skeleton-card">
+        <div class="skeleton-image shimmer-effect"></div>
+        <div class="skeleton-text title shimmer-effect"></div>
+        <div class="skeleton-text subtitle shimmer-effect"></div>
+        <div class="skeleton-text meta shimmer-effect"></div>
+      </div>
+      <div class="skeleton-card">
+        <div class="skeleton-image shimmer-effect"></div>
+        <div class="skeleton-text title shimmer-effect"></div>
+        <div class="skeleton-text subtitle shimmer-effect"></div>
+        <div class="skeleton-text meta shimmer-effect"></div>
+      </div>
+      <div class="skeleton-card">
+        <div class="skeleton-image shimmer-effect"></div>
+        <div class="skeleton-text title shimmer-effect"></div>
+        <div class="skeleton-text subtitle shimmer-effect"></div>
+        <div class="skeleton-text meta shimmer-effect"></div>
+      </div>
+      <div class="skeleton-card">
+        <div class="skeleton-image shimmer-effect"></div>
+        <div class="skeleton-text title shimmer-effect"></div>
+        <div class="skeleton-text subtitle shimmer-effect"></div>
+        <div class="skeleton-text meta shimmer-effect"></div>
+      </div>
+    </div>
+
+    <div class="restaurant-grid restaurant-cards-container" id="restaurant-cards-container" style="display: none; opacity: 0; transition: opacity 0.5s ease;">
+      <%
+      if (restaurantList != null) {
+          int count = 0;
+          for (Restaurant r : restaurantList) {
+              if (count >= 6) break;
+              count++;
+              boolean isVeg = r.getCausinType().toLowerCase().contains("veg") || r.getCausinType().toLowerCase().contains("south indian") || r.getCausinType().toLowerCase().contains("vegetarian");
+      %>
+            <a href="restaurant-details?id=<%= r.getRestaurantId() %>" class="restaurant-card">
+              <div class="restaurant-img-wrapper">
+                <button class="btn-favorite" aria-label="Add to Favorites" type="button">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                  </svg>
+                </button>
+                <% if (r.getRating() >= 4.5) { %><span class="badge-trending">Trending</span><% } %>
+                <img src="<%= r.getimagePath() %>" alt="<%= r.getRestaurantName() %>">
+              </div>
+              <div class="restaurant-info">
+                <div class="restaurant-info-top">
+                  <h3><%= r.getRestaurantName() %></h3>
+                  <span class="rating-badge rating-high">&#11088; <%= r.getRating() %></span>
+                </div>
+                <div class="tag-veg-nonveg">
+                  <% if (isVeg) { %>
+                    <span class="indicator indicator-veg"><span class="indicator-dot"></span></span><span class="type-label">Pure Veg</span>
+                  <% } else { %>
+                    <span class="indicator indicator-nonveg"><span class="indicator-dot"></span></span><span class="type-label">Non-Veg Specialty</span>
+                  <% } %>
+                </div>
+                <p class="cuisine-tags"><%= r.getCausinType() %></p>
+                <div class="location-tag"><%= r.getAddress() %></div>
+                <div class="restaurant-meta">
+                  <span class="meta-delivery">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                    <%= r.getDelivaryTime() %> mins
+                  </span>
+                </div>
+              </div>
+            </a>
+      <%
+          }
+      }
+      %>
+    </div><div style="text-align: center; margin-top: 50px;">
+      <a href="restaurants.jsp" class="btn btn-secondary">Explore All Restaurants</a>
+    </div>
+  </section>
+
+  <!-- Food Gallery Section -->
+  <section class="section container reveal-on-scroll">
+    <div class="section-header">
+      <h2>Food Gallery</h2>
+      <p>Take a glance at some of the most popular items served in Bengaluru</p>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="images/dishes_images/dish-biryani.jpg" alt="Hyderabadi Dum Biryani">
+        <div class="gallery-overlay">
+          <h4>Hyderabadi Dum Biryani</h4>
+          <span>Meghana Foods</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/dishes_images/dish-pizza.jpg" alt="Loaded Cheese Pizza">
+        <div class="gallery-overlay">
+          <h4>Sourdough Pizza</h4>
+          <span>The Pizza Bakery</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/dishes_images/dish-burger.jpg" alt="Double Cheese Smash Burger">
+        <div class="gallery-overlay">
+          <h4>Double Cheese Burger</h4>
+          <span>Truffles</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/dishes_images/dish-dessert.jpg" alt="Death by Chocolate Ice Cream">
+        <div class="gallery-overlay">
+          <h4>Death By Chocolate</h4>
+          <span>Corner House</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Reviews Section -->
+  <section class="section container reveal-on-scroll">
+    <div class="section-header">
+      <h2>Our Happy Foodies</h2>
+      <p>Real experiences shared by food enthusiasts in Bengaluru</p>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="reviewer-profile">
+          <div class="reviewer-avatar">RK</div>
+          <div class="reviewer-info">
+            <h4>Rohan Kulkarni</h4>
+            <span>Indiranagar, Bengaluru</span>
+          </div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Ordering from Meghana Foods via FoodieHub has been my weekend ritual. The Biryani arrived piping hot in just 30 mins! The delivery is amazingly quick and food stays absolutely fresh."</p>
+      </div>
+
+      <div class="review-card">
+        <div class="reviewer-profile">
+          <div class="reviewer-avatar">AS</div>
+          <div class="reviewer-info">
+            <h4>Aishwarya Sen</h4>
+            <span>Koramangala, Bengaluru</span>
+          </div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Truffles Cheese Burgers are life-saving. Love how FoodieHub lists all the menu items clearly with separate veg/non-veg indicator tags. The coupon discount worked instantly too."</p>
+      </div>
+
+      <div class="review-card">
+        <div class="reviewer-profile">
+          <div class="reviewer-avatar">NM</div>
+          <div class="reviewer-info">
+            <h4>Nikhil Murthy</h4>
+            <span>Basavanagudi, Bengaluru</span>
+          </div>
+        </div>
+        <div class="review-stars">★★★★☆</div>
+        <p class="review-text">"Vidyarthi Bhavan Masala Dosa delivered at home! I was skeptical if it would remain crisp, but the packaging and fast delivery preserved the authentic Basavanagudi taste. Superb!"</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section container reveal-on-scroll">
+    <div class="section-header">
+      <h2>Frequently Asked Questions</h2>
+      <p>Have questions about delivery, payments, or locations? We've got answers.</p>
+    </div>
+
+    <div class="faq-container">
+      <div class="faq-item">
+        <details>
+          <summary>What are the operational hours of FoodieHub in Bengaluru?</summary>
+          <div class="faq-answer">
+            FoodieHub operates 24/7 in Bengaluru! However, individual restaurant opening and closing hours depend on their specific kitchen timings. You can check the "Open/Closed" status badge on each restaurant's card.
+          </div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>Is there a minimum order value for free delivery?</summary>
+          <div class="faq-answer">
+            Yes, free delivery is automatically applied to orders above &#8377;250. For orders below &#8377;250, a standard delivery fee of &#8377;40 is added to support our local delivery partners in Bengaluru.
+          </div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>How can I apply a discount coupon code?</summary>
+          <div class="faq-answer">
+            During checkout on the Cart page, type your promo code (e.g. WELCOME50, FREEDEL) into the Promo Code input box and click Apply. The corresponding discount will immediately show up in your bill summary.
+          </div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>Do you support contactless delivery?</summary>
+          <div class="faq-answer">
+            Absolutely. All deliveries are contactless by default. You can instruct the delivery agent via delivery notes to leave the food package at your doorstep or security gate.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- App Download Section -->
+  <section class="app-download-section reveal-on-scroll">
+    <div class="container app-download-container">
+      <div class="app-download-details">
+        <h2>Get the FoodieHub App</h2>
+        <p>We will send you a link, open it on your phone to download the app. Share your email or phone number to receive the download link.</p>
+        
+        <div class="download-toggles">
+          <label class="download-radio-label">
+            <input type="radio" name="download-method" value="email" checked>
+            <span>Email</span>
+          </label>
+          <label class="download-radio-label">
+            <input type="radio" name="download-method" value="phone">
+            <span>Phone</span>
+          </label>
+        </div>
+
+        <form class="app-download-form" id="share-app-form">
+          <input type="text" placeholder="Email Address" aria-label="Contact Detail" required>
+          <button type="submit">Share App Link</button>
+        </form>
+
+        <p class="download-text-small" style="color: var(--text-muted); font-size: 0.85rem; margin-top: -15px; margin-bottom: 20px;">Download app from</p>
+        <div class="store-badges">
+          <a href="#" class="store-btn">
+            <img src="images/store_images/play-store.svg" alt="Get it on Google Play">
+          </a>
+          <a href="#" class="store-btn">
+            <img src="images/store_images/app-store.svg" alt="Download on the App Store">
+          </a>
+        </div>
+      </div>
+
+      <div class="app-preview-visual">
+        <div class="app-blob app-blob-1"></div>
+        <div class="app-blob app-blob-2"></div>
+        <div class="app-device-frame">
+          <div class="simulated-screen">
+            <div class="sim-app-header">
+              <div class="sim-app-logo">Foodie<span>Hub</span></div>
+              <div class="sim-app-loc">
+                <svg xmlns="http://www.w3.org/2000/svg" height="12" viewBox="0 0 24 24" width="12" fill="#EF4F5F"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>Bengaluru</span>
+              </div>
+            </div>
+            <div class="sim-app-hero">
+              <h4>Order Delicious Food!</h4>
+              <div class="sim-app-search">
+                <svg xmlns="http://www.w3.org/2000/svg" height="10" viewBox="0 0 24 24" width="10" fill="#696969"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                <span>Search restaurants, dishes...</span>
+              </div>
+            </div>
+            <div class="sim-app-body">
+              <div class="sim-section-title">Popular Categories</div>
+              <div class="sim-cuisines">
+                <div class="sim-cuisine-circle">
+                  <div class="sim-circle">🍗</div>
+                  <span>Biryani</span>
+                </div>
+                <div class="sim-cuisine-circle">
+                  <div class="sim-circle">🍔</div>
+                  <span>Burger</span>
+                </div>
+                <div class="sim-cuisine-circle">
+                  <div class="sim-circle">🍕</div>
+                  <span>Pizza</span>
+                </div>
+                <div class="sim-cuisine-circle">
+                  <div class="sim-circle">🎂</div>
+                  <span>Cake</span>
+                </div>
+              </div>
+              <div class="sim-section-title">Trending Near You</div>
+              <div class="sim-card">
+                <img src="images/restaurant_images/res-biryani.jpg" alt="Meghana Foods">
+                <div class="sim-card-info">
+                  <div class="sim-card-title">Meghana Foods</div>
+                  <div class="sim-card-cuisine">Andhra, Biryani</div>
+                </div>
+                <div class="sim-card-rating">4.5★</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="container reveal-on-scroll">
+    <div class="newsletter-wrapper">
+      <div class="newsletter-content">
+        <h2>Stay Updated with FoodieHub</h2>
+        <p>Subscribe to our newsletter to receive weekly offers, new restaurant launches, and curated food guides in Bengaluru</p>
+        <form class="newsletter-form" action="#" method="POST" onsubmit="return false;">
+          <input type="email" placeholder="Enter your email address" aria-label="Email Address" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h3>FoodieHub</h3>
+          <p>FoodieHub is Bengaluru's premium online food ordering and delivery marketplace, connecting hungry foodies with the finest restaurants across Bangalore.</p>
+          <div class="social-links">
+            <a href="#" class="social-icon facebook" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon instagram" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon linkedin" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="social-icon twitter" aria-label="Twitter/X">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="#" class="social-icon youtube" aria-label="YouTube">
+              <i class="fa-brands fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>About FoodieHub</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Our Team</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">FoodieHub Blog</a></li>
+            <li><a href="#">Security & Fraud</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal Information</h4>
+          <ul>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">Refund & Cancellation</a></li>
+            <li><a href="#">Merchant Terms</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact & Locations</h4>
+          <address>
+            <strong>FoodieHub Corporate Office</strong><br>
+            4th Floor, 80 Feet Road,<br>
+            Koramangala 4th Block,<br>
+            Bengaluru, KA 560034<br><br>
+            Email: support@foodiehub.in<br>
+            Phone: +91 80 4930 2000
+          </address>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 FoodieHub. All rights reserved.</p>
+        <p>Designed with ❤️ for food lovers in Bengaluru</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Cart Widget -->
+  <div class="floating-cart-btn" id="floating-cart-widget" onclick="window.location.href='cart'">
+    <span class="floating-cart-icon">🛒</span>
+    <span class="floating-cart-text" id="floating-cart-text">0 Items | &#8377;0</span>
+    <span class="floating-cart-arrow">➔</span>
+  </div>
+
+  <!-- macOS-Style Floating Dock Navigation (Desktop Only) -->
+  <div class="desktop-floating-dock">
+    <div class="dock-nav-item active" onclick="handleMobileNavClick(this, 'home')">
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+    </div>
+    <div class="dock-nav-item" onclick="handleMobileNavClick(this, 'search')">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Search</span>
+    </div>
+    <div class="dock-nav-item" onclick="handleMobileNavClick(this, 'orders')">
+      <i class="fa-solid fa-receipt"></i>
+      <span>Orders</span>
+    </div>
+    <div class="dock-nav-item" onclick="handleMobileNavClick(this, 'cart')">
+      <div class="dock-cart-wrapper">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="dock-cart-badge cart-badge">0</span>
+      </div>
+      <span>Cart</span>
+    </div>
+    <div class="dock-nav-item" onclick="handleMobileNavClick(this, 'profile')">
+      <i class="fa-solid fa-user"></i>
+      <span>Profile</span>
+    </div>
+  </div>
+
+  <!-- Sticky Bottom Mobile Navigation -->
+  <nav class="mobile-bottom-nav">
+    <div class="mobile-nav-item active" onclick="handleMobileNavClick(this, 'home')">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+      <span>Home</span>
+    </div>
+    <div class="mobile-nav-item" onclick="handleMobileNavClick(this, 'search')">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <span>Search</span>
+    </div>
+    <div class="mobile-nav-item" onclick="handleMobileNavClick(this, 'orders')">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+        <polyline points="14 2 14 8 20 8"></polyline>
+        <line x1="16" y1="13" x2="8" y2="13"></line>
+        <line x1="16" y1="17" x2="8" y2="17"></line>
+        <polyline points="10 9 9 9 8 9"></polyline>
+      </svg>
+      <span>Orders</span>
+    </div>
+    <div class="mobile-nav-item" onclick="handleMobileNavClick(this, 'cart')">
+      <div style="position: relative; display: inline-block;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <span class="cart-badge"><%= totalItems %></span>
+      </div>
+      <span>Cart</span>
+    </div>
+    <div class="mobile-nav-item" onclick="handleMobileNavClick(this, 'profile')">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+        <circle cx="12" cy="7" r="4"></circle>
+      </svg>
+      <span>Profile</span>
+    </div>
+  </nav>
+
+  <script src="JavaScript/cart.js?v=<%= System.currentTimeMillis() %>"></script>
+  <script src="JavaScript/app.js?v=<%= System.currentTimeMillis() %>"></script>
+</body>
+</html>
